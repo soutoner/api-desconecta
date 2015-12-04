@@ -1,0 +1,151 @@
+<?php 
+
+use Phalcon\Db\Column;
+use Phalcon\Db\Index;
+use Phalcon\Db\Reference;
+use Phalcon\Mvc\Model\Migration;
+
+/**
+ * Class UserMigration_100
+ */
+class UserMigration_100 extends Migration
+{
+    /**
+     * Define the table structure
+     *
+     * @return void
+     */
+    public function morph()
+    {
+        $this->morphTable('User', array(
+                'columns' => array(
+                    new Column(
+                        'id',
+                        array(
+                            'type' => Column::TYPE_INTEGER,
+                            'unsigned' => true,
+                            'notNull' => true,
+                            'autoIncrement' => true,
+                            'size' => 10,
+                            'first' => true
+                        )
+                    ),
+                    new Column(
+                        'name',
+                        array(
+                            'type' => Column::TYPE_VARCHAR,
+                            'notNull' => true,
+                            'size' => 45,
+                            'after' => 'id'
+                        )
+                    ),
+                    new Column(
+                        'suname',
+                        array(
+                            'type' => Column::TYPE_VARCHAR,
+                            'notNull' => true,
+                            'size' => 45,
+                            'after' => 'name'
+                        )
+                    ),
+                    new Column(
+                        'email',
+                        array(
+                            'type' => Column::TYPE_VARCHAR,
+                            'notNull' => true,
+                            'size' => 45,
+                            'after' => 'suname'
+                        )
+                    ),
+                    new Column(
+                        'profile_picture',
+                        array(
+                            'type' => Column::TYPE_VARCHAR,
+                            'default' => "Default_picture_url",
+                            'notNull' => true,
+                            'size' => 45,
+                            'after' => 'email'
+                        )
+                    ),
+                    new Column(
+                        'date_birth',
+                        array(
+                            'type' => Column::TYPE_DATE,
+                            'size' => 1,
+                            'after' => 'profile_picture'
+                        )
+                    ),
+                    new Column(
+                        'gender',
+                        array(
+                            'type' => Column::TYPE_VARCHAR,
+                            'size' => 1,
+                            'after' => 'date_birth'
+                        )
+                    ),
+                    new Column(
+                        'from',
+                        array(
+                            'type' => Column::TYPE_VARCHAR,
+                            'size' => 45,
+                            'after' => 'gender'
+                        )
+                    ),
+                    new Column(
+                        'rrpp_id',
+                        array(
+                            'type' => Column::TYPE_INTEGER,
+                            'unsigned' => true,
+                            'size' => 10,
+                            'after' => 'from'
+                        )
+                    )
+                ),
+                'indexes' => array(
+                    new Index('PRIMARY', array('id'), null),
+                    new Index('id_UNIQUE', array('id'), null),
+                    new Index('email_UNIQUE', array('email'), null),
+                    new Index('fk_User_RRPP1_idx', array('rrpp_id'), null)
+                ),
+                'references' => array(
+                    new Reference(
+                        'fk_User_RRPP1',
+                        array(
+                            'referencedSchema' => 'desconecta_dev',
+                            'referencedTable' => 'RRPP',
+                            'columns' => array('rrpp_id'),
+                            'referencedColumns' => array('id')
+                        )
+                    )
+                ),
+                'options' => array(
+                    'TABLE_TYPE' => 'BASE TABLE',
+                    'AUTO_INCREMENT' => '1',
+                    'ENGINE' => 'InnoDB',
+                    'TABLE_COLLATION' => 'latin1_swedish_ci'
+                ),
+            )
+        );
+    }
+
+    /**
+     * Run the migrations
+     *
+     * @return void
+     */
+    public function up()
+    {
+
+    }
+
+    /**
+     * Reverse the migrations
+     *
+     * @return void
+     */
+    public function down()
+    {
+
+    }
+
+}
