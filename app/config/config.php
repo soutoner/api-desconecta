@@ -15,9 +15,6 @@ return new \Phalcon\Config(array(
         'controllersDir' => APP_PATH . '/app/controllers/',
         'modelsDir'      => APP_PATH . '/app/models/',
         'migrationsDir'  => APP_PATH . '/app/migrations/',
-        'pluginsDir'     => APP_PATH . '/app/plugins/',
-        'libraryDir'     => APP_PATH . '/app/library/',
-        'cacheDir'       => APP_PATH . '/app/cache/',
-        'baseUri'        => '/foo/',
+        'baseUri'        => '/api/',
     )
 ));

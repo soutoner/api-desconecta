@@ -6,12 +6,8 @@
  */
 
 use Phalcon\Di\FactoryDefault;
-use Phalcon\Mvc\View;
 use Phalcon\Mvc\Url as UrlResolver;
-use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
-use Phalcon\Session\Adapter\Files as SessionAdapter;
-use Phalcon\Flash\Direct as Flash;
+use Phalcon\Mvc\Router\Annotations as RouterAnnotations;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -49,11 +45,14 @@ $di->setShared('modelsMetadata', function () {
 });
 
 /**
- * Start the session the first time some component request the session service
+ * Annotations Router
  */
-$di->setShared('session', function () {
-    $session = new SessionAdapter();
-    $session->start();
+$di->setShared('router', function () {
+    // Use the annotations router. We're passing false as we don't want the router to add its default patterns
+    $router = new RouterAnnotations(false);
 
-    return $session;
+    // Read the annotations from ProductsController if the URI starts with /api/products
+    $router->addResource('Products', '/api/products');
+
+    return $router;
 });
