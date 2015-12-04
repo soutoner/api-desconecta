@@ -7,7 +7,6 @@
 
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Url as UrlResolver;
-use Phalcon\Mvc\Router\Annotations as RouterAnnotations;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -42,17 +41,4 @@ $di->setShared('db', function () use ($config) {
  */
 $di->setShared('modelsMetadata', function () {
     return new MetaDataAdapter();
-});
-
-/**
- * Annotations Router
- */
-$di->setShared('router', function () {
-    // Use the annotations router. We're passing false as we don't want the router to add its default patterns
-    $router = new RouterAnnotations(false);
-
-    // Read the annotations from ProductsController if the URI starts with /api/products
-    $router->addResource('Products', '/api/products');
-
-    return $router;
 });

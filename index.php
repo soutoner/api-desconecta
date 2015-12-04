@@ -24,9 +24,17 @@ try {
     /**
      * Handle the request
      */
-    $application = new \Phalcon\Mvc\Micro($di);
+    $app = new \Phalcon\Mvc\Micro($di);
 
-    echo $application->handle();
+    /**
+     * Adding route collections
+     */
+    foreach (glob(APP_PATH . "/app/endpoints/v1/*.php") as $filename)
+    {
+        include $filename;
+    }
+
+    $app->handle();
 
 } catch (\Exception $e) {
     echo $e->getMessage() . '<br>';
