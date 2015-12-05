@@ -9,16 +9,26 @@ class UsersController extends \ControllerBase
 
     public function index()
     {
-        $phql = "SELECT * FROM User";
-        $users = $this->modelsManager->executeQuery($phql);
+        $users = $this->modelsManager->createBuilder()
+            ->from('User')
+            ->getQuery()
+            ->execute()->toArray();
 
         $data = array();
         foreach ($users as $user) {
-            $data[] = array(
-                'id'   => $user->id,
-                'email' => $user->email
-            );
+            $data[] = [
+                'id'                => $user->id,
+                'name'              => $user->name,
+                'surname'           => $user->surname,
+                'email'             => $user->email,
+                'profile_picture'   => $user->profile_picture,
+                'date_birth'        => $user->date_birth,
+                'gender'            => $user->gender,
+                'from'              => $user->from,
+            ];
         }
+
+
 
         echo json_encode($data);
     }
