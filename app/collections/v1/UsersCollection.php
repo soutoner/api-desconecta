@@ -16,5 +16,6 @@ $users->setPrefix('/api/'. $version .'/users');
  */
 $users->get('/', 'index');
 $users->post('/', 'create');
+$users->delete('/{id:[0-9]+}', 'delete');
 
 return $users;

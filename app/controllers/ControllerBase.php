@@ -11,7 +11,7 @@ class ControllerBase extends Controller
      * @param $status (Whether the resource pass validations or not)
      * @return Phalcon\Http\Response
      */
-    protected function resource_response($request, $status)
+    protected function response($request, $status)
     {
         // Create a response
         $response = new Response();

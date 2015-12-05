@@ -2,6 +2,7 @@
 
 namespace v1;
 
+use Phalcon\Mvc\Model\Query;
 
 class UsersController extends \ControllerBase
 {
@@ -36,7 +37,18 @@ class UsersController extends \ControllerBase
             'profile_picture' => $request->get("profile_picture", "string"),
         ));
 
-        return $this->resource_response($request, $status);
+        return $this->response($request, $status);
+    }
+
+    public function delete($id)
+    {
+        $phql = "DELETE FROM User WHERE id = :id:";
+
+        $status = $this->modelsManager->executeQuery($phql, array(
+            'id' => $id
+        ));
+
+        return $this->response($this->request ,$status);
     }
 
 }
