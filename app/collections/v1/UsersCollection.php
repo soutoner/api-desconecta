@@ -9,7 +9,7 @@ $version = basename(dirname(__FILE__));
  */
 $users = new MicroCollection();
 $users->setHandler($version . '\UsersController', true);
-$users->setPrefix('/api/users');
+$users->setPrefix('/api/'. $version .'/users');
 
 /**
  * Define routes
