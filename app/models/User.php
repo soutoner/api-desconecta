@@ -1,32 +1,12 @@
 <?php
 
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Message;
-use Phalcon\Mvc\Model\Validator\Uniqueness;
-use Phalcon\Mvc\Model\Validator\InclusionIn;
-
-class User extends Model
+/**
+ * Created by PhpStorm.
+ * User: adrian
+ * Date: 5/12/15
+ * Time: 17:10
+ */
+class User
 {
-    public function getSource()
-    {
-        return "User";
-    }
 
-    public function validation()
-    {
-        // Robot name must be unique
-        $this->validate(
-            new Uniqueness(
-                array(
-                    "field"   => "email",
-                    "message" => "The user email must be unique"
-                )
-            )
-        );
-
-        // Check if any messages have been produced
-        if ($this->validationHasFailed() == true) {
-            return false;
-        }
-    }
 }

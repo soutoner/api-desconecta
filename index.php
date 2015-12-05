@@ -27,11 +27,11 @@ try {
     $app = new \Phalcon\Mvc\Micro($di);
 
     /**
-     * Adding route collections
+     * Mount routes collections
      */
-    foreach (glob(APP_PATH . "/app/endpoints/v1/*.php") as $filename)
-    {
-        include $filename;
+    $collections = include APP_PATH . '/app/collections/collections.php';
+    foreach($collections as $collection) {
+        $app->mount($collection);
     }
 
     $app->handle();

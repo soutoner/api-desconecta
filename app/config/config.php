@@ -12,6 +12,7 @@ return new \Phalcon\Config(array(
         'charset'     => 'utf8',
     ),
     'application' => array(
+        'controllersDir' => APP_PATH . '/app/controllers/',
         'modelsDir'      => APP_PATH . '/app/models/',
         'migrationsDir'  => APP_PATH . '/app/migrations/',
         'baseUri'        => '/api/',

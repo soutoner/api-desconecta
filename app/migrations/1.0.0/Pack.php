@@ -35,7 +35,6 @@ class PackMigration_100 extends Migration
                         array(
                             'type' => Column::TYPE_DOUBLE,
                             'notNull' => true,
-                            'size' => 1,
                             'after' => 'id'
                         )
                     )
