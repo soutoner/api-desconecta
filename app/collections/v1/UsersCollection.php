@@ -14,7 +14,7 @@ $users->setPrefix('/api/'. $version .'/users');
 /**
  * Define routes
  */
-$users->get('/', 'indexAction');
-$users->post('/', 'createAction');
+$users->get('/', 'index');
+$users->post('/', 'create');
 
 return $users;

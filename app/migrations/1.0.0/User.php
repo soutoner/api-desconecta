@@ -40,7 +40,7 @@ class UserMigration_100 extends Migration
                         )
                     ),
                     new Column(
-                        'suname',
+                        'surname',
                         array(
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
