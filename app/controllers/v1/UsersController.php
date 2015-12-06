@@ -3,6 +3,8 @@
 namespace v1;
 
 
+use Phalcon\Http\Response;
+
 class UsersController extends \ControllerBase
 {
     /**
@@ -29,7 +31,7 @@ class UsersController extends \ControllerBase
             ];
         }
 
-        echo json_encode($data);
+        return new Response(json_encode($data));
     }
 
     /**

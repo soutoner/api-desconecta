@@ -2,3 +2,6 @@
 /config/development/
 .idea/
 vendor/
+
+tests/_output/*
+tests/_output/*

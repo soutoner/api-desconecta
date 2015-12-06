@@ -3,7 +3,9 @@ API for desconecta project.
 
 ### Launch development server
 
-php -S localhost:8000 -t . .htrouter.php
+`composer install`
+
+`php -S localhost:8000 -t . .htrouter.php`
 
 ### Routes workflow 
 
@@ -14,6 +16,16 @@ php -S localhost:8000 -t . .htrouter.php
 ### log into PHP built-in server console
 
 `error_log(print_r(<whatever>, true));`
+
+### Testing
+
+Enable PHP cUrl extension
+
+`sudo apt-get install php5-curl`
+
+Launch test
+
+`vendor/bin/codecept run`
 
 ### TODO
 
