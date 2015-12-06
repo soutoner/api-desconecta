@@ -6,18 +6,54 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\Email;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\InclusionIn;
+use Phalcon\Mvc\Model\Behavior\Timestampable;
 
 
-class User extends  Model
+class User extends Model
 {
-    /**
-     * Maps database table to model.
-     *
-     * @return string
-     */
-    public function getSource()
+    public $name;
+
+    public $surname;
+
+    public $email;
+
+    public $profile_picture;
+
+    public $date_birth;
+
+    public $gender;
+
+    public $location;
+
+    protected $created_at;
+
+    protected $updated_at;
+
+    public function initialize()
     {
-        return "User";
+        $this->setSource("User");
+
+        $this->addBehavior(
+            new Timestampable(
+                array(
+                    'beforeCreate' => array(
+                        'field'  => 'created_at',
+                        'format' => 'Y-m-d H:i:sP'
+                    )
+                )
+            )
+        );
+
+        $this->addBehavior(
+            new Timestampable(
+                array(
+                    'beforeUpdate' => array(
+                        'field'  => 'updated_at',
+                        'format' => 'Y-m-d H:i:sP'
+                    )
+                )
+            )
+        );
     }
 
     /**

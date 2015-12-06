@@ -54,7 +54,7 @@ class UserMigration_100 extends Migration
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
                             'size' => 45,
-                            'after' => 'suname'
+                            'after' => 'surname'
                         )
                     ),
                     new Column(
@@ -84,7 +84,7 @@ class UserMigration_100 extends Migration
                         )
                     ),
                     new Column(
-                        'location',
+                        'from',
                         array(
                             'type' => Column::TYPE_VARCHAR,
                             'size' => 45,
@@ -98,6 +98,26 @@ class UserMigration_100 extends Migration
                             'unsigned' => true,
                             'size' => 10,
                             'after' => 'from'
+                        )
+                    ),
+                    new Column(
+                        'created_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'rrpp_id'
+                        )
+                    ),
+                    new Column(
+                        'updated_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'created_at'
                         )
                     )
                 ),
@@ -120,9 +140,9 @@ class UserMigration_100 extends Migration
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '3',
+                    'AUTO_INCREMENT' => '1',
                     'ENGINE' => 'InnoDB',
-                    'TABLE_COLLATION' => 'latin1_swedish_ci'
+                    'TABLE_COLLATION' => 'utf8_unicode_ci'
                 ),
             )
         );

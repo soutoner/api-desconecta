@@ -8,10 +8,10 @@ class ControllerBase extends Controller
     /**
      * Check if the resource is saved or not and returns a response depending on this.
      * @param $request
-     * @param $status (Whether the resource pass validations or not)
+     * @param $resource
      * @return Phalcon\Http\Response
      */
-    protected function response($request, $status)
+    protected function response($request, $resource)
     {
         // Create a response
         $response = new Response();
@@ -19,45 +19,58 @@ class ControllerBase extends Controller
         // Request method
         $method = $request->getMethod();
 
-        // Check if the insertion was successful
-        if ($status->success() == true) {
-            if ($method === "POST"){
+        if ($method === "POST" || $method === "PUT"){
+            if ($resource->save() == true) {
                 // Change the HTTP status
-                $response->setStatusCode(201, "Created");
-
-                $request->id = $status->getModel()->id;
+                if($method === "POST") {
+                    $response->setStatusCode(201, "Created");
+                } else {
+                    $response->setStatusCode(200, "Updated");
+                }
 
                 $response->setJsonContent(
                     array(
                         'status' => 'OK',
-                        'data'   => $request
+                        'data'   => $resource
                     )
                 );
             } else {
-                $response->setStatusCode(200, "Ok");
+                // Change the HTTP status
+                $response->setStatusCode(409, "Conflict");
+
+                // Send errors to the client
+                $errors = array();
+                foreach ($resource->getMessages() as $message) {
+                    $errors[] = $message->getMessage();
+                }
+
+                $response->setJsonContent(
+                    array(
+                        'status'   => 'ERROR',
+                        'messages' => $errors
+                    )
+                );
+            }
+        } else {
+            if($resource->delete() == true){
+                $response->setStatusCode(200, "Deleted");
 
                 $response->setJsonContent(
                     array(
                         'status' => 'OK'
                     )
                 );
-            }
-        } else {
-            // Change the HTTP status
-            $response->setStatusCode(409, "Conflict");
+            } else {
+                // Change the HTTP status
+                $response->setStatusCode(409, "Conflict");
 
-            // Send errors to the client
-            $errors = array();
-            foreach ($status->getMessages() as $message) {
-                $errors[] = $message->getMessage();
+                $response->setJsonContent(
+                    array(
+                        'status'   => 'ERROR',
+                        'messages' => 'Internal error while deleting'
+                    )
+                );
             }
-
-            $response->setJsonContent(
-                array(
-                    'status'   => 'ERROR',
-                    'messages' => $errors
-                )
-            );
         }
 
         return $response;

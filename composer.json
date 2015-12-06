@@ -1,6 +1,12 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/soutoner/phalcon-devtools"
+        }
+    ],
     "require-dev": {
         "codeception/codeception": "*",
-        "phpunit/phpunit": "^5.1"
+        "phalcon/devtools": "dev-master"
     }
 }

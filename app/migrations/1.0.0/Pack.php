@@ -37,6 +37,26 @@ class PackMigration_100 extends Migration
                             'notNull' => true,
                             'after' => 'id'
                         )
+                    ),
+                    new Column(
+                        'created_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'price'
+                        )
+                    ),
+                    new Column(
+                        'updated_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'created_at'
+                        )
                     )
                 ),
                 'indexes' => array(
@@ -47,7 +67,7 @@ class PackMigration_100 extends Migration
                     'TABLE_TYPE' => 'BASE TABLE',
                     'AUTO_INCREMENT' => '1',
                     'ENGINE' => 'InnoDB',
-                    'TABLE_COLLATION' => 'latin1_swedish_ci'
+                    'TABLE_COLLATION' => 'utf8_unicode_ci'
                 ),
             )
         );

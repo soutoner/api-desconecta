@@ -38,6 +38,26 @@ class PhotoHasHashtagMigration_100 extends Migration
                             'size' => 10,
                             'after' => 'photo_id'
                         )
+                    ),
+                    new Column(
+                        'created_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'hashTag_id'
+                        )
+                    ),
+                    new Column(
+                        'updated_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'created_at'
+                        )
                     )
                 ),
                 'indexes' => array(
@@ -69,7 +89,7 @@ class PhotoHasHashtagMigration_100 extends Migration
                     'TABLE_TYPE' => 'BASE TABLE',
                     'AUTO_INCREMENT' => '',
                     'ENGINE' => 'InnoDB',
-                    'TABLE_COLLATION' => 'latin1_swedish_ci'
+                    'TABLE_COLLATION' => 'utf8_unicode_ci'
                 ),
             )
         );
