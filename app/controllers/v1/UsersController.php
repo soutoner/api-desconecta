@@ -12,12 +12,10 @@ class UsersController extends \ControllerBase
      */
     public function index()
     {
-        $users = $this->modelsManager->createBuilder()
-            ->from('User')
-            ->getQuery()
-            ->execute();
+        $phql = "SELECT * FROM User";
+        $users = $this->modelsManager->executeQuery($phql);
 
-        $data = array();
+        $data = [];
         foreach ($users as $user) {
             $data[] = [
                 'id'                => $user->id,
@@ -47,7 +45,6 @@ class UsersController extends \ControllerBase
 
         $phql = "INSERT INTO User (name, surname, email, profile_picture, date_birth, gender, location)
           VALUES (:name:, :surname:, :email:, :profile_picture:, :date_birth:, :gender:, :location:)";
-
         $status = $this->modelsManager->executeQuery($phql, [
             'name'              => $request->get("name", "string"),
             'surname'           => $request->get("surname", "string"),
@@ -70,12 +67,10 @@ class UsersController extends \ControllerBase
     public function update($id){
         $request = $this->request;
 
-        $user = $this->modelsManager->createBuilder()
-            ->from('User')
-            ->where('id = :id:', ['id' => $id])
-            ->getQuery()
-            ->execute()
-            ->getFirst();
+        $phql = "SELECT * FROM User WHERE id = :id:";
+        $user = $this->modelsManager->executeQuery($phql, [
+            'id' => $id,
+        ])->getFirst();
 
         $phql = "UPDATE User SET
           name = :name:, surname = :surname:, email = :email:, profile_picture = :profile_picture:,
@@ -104,12 +99,12 @@ class UsersController extends \ControllerBase
     public function delete($id)
     {
         $phql = "DELETE FROM User WHERE id = :id:";
-
         $status = $this->modelsManager->executeQuery($phql, array(
             'id' => $id
         ));
 
         return $this->response($this->request ,$status);
     }
+
 }
 
