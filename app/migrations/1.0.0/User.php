@@ -84,7 +84,7 @@ class UserMigration_100 extends Migration
                         )
                     ),
                     new Column(
-                        'from',
+                        'location',
                         array(
                             'type' => Column::TYPE_VARCHAR,
                             'size' => 45,
