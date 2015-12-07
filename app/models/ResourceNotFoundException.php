@@ -21,7 +21,7 @@ class ResourceNotFoundException extends Exception
         $response->setStatusCode(404, 'Resource Not Found');
         $response->setJsonContent([
             'status' => 'ERROR',
-            'data'   => 'Resource Not Found'
+            'message'   => 'Resource Not Found'
         ]);
 
         return $response;
