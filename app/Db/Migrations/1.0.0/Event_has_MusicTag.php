@@ -62,6 +62,7 @@ class EventHasMusictagMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('event_id', 'musicTag_id'), null),
+                    new Index('event_id-musicTag_id-UNIQUE', array('event_id', 'musicTag_id'), null),
                     new Index('fk_Event_has_MusicTag_MusicTag1_idx', array('musicTag_id'), null),
                     new Index('fk_Event_has_MusicTag_Event1_idx', array('event_id'), null)
                 ),

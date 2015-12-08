@@ -51,7 +51,7 @@ class UsersController extends ControllerBase
      *
      * @param $id - Id of the user to be deleted
      * @return Response
-     * @throws \ResourceNotFoundException
+     * @throws ResourceNotFoundException
      */
     public function update($id)
     {
@@ -89,7 +89,7 @@ class UsersController extends ControllerBase
      *
      * @param $id - Id of the user to be deleted
      * @return Response
-     * @throws \ResourceNotFoundException
+     * @throws ResourceNotFoundException
      */
     public function delete($id)
     {
@@ -108,6 +108,5 @@ class UsersController extends ControllerBase
             return $e->return_response();
         }
     }
-
 }
 

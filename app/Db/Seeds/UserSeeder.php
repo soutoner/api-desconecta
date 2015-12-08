@@ -48,6 +48,9 @@ class UserSeeder
         ],
     ];
 
+    /**
+     * Populates the database.
+     */
     public static function Seed(){
         foreach(self::$db_users as $params){
             $user = new User();
@@ -55,6 +58,20 @@ class UserSeeder
         }
     }
 
+    /**
+     * Returns User params that are saves in database.
+     *
+     * @return array
+     */
+    public static function DbUserSeeds(){
+        return self::$db_users;
+    }
+
+    /**
+     * Returns Users params that are not saved in the database.
+     *
+     * @return array
+     */
     public static function UserSeeds(){
         return self::$extra_users;
     }

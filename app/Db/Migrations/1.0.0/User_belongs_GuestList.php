@@ -62,6 +62,7 @@ class UserBelongsGuestlistMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'guestList_id'), null),
+                    new Index('user_id-guestList_id-UNIQUE', array('user_id', 'guestList_id'), null),
                     new Index('fk_User_has_GuestList_GuestList1_idx', array('guestList_id'), null),
                     new Index('fk_User_has_GuestList_User1_idx', array('user_id'), null)
                 ),

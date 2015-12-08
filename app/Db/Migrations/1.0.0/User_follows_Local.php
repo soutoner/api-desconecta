@@ -62,6 +62,7 @@ class UserFollowsLocalMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'local_id'), null),
+                    new Index('user_id-local_id-UNIQUE', array('user_id', 'local_id'), null),
                     new Index('fk_User_has_Local_Local1_idx', array('local_id'), null),
                     new Index('fk_User_has_Local_User1_idx', array('user_id'), null)
                 ),

@@ -32,8 +32,35 @@ class User extends Model
 
     public function initialize()
     {
-        $this->setSource("User");
+        /**
+         * Table name.
+         */
+        $this->setSource('User');
 
+        /**
+         * Relationships.
+         */
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Follower',
+            'user_id', 'follower_id',
+            'App\Models\User',
+            'id',
+            array('alias' => 'Followers')
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Follower',
+            'follower_id', 'user_id',
+            'App\Models\User',
+            'id',
+            array('alias' => 'Following')
+        );
+
+        /**
+         * Behaviors.
+         */
         $this->addBehavior(
             new Timestampable(
                 array(

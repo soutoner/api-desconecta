@@ -30,7 +30,7 @@ class EventHasHashtagMigration_100 extends Migration
                         )
                     ),
                     new Column(
-                        'hashtag_id',
+                        'hashTag_id',
                         array(
                             'type' => Column::TYPE_INTEGER,
                             'unsigned' => true,
@@ -46,7 +46,7 @@ class EventHasHashtagMigration_100 extends Migration
                             'default' => "CURRENT_TIMESTAMP",
                             'notNull' => true,
                             'size' => 1,
-                            'after' => 'hashtag_id'
+                            'after' => 'hashTag_id'
                         )
                     ),
                     new Column(
@@ -61,8 +61,9 @@ class EventHasHashtagMigration_100 extends Migration
                     )
                 ),
                 'indexes' => array(
-                    new Index('PRIMARY', array('event_id', 'hashtag_id'), null),
-                    new Index('fk_Event_has_HashTag_HashTag1_idx', array('hashtag_id'), null),
+                    new Index('PRIMARY', array('event_id', 'hashTag_id'), null),
+                    new Index('event_id-hashTag_id-UNIQUE', array('event_id', 'hashTag_id'), null),
+                    new Index('fk_Event_has_HashTag_HashTag1_idx', array('hashTag_id'), null),
                     new Index('fk_Event_has_HashTag_Event1_idx', array('event_id'), null)
                 ),
                 'references' => array(
@@ -80,7 +81,7 @@ class EventHasHashtagMigration_100 extends Migration
                         array(
                             'referencedSchema' => 'desconecta_dev',
                             'referencedTable' => 'HashTag',
-                            'columns' => array('hashtag_id'),
+                            'columns' => array('hashTag_id'),
                             'referencedColumns' => array('id')
                         )
                     )

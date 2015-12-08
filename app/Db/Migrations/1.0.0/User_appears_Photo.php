@@ -62,6 +62,7 @@ class UserAppearsPhotoMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'photo_id'), null),
+                    new Index('user_id-photo_id-UNIQUE', array('user_id', 'photo_id'), null),
                     new Index('fk_User_has_Photo_Photo1_idx', array('photo_id'), null),
                     new Index('fk_User_has_Photo_User1_idx', array('user_id'), null)
                 ),

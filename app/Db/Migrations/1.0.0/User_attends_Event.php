@@ -72,6 +72,7 @@ class UserAttendsEventMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'event_id'), null),
+                    new Index('user_id-event_id-UNIQUE', array('user_id', 'event_id'), null),
                     new Index('fk_User_has_Event_Event1_idx', array('event_id'), null),
                     new Index('fk_User_has_Event_User1_idx', array('user_id'), null)
                 ),

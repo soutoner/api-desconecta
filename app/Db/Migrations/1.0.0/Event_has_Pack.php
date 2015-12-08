@@ -62,6 +62,7 @@ class EventHasPackMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('event_id', 'pack_id'), null),
+                    new Index('event_id-pack_id-UNIQUE', array('event_id', 'pack_id'), null),
                     new Index('fk_Event_has_Pack_Pack1_idx', array('pack_id'), null),
                     new Index('fk_Event_has_Pack_Event1_idx', array('event_id'), null)
                 ),

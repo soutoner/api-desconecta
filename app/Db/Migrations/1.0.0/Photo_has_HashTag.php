@@ -62,6 +62,7 @@ class PhotoHasHashtagMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('photo_id', 'hashTag_id'), null),
+                    new Index('photo_id-hashTag_id-UNIQUE', array('photo_id', 'hashTag_id'), null),
                     new Index('fk_Photo_has_HashTag_HashTag1_idx', array('hashTag_id'), null),
                     new Index('fk_Photo_has_HashTag_Photo1_idx', array('photo_id'), null)
                 ),

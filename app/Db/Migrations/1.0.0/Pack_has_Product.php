@@ -62,6 +62,7 @@ class PackHasProductMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('pack_id', 'product_id'), null),
+                    new Index('pack_id-product_id-UNIQUE', array('pack_id', 'product_id'), null),
                     new Index('fk_Pack_has_Product_Product1_idx', array('product_id'), null),
                     new Index('fk_Pack_has_Product_Pack1_idx', array('pack_id'), null)
                 ),
