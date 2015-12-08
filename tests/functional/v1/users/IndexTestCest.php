@@ -2,30 +2,14 @@
 
 namespace v1\users;
 
+use \EndpointTest;
 use \FunctionalTester;
+use App\Models\User;
 
-class IndexTests
+class IndexTests extends EndpointTest
 {
-    /**
-     * API version.
-     *
-     * @var string
-     */
-    protected $version;
-
-    /**
-     * API endpoint.
-     *
-     * @var string
-     */
-    protected $endpoint;
-
-    /**
-     * IndexTest constructor.
-     */
     public function __construct(){
-        $this->version = basename(dirname(__DIR__));
-        $this->endpoint = '/api/'.$this->version.'/'.basename(dirname(__FILE__));
+        parent::__construct(__DIR__, __FILE__);
     }
 
     public function indexReturnsAllUsers(FunctionalTester $I)
@@ -35,8 +19,8 @@ class IndexTests
         // We see the response is OK and JSON
         $I->seeResponseCodeIs(200); $I->seeResponseIsJson();
         // We check that are all the users inside
-        $I->assertEquals(count(\User::find()), count(json_decode($I->grabResponse())));
+        $I->assertEquals(count(User::find()), count(json_decode($I->grabResponse())));
         // We see te fields that at least it contains an user value.
-        $I->seeResponseContainsJson(\User::findFirst()->toArray());
+        $I->seeResponseContainsJson(User::findFirst()->toArray());
     }
 }

@@ -2,30 +2,14 @@
 
 namespace v1\users;
 
+use \EndpointTest;
 use \FunctionalTester;
+use App\Models\User;
 
-class UpdateTestCest
+class UpdateTestCest extends EndpointTest
 {
-    /**
-     * API version.
-     *
-     * @var string
-     */
-    protected $version;
-
-    /**
-     * API endpoint.
-     *
-     * @var string
-     */
-    protected $endpoint;
-
-    /**
-     * IndexTest constructor.
-     */
     public function __construct(){
-        $this->version = basename(dirname(__DIR__));
-        $this->endpoint = '/api/'.$this->version.'/'.basename(dirname(__FILE__));
+        parent::__construct(__DIR__, __FILE__);
     }
 
     public function updateSuccessful(FunctionalTester $I)
@@ -36,30 +20,30 @@ class UpdateTestCest
 
         $I->haveHttpHeader('Content-Type', 'application/x-www-form-urlencoded');
         // We send get
-        $I->sendPUT($this->endpoint.'/'.\User::findFirst()->id, 'name='.$updated_param['name']);
+        $I->sendPUT($this->endpoint.'/'.User::findFirst()->id, 'name='.$updated_param['name']);
         // We see the response is OK and JSON
         $I->seeResponseCodeIs(200); $I->seeResponseIsJson();
         // We check that the resource is updated
-        $I->assertEquals($updated_param['name'], \User::findFirst()->name);
+        $I->assertEquals($updated_param['name'], User::findFirst()->name);
     }
 
     public function updateUnsuccessfulReturnErrors(FunctionalTester $I)
     {
-        $original_name = \User::findFirst()->name;
+        $original_name = User::findFirst()->name;
         $updated_param = [
             'name' => ''
         ];
 
         $I->haveHttpHeader('Content-Type', 'application/x-www-form-urlencoded');
         // We send get
-        $I->sendPUT($this->endpoint.'/'.\User::findFirst()->id, 'name='.$updated_param['name']);
+        $I->sendPUT($this->endpoint.'/'.User::findFirst()->id, 'name='.$updated_param['name']);
         // We see the response is OK and JSON
         $I->seeResponseCodeIs(409); $I->seeResponseIsJson();
         // We see the response contains error messages
         $json_response = json_decode($I->grabResponse());
         $I->assertGreaterThan(0, $json_response->messages);
         // We check that the resource is not updated
-        $I->assertEquals($original_name, \User::findFirst()->name);
+        $I->assertEquals($original_name, User::findFirst()->name);
     }
 
     public function updateOnNonExistentRecordReturns404(FunctionalTester $I)

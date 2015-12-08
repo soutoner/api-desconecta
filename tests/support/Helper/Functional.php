@@ -2,11 +2,15 @@
 
 namespace Helper;
 
+use \App\Db\Seeds\DatabaseSeeder;
 
-// here you can define custom actions
-// all public methods declared in helper class will be available in $I
+
 class Functional extends \Codeception\Module
 {
+    /**
+     * All public methods declared in helper class will be available in $I.
+     */
+
     /**
      * Before each test.
      *
@@ -14,6 +18,6 @@ class Functional extends \Codeception\Module
      */
     public function _before(\Codeception\TestCase $test) {
         // Populate DB
-        include APP_PATH . '/tests/_data/DatabaseSeeder.php';
+        DatabaseSeeder::Seed();
     }
 }

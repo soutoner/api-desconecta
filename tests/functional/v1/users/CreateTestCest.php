@@ -2,17 +2,14 @@
 
 namespace v1\users;
 
+use \EndpointTest;
 use \FunctionalTester;
+use App\Models\User;
 
-class CreateTestCest
+class CreateTestCest extends EndpointTest
 {
-    protected $version;
-
-    protected $endpoint;
-
     public function __construct(){
-        $this->version = basename(dirname(__DIR__));
-        $this->endpoint = '/api/'.$this->version.'/'.basename(dirname(__FILE__));
+        parent::__construct(__DIR__, __FILE__);
     }
 
     public function createSuccessfulReturnUser(FunctionalTester $I)
@@ -27,13 +24,13 @@ class CreateTestCest
             'location'          => 'Boston',
         ];
 
-        $I->dontSeeRecord('User', $new_user);
+        $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
         $I->seeResponseCodeIs(201); $I->seeResponseIsJson();
         // We see the response contains the created user
         $I->seeResponseContainsJson($new_user);
         // We check that the database contains
-        $I->seeRecord('User', $new_user);
+        $I->seeRecord('App\Models\User', $new_user);
     }
 
     public function createUnsuccessfulReturnErrors(FunctionalTester $I)
@@ -41,14 +38,14 @@ class CreateTestCest
         $new_user = [
             'name'              => 'Nicky',
             'surname'           => 'Jam',
-            'email'             => \User::findFirst()->email,
+            'email'             => User::findFirst()->email,
             'profile_picture'   => 'http://foo.jpg',
             'date_birth'        => '1981-11-11',
             'gender'            => 'H',
             'location'          => 'Boston',
         ];
 
-        $I->dontSeeRecord('User', $new_user);
+        $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
         // We see the response is OK and JSON
         $I->seeResponseCodeIs(409); $I->seeResponseIsJson();
@@ -56,6 +53,6 @@ class CreateTestCest
         $json_response = json_decode($I->grabResponse());
         $I->assertGreaterThan(0, $json_response->messages);
         // We check that the user us not saved to the database
-        $I->dontSeeRecord('User', $new_user);
+        $I->dontSeeRecord('App\Models\User', $new_user);
     }
 }

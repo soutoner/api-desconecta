@@ -1,20 +1,7 @@
 <?php
 
-defined('APP_PATH') || define('APP_PATH', realpath('.'));
+$config = include __DIR__ . "/config.php";
 
-return new \Phalcon\Config(array(
-    'database' => array(
-        'adapter'     => 'Mysql',
-        'host'        => 'localhost',
-        'username'    => 'root',
-        'password'    => '',
-        'dbname'      => 'desconecta_test',
-        'charset'     => 'utf8',
-    ),
-    'application' => array(
-        'controllersDir' => APP_PATH . '/app/controllers/',
-        'modelsDir'      => APP_PATH . '/app/models/',
-        'migrationsDir'  => APP_PATH . '/app/migrations/',
-        'baseUri'        => '/api/',
-    )
-));
+$config->database['dbname'] = 'desconecta_test';
+
+return $config;

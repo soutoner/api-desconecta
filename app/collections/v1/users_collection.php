@@ -3,12 +3,13 @@
 use \Phalcon\Mvc\Micro\Collection as MicroCollection;
 
 $version = basename(dirname(__FILE__));
+$controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 
 /**
  * Setup collection
  */
 $users = new MicroCollection();
-$users->setHandler($version . '\UsersController', true);
+$users->setHandler($controller_path . 'UsersController', true);
 $users->setPrefix('/api/'. $version .'/users');
 
 /**

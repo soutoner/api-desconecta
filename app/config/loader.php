@@ -3,11 +3,8 @@
 $loader = new \Phalcon\Loader();
 
 /**
- * We're a registering a set of directories taken from the configuration file
+ * We're a registering PSR-4 compilant namespaces
  */
-$loader->registerDirs(
-    array(
-        $config->application->controllersDir,
-        $config->application->modelsDir,
-    )
+$loader->registerNamespaces(
+    $config->namespaces->toArray()
 )->register();

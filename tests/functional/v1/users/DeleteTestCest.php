@@ -2,41 +2,25 @@
 
 namespace v1\users;
 
+use \EndpointTest;
 use \FunctionalTester;
+use App\Models\User;
 
-class DeleteTestCest
+class DeleteTestCest extends EndpointTest
 {
-    /**
-     * API version.
-     *
-     * @var string
-     */
-    protected $version;
-
-    /**
-     * API endpoint.
-     *
-     * @var string
-     */
-    protected $endpoint;
-
-    /**
-     * IndexTest constructor.
-     */
     public function __construct(){
-        $this->version = basename(dirname(__DIR__));
-        $this->endpoint = '/api/'.$this->version.'/'.basename(dirname(__FILE__));
+        parent::__construct(__DIR__, __FILE__);
     }
 
     public function deleteSuccessful(FunctionalTester $I)
     {
-        $user = \User::findFirst();
+        $user = User::findFirst();
         // We send get
         $I->sendDELETE($this->endpoint.'/'. $user->id);
         // We see the response is OK and JSON
         $I->seeResponseCodeIs(200); $I->seeResponseIsJson();
         // We check that the user is deleted from database
-        $I->dontSeeRecord('User', $user);
+        $I->dontSeeRecord('App\Models\User', $user);
     }
 
     public function deleteOnNonExistentRecordReturns404(FunctionalTester $I)

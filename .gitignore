@@ -3,5 +3,6 @@
 .idea/
 vendor/
 
-tests/_output/*
-tests/_output/*
+# Tests
+tests/_output/
+tests/support/_generated

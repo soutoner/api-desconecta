@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Exceptions;
 
-class ResourceNotFoundException extends Exception
+use Phalcon\Http\Response;
+
+class ResourceNotFoundException extends \Exception
 {
     public function __construct($message = 'Resource Not Found', $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
@@ -14,10 +17,10 @@ class ResourceNotFoundException extends Exception
     /**
      * Returns HTTP response explaining the error that caused the exception.
      *
-     * @return \Phalcon\Http\Response
+     * @return Response
      */
     public function return_response(){
-        $response = new Phalcon\Http\Response();
+        $response = new Response();
         $response->setStatusCode(404, 'Resource Not Found');
         $response->setJsonContent([
             'status' => 'ERROR',

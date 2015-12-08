@@ -1,8 +1,13 @@
 <?php
 
-namespace v1;
+namespace App\Controllers\V1;
 
-class UsersController extends \ControllerBase
+use App\Controllers\ControllerBase;
+use App\Models\User;
+use Phalcon\Http\Response;
+use App\Exceptions\ResourceNotFoundException;
+
+class UsersController extends ControllerBase
 {
     /**
      * Returns all the users in the database.
@@ -11,9 +16,9 @@ class UsersController extends \ControllerBase
      */
     public function index()
     {
-        $users = \User::find();
+        $users = User::find();
 
-        return new \Phalcon\Http\Response(json_encode($users->toArray()));
+        return new Response(json_encode($users->toArray()));
     }
 
     /**
@@ -21,13 +26,13 @@ class UsersController extends \ControllerBase
      *
      * TODO: Create custom filters (e.g. filter for dates)
      *
-     * @return \Phalcon\Http\Response
+     * @return Response
      */
     public function create()
     {
         $request = $this->request;
 
-        $user = new \User();
+        $user = new User();
         $user->assign([
             'name'              => $request->get('name', 'string'),
             'surname'           => $request->get('surname', 'string'),
@@ -45,7 +50,8 @@ class UsersController extends \ControllerBase
      * Updates an user. Always use `x-www-form-urlencoded` content type for PUT.
      *
      * @param $id - Id of the user to be deleted
-     * @return \Phalcon\Http\Response
+     * @return Response
+     * @throws \ResourceNotFoundException
      */
     public function update($id)
     {
@@ -53,27 +59,27 @@ class UsersController extends \ControllerBase
 
             $request = $this->request;
 
-            $user = \User::findFirst([
+            $user = User::findFirst([
                 'id = ?0', 'bind' => [$id]
             ]);
 
             if(empty($user))
-                throw new \ResourceNotFoundException();
+                throw new ResourceNotFoundException();
 
             $user->assign([
-                'id' => $id,
-                'name' => $request->getPut('name', 'string', $user->name),
-                'surname' => $request->getPut('surname', 'string', $user->surname),
-                'email' => $request->getPut('email', 'email', $user->email),
-                'profile_picture' => $request->getPut('profile_picture', 'string', $user->profile_picture),
-                'date_birth' => $request->getPut('date_birth', 'string', $user->date_birth),
-                'gender' => $request->getPut('gender', 'string', $user->gender),
-                'location' => $request->getPut('location', 'string', $user->location),
+                'id'                => $id,
+                'name'              => $request->getPut('name', 'string', $user->name),
+                'surname'           => $request->getPut('surname', 'string', $user->surname),
+                'email'             => $request->getPut('email', 'email', $user->email),
+                'profile_picture'   => $request->getPut('profile_picture', 'string', $user->profile_picture),
+                'date_birth'        => $request->getPut('date_birth', 'string', $user->date_birth),
+                'gender'            => $request->getPut('gender', 'string', $user->gender),
+                'location'          => $request->getPut('location', 'string', $user->location),
             ]);
 
             return $this->response($request, $user);
 
-        } catch (\ResourceNotFoundException $e) {
+        } catch (ResourceNotFoundException $e) {
             return $e->return_response();
         }
     }
@@ -82,22 +88,23 @@ class UsersController extends \ControllerBase
      * Deletes an user from the database.
      *
      * @param $id - Id of the user to be deleted
-     * @return \Phalcon\Http\Response
+     * @return Response
+     * @throws \ResourceNotFoundException
      */
     public function delete($id)
     {
         try {
 
-            $user = \User::findFirst([
+            $user = User::findFirst([
                 'id = ?0', 'bind' => [$id]
             ]);
 
             if(empty($user))
-                throw new \ResourceNotFoundException();
+                throw new ResourceNotFoundException();
 
             return $this->response($this->request, $user);
 
-        } catch (\ResourceNotFoundException $e) {
+        } catch (ResourceNotFoundException $e) {
             return $e->return_response();
         }
     }
