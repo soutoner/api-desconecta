@@ -26,9 +26,9 @@ class User extends Model
 
     public $location;
 
-    protected $created_at;
+    public $created_at;
 
-    protected $updated_at;
+    public $updated_at;
 
     public function initialize()
     {
@@ -38,7 +38,10 @@ class User extends Model
             new Timestampable(
                 array(
                     'beforeCreate' => array(
-                        'field'  => 'created_at',
+                        'field'  => array(
+                            'created_at',
+                            'updated_at',
+                        ),
                         'format' => 'Y-m-d H:i:sP'
                     )
                 )

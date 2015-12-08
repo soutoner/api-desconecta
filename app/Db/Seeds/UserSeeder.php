@@ -7,11 +7,11 @@ use App\Models\User;
 class UserSeeder
 {
     /**
-     * Define Users here
+     * Define Users that are inserted in database here.
      *
      * @var array
      */
-    protected static $user_params = [
+    protected static $db_users = [
         [
             'name'              => 'Romeo',
             'surname'           => 'Santos',
@@ -31,11 +31,32 @@ class UserSeeder
         ],
     ];
 
+    /**
+     * Define Users that are not inserted in database here.
+     *
+     * @var array
+     */
+    protected static $extra_users = [
+        [
+            'name'              => 'Nicky',
+            'surname'           => 'Jam',
+            'email'             => 'elperdon@enrique.com',
+            'profile_picture'   => 'http://foo.com',
+            'date_birth'        => '1981-11-11',
+            'gender'            => 'H',
+            'location'          => 'Boston',
+        ],
+    ];
+
     public static function Seed(){
-        foreach(self::$user_params as $params){
+        foreach(self::$db_users as $params){
             $user = new User();
             $user->create($params);
         }
+    }
+
+    public static function UserSeeds(){
+        return self::$extra_users;
     }
 
 }

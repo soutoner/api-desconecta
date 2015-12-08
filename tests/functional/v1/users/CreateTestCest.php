@@ -5,6 +5,7 @@ namespace v1\users;
 use \EndpointTest;
 use \FunctionalTester;
 use App\Models\User;
+use App\Db\Seeds\UserSeeder;
 
 class CreateTestCest extends EndpointTest
 {
@@ -14,15 +15,7 @@ class CreateTestCest extends EndpointTest
 
     public function createSuccessfulReturnUser(FunctionalTester $I)
     {
-        $new_user = [
-            'name'              => 'Nicky',
-            'surname'           => 'Jam',
-            'email'             => 'elperdon@enrique.com',
-            'profile_picture'   => 'http://foo.jpg',
-            'date_birth'        => '1981-11-11',
-            'gender'            => 'H',
-            'location'          => 'Boston',
-        ];
+        $new_user = UserSeeder::UserSeeds()[0];
 
         $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
@@ -35,15 +28,8 @@ class CreateTestCest extends EndpointTest
 
     public function createUnsuccessfulReturnErrors(FunctionalTester $I)
     {
-        $new_user = [
-            'name'              => 'Nicky',
-            'surname'           => 'Jam',
-            'email'             => User::findFirst()->email,
-            'profile_picture'   => 'http://foo.jpg',
-            'date_birth'        => '1981-11-11',
-            'gender'            => 'H',
-            'location'          => 'Boston',
-        ];
+        $new_user = UserSeeder::UserSeeds()[0];
+        $new_user['email'] = User::findFirst()->email;
 
         $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
