@@ -10,7 +10,7 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
  */
 $lists = new MicroCollection();
 $lists->setHandler($controller_path . 'GuestListsController', true);
-$lists->setPrefix('/api/'. $version .'/guestlist');
+$lists->setPrefix('/api/'. $version .'/guestlists');
 
 /**
  * Define routes
