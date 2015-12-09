@@ -32,7 +32,7 @@ class EventsController extends ControllerBase
     {
         $request = $this->request;
 
-        $event = new User();
+        $event = new Event();
         $event->assign([
             'name'              => $request->get('name', 'string'),
             'desc'              => $request->get('desc', 'string'),
@@ -82,7 +82,7 @@ class EventsController extends ControllerBase
     /**
      * Deletes an event from the database.
      *
-     * @param $id - Id of the user to be deleted
+     * @param $id - Id of the events to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
