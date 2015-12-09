@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -49,42 +48,12 @@ class UserFollowsUserMigration_100 extends Migration
                             'after' => 'follower_id'
                         )
                     ),
-                    new Column(
-                        'updated_at',
-                        array(
-                            'type' => Column::TYPE_TIMESTAMP,
-                            'default' => "CURRENT_TIMESTAMP",
-                            'notNull' => true,
-                            'size' => 1,
-                            'after' => 'created_at'
-                        )
-                    )
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'follower_id'), null),
                     new Index('user_id-follower_id-UNIQUE', array('user_id', 'follower_id'), null),
                     new Index('fk_User_has_Follower_User_idx', array('follower_id'), null),
                     new Index('fk_User_has_User_User_idx', array('user_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_User_has_Follower_User',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'User',
-                            'columns' => array('follower_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_User_has_User_User',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'User',
-                            'columns' => array('user_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

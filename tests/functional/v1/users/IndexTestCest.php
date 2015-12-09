@@ -21,6 +21,6 @@ class IndexTests extends EndpointTest
         // We check that are all the users inside
         $I->assertEquals(count(User::find()), count(json_decode($I->grabResponse())));
         // We see te fields that at least it contains an user value.
-        $I->seeResponseContainsJson(User::findFirst()->toArray());
+        $I->seeResponseContainsJson(User::find()->toArray());
     }
 }

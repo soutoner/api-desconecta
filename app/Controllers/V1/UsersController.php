@@ -43,7 +43,7 @@ class UsersController extends ControllerBase
             'location'          => $request->get('location', 'string'),
         ]);
 
-        return $this->response($request, $user);
+        return $this->response($request, $user, true);
     }
 
     /**
@@ -59,12 +59,9 @@ class UsersController extends ControllerBase
 
             $request = $this->request;
 
-            $user = User::findFirst([
+            $user = User::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
-
-            if(empty($user))
-                throw new ResourceNotFoundException();
 
             $user->assign([
                 'id'                => $id,
@@ -77,7 +74,7 @@ class UsersController extends ControllerBase
                 'location'          => $request->getPut('location', 'string', $user->location),
             ]);
 
-            return $this->response($request, $user);
+            return $this->response($request, $user, true);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();
@@ -95,12 +92,9 @@ class UsersController extends ControllerBase
     {
         try {
 
-            $user = User::findFirst([
+            $user = User::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
-
-            if(empty($user))
-                throw new ResourceNotFoundException();
 
             return $this->response($this->request, $user);
 

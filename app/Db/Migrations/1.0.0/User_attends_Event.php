@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -75,26 +74,6 @@ class UserAttendsEventMigration_100 extends Migration
                     new Index('user_id-event_id-UNIQUE', array('user_id', 'event_id'), null),
                     new Index('fk_User_has_Event_Event1_idx', array('event_id'), null),
                     new Index('fk_User_has_Event_User1_idx', array('user_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_User_has_Event_Event1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Event',
-                            'columns' => array('event_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_User_has_Event_User1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'User',
-                            'columns' => array('user_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

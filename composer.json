@@ -8,5 +8,8 @@
     "require-dev": {
         "codeception/codeception": "*",
         "phalcon/devtools": "dev-master"
+    },
+    "require": {
+        "fzaninotto/faker": "^1.5"
     }
 }

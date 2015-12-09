@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -65,26 +64,6 @@ class PackHasProductMigration_100 extends Migration
                     new Index('pack_id-product_id-UNIQUE', array('pack_id', 'product_id'), null),
                     new Index('fk_Pack_has_Product_Product1_idx', array('product_id'), null),
                     new Index('fk_Pack_has_Product_Pack1_idx', array('pack_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_Pack_has_Product_Pack1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Pack',
-                            'columns' => array('pack_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_Pack_has_Product_Product1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Product',
-                            'columns' => array('product_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -65,26 +64,6 @@ class EventHasPackMigration_100 extends Migration
                     new Index('event_id-pack_id-UNIQUE', array('event_id', 'pack_id'), null),
                     new Index('fk_Event_has_Pack_Pack1_idx', array('pack_id'), null),
                     new Index('fk_Event_has_Pack_Event1_idx', array('event_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_Event_has_Pack_Event1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Event',
-                            'columns' => array('event_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_Event_has_Pack_Pack1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Pack',
-                            'columns' => array('pack_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

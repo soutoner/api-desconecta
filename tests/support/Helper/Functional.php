@@ -2,7 +2,7 @@
 
 namespace Helper;
 
-use \App\Db\Seeds\DatabaseSeeder;
+use App\Db\Seeds\DatabaseSeeder;
 
 
 class Functional extends \Codeception\Module
@@ -18,6 +18,6 @@ class Functional extends \Codeception\Module
      */
     public function _before(\Codeception\TestCase $test) {
         // Populate DB
-        DatabaseSeeder::Seed();
+        DatabaseSeeder::Seed(false);
     }
 }

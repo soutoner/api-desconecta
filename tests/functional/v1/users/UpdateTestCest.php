@@ -54,7 +54,7 @@ class UpdateTestCest extends EndpointTest
         // We see the response is OK and JSON
         $I->seeResponseCodeIs(404); $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
-            'message' => 'Resource Not Found',
+            'message' => 'User Not Found',
         ]);
     }
 }

@@ -19,5 +19,6 @@ return new \Phalcon\Config(array(
     ),
     'namespaces' => array(
         'App'       => APP_PATH . '/app/',
+        'Faker'       => APP_PATH . '/vendor/fzaninotto/faker/src/Faker/',
     )
 ));

@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -138,35 +137,6 @@ class EventMigration_100 extends Migration
                     new Index('fk_Event_Local1_idx', array('local_id'), null),
                     new Index('fk_Event_GuestList1_idx', array('guestList_id'), null),
                     new Index('fk_Event_Scheduling1_idx', array('scheduling_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_Event_GuestList1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'GuestList',
-                            'columns' => array('guestList_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_Event_Local1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Local',
-                            'columns' => array('local_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_Event_Scheduling1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Scheduling',
-                            'columns' => array('scheduling_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

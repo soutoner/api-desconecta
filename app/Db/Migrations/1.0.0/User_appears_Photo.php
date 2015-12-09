@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -65,26 +64,6 @@ class UserAppearsPhotoMigration_100 extends Migration
                     new Index('user_id-photo_id-UNIQUE', array('user_id', 'photo_id'), null),
                     new Index('fk_User_has_Photo_Photo1_idx', array('photo_id'), null),
                     new Index('fk_User_has_Photo_User1_idx', array('user_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_User_has_Photo_Photo1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Photo',
-                            'columns' => array('photo_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_User_has_Photo_User1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'User',
-                            'columns' => array('user_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

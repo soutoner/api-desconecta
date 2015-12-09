@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Phalcon\Mvc\Model;
+use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\Email;
@@ -10,7 +10,7 @@ use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\InclusionIn;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
-class User extends Model
+class User extends BaseModel
 {
     public $name;
 
@@ -152,5 +152,10 @@ class User extends Model
         if ($this->validationHasFailed() == true) {
             return false;
         }
+    }
+
+    public static function findFirstOrFail($parameters=null, $resource_id='User')
+    {
+        return parent::findFirstOrFail($parameters, $resource_id);
     }
 }

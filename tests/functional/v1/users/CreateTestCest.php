@@ -5,7 +5,7 @@ namespace v1\users;
 use \EndpointTest;
 use \FunctionalTester;
 use App\Models\User;
-use App\Db\Seeds\UserSeeder;
+use App\Db\Seeds\Models\UserSeeder;
 
 class CreateTestCest extends EndpointTest
 {

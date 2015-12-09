@@ -1,13 +1,21 @@
 <?php
 
-namespace App\Db\Seeds;
+namespace App\Db\Seeds\Models;
 
 use App\Models\User;
+use Faker\Factory;
 
 class UserSeeder
 {
     /**
-     * Define Users that are inserted in database here.
+     * Number of Faker users that will be inserted.
+     *
+     * @var int
+     */
+    protected static $n_fake_users = 10;
+
+    /**
+     * Define specific Users that are inserted in database here.
      *
      * @var array
      */
@@ -50,11 +58,29 @@ class UserSeeder
 
     /**
      * Populates the database.
+     *
+     * @param bool $want_fake : Whether to create fake users or not.
      */
-    public static function Seed(){
+    public static function Seed($want_fake=true){
         foreach(self::$db_users as $params){
             $user = new User();
             $user->create($params);
+        }
+
+        if($want_fake) {
+            $faker = Factory::create();
+            for ($i = 0; $i < self::$n_fake_users; $i++) {
+                $user = new User();
+                $user->create([
+                    'name'              => $faker->firstName,
+                    'surname'           => $faker->lastName,
+                    'email'             => $faker->unique()->email,
+                    'profile_picture'   => $faker->imageUrl(),
+                    'date_birth'        => $faker->date('Y-m-d'),
+                    'gender'            => $faker->optional()->randomElement(['H', 'M']),
+                    'location'          => $faker->city,
+                ]);
+            }
         }
     }
 

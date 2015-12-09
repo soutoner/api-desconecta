@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -94,26 +93,6 @@ class ProfileMigration_100 extends Migration
                     new Index('id_UNIQUE', array('id'), null),
                     new Index('fk_Profile_Provider_idx', array('provider_id'), null),
                     new Index('fk_Profile_User_idx', array('user_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_Profile_Provider',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Provider',
-                            'columns' => array('provider_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_Profile_User',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'User',
-                            'columns' => array('user_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

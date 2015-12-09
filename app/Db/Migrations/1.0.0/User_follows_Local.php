@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -65,26 +64,6 @@ class UserFollowsLocalMigration_100 extends Migration
                     new Index('user_id-local_id-UNIQUE', array('user_id', 'local_id'), null),
                     new Index('fk_User_has_Local_Local1_idx', array('local_id'), null),
                     new Index('fk_User_has_Local_User1_idx', array('user_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_User_has_Local_Local1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'Local',
-                            'columns' => array('local_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    ),
-                    new Reference(
-                        'fk_User_has_Local_User1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'User',
-                            'columns' => array('user_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

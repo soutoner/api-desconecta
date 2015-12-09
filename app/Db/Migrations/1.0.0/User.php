@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -126,17 +125,6 @@ class UserMigration_100 extends Migration
                     new Index('id_UNIQUE', array('id'), null),
                     new Index('email_UNIQUE', array('email'), null),
                     new Index('fk_User_RRPP1_idx', array('rrpp_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_User_RRPP1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'RRPP',
-                            'columns' => array('rrpp_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

@@ -4,7 +4,7 @@ namespace models;
 
 use \FunctionalTester;
 use App\Models\User;
-use App\Db\Seeds\UserSeeder;
+use App\Db\Seeds\Models\UserSeeder;
 
 class UserValidationsCest
 {

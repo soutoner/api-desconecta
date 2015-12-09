@@ -4,6 +4,7 @@ namespace App\Controllers\V1;
 
 use App\Controllers\ControllerBase;
 use App\Models\User;
+use App\Models\Relationships\Follower;
 use App\Exceptions\ResourceNotFoundException;
 use Phalcon\Http\Response;
 
@@ -19,12 +20,9 @@ class FollowersController extends ControllerBase
     {
         try {
 
-            $user = User::findFirst([
+            $user = User::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
-
-            if(empty($user))
-                throw new ResourceNotFoundException();
 
             return new Response(json_encode($user->getFollowers()->toArray()));
 
@@ -44,42 +42,21 @@ class FollowersController extends ControllerBase
     public function create($id)
     {
         try {
-            $user = User::findFirst([
+            $user = User::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            if(empty($user))
-                throw new ResourceNotFoundException('User not found');
+            $follower = User::findFirstOrFail([
+                'id = ?0', 'bind' => [$this->request->get('follower_id', 'int')]
+            ], 'Follower User');
 
-            $follower = User::findFirst([
-                'id = ?0', 'bind' => [$this->request->getPost('follower_id', 'int')]
+            $relationship = new Follower();
+            $relationship->assign([
+                'user_id'       => $user->id,
+                'follower_id'   => $follower->id
             ]);
 
-            if(empty($follower))
-                throw new ResourceNotFoundException('Follower user not found');
-
-            $user->followers = [$follower];
-
-            $response = new Response();
-
-            if($user->update()){
-                $response->setStatusCode(201, 'Created');
-                $response->setJsonContent(
-                    array(
-                        'status'    => 'OK',
-                    )
-                );
-            } else {
-                $response->setStatusCode(409, 'Conflict');
-                $response->setJsonContent(
-                    array(
-                        'status'   => 'ERROR',
-                        'messages' => 'Internal error while creating relationship'
-                    )
-                );
-            }
-
-            return $response;
+            return $this->response($this->request, $relationship);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();
@@ -97,45 +74,18 @@ class FollowersController extends ControllerBase
     public function delete($id)
     {
         try {
-            $user = User::findFirst([
+            $user = User::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
-
-            if(empty($user))
-                throw new ResourceNotFoundException('User not found');
-
-            $follower = User::findFirst([
-                'id = ?0', 'bind' => [$this->request->getPut('follower_id', 'int')]
+            $follower = User::findFirstOrFail([
+                'id = ?0', 'bind' => [$this->request->get('follower_id', 'int')]
+            ], 'Follower User');
+            $relationship = Follower::findFirstOrFail([
+                'user_id'       => $user->id,
+                'follower_id'   => $follower->id,
             ]);
 
-            if(empty($follower))
-                throw new ResourceNotFoundException('Follower user not found');
-
-            $user->followers->delete(function($f) use ($follower) {
-                if($f->id === $follower->id)
-                    return true;
-            });
-
-            $response = new Response();
-
-            if($user->update()){
-                $response->setStatusCode(201, 'Deleted');
-                $response->setJsonContent(
-                    array(
-                        'status'    => 'OK',
-                    )
-                );
-            } else {
-                $response->setStatusCode(409, 'Conflict');
-                $response->setJsonContent(
-                    array(
-                        'status'   => 'ERROR',
-                        'messages' => 'Internal error while deleting relationship'
-                    )
-                );
-            }
-
-            return $response;
+            return $this->response($this->request, $relationship);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();

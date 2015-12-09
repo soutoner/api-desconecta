@@ -2,7 +2,6 @@
 
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
-use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
@@ -112,17 +111,6 @@ class LocalMigration_100 extends Migration
                     new Index('id_UNIQUE', array('id'), null),
                     new Index('name_UNIQUE', array('name'), null),
                     new Index('fk_Local_RRPP1_idx', array('owner_id'), null)
-                ),
-                'references' => array(
-                    new Reference(
-                        'fk_Local_RRPP1',
-                        array(
-                            'referencedSchema' => 'desconecta_dev',
-                            'referencedTable' => 'RRPP',
-                            'columns' => array('owner_id'),
-                            'referencedColumns' => array('id')
-                        )
-                    )
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',
