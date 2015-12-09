@@ -1,6 +1,5 @@
 <?php
 
-
 use \Phalcon\Mvc\Micro\Collection as MicroCollection;
 
 $version = basename(dirname(__FILE__));
