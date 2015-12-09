@@ -88,7 +88,7 @@ class LocalsController extends ControllerBase
     {
         try {
 
-            $local = Event::findFirstOrFail([
+            $local = Local::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
