@@ -1,7 +1,5 @@
 {
     "require-dev": {
-        "codeception/codeception": "*",
-        "fzaninotto/faker": "^1.5",
         "techpivot/phalcon-ci-installer": "~1.0"
     }
 }
