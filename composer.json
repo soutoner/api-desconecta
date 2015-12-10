@@ -8,7 +8,7 @@
     "require-dev": {
         "codeception/codeception": "*",
         "fzaninotto/faker": "^1.5",
-        "phalcon/devtools": "dev-master",
+        "phalcon/devtools": "dev-travisci",
         "techpivot/phalcon-ci-installer": "~1.0"
     }
 }
