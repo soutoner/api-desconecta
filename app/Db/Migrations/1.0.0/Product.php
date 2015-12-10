@@ -61,7 +61,6 @@ class ProductMigration_100 extends Migration
                         'updated_at',
                         array(
                             'type' => Column::TYPE_TIMESTAMP,
-                            'default' => "CURRENT_TIMESTAMP",
                             'notNull' => true,
                             'size' => 1,
                             'after' => 'created_at'
