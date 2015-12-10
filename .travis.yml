@@ -9,6 +9,7 @@ cache:
     - vendor
     - $HOME/.composer/cache
     - $HOME/cphalcon
+sudo: required
 before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update
