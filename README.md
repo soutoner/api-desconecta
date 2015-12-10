@@ -1,6 +1,8 @@
 # api-desconecta
 API for desconecta project.
 
+[![Build Status](https://travis-ci.com/soutoner/api-desconecta.svg?token=gC1xv7zL8muN3fTRZWiQ&branch=master)](https://travis-ci.com/soutoner/api-desconecta)
+
 ### Launch development server
 
 `composer install`
