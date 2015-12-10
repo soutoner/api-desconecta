@@ -1,5 +1,14 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/soutoner/phalcon-devtools"
+        }
+    ],
     "require-dev": {
+        "codeception/codeception": "*",
+        "fzaninotto/faker": "^1.5",
+        "phalcon/devtools": "dev-master",
         "techpivot/phalcon-ci-installer": "~1.0"
     }
 }
