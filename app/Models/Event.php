@@ -20,12 +20,17 @@ class Event extends BaseModel
 
     public $flyer;
 
+    public $created_at;
+
+    public $updated_at;
+
     public function initialize()
     {
-    /**
-     * Table name.
-     */
-    $this->setSource('Event');
+        parent::initialize();
+        /**
+         * Table name.
+         */
+        $this->setSource('Event');
     }
 
     /**

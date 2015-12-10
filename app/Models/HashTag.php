@@ -10,8 +10,14 @@ class HashTag extends BaseModel
 {
     public $value;
 
+    public $created_at;
+
+    public $updated_at;
+
     public function initialize()
     {
+        parent::initialize();
+
         /**
          * Table name.
          */

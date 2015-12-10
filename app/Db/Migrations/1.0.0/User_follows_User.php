@@ -48,6 +48,16 @@ class UserFollowsUserMigration_100 extends Migration
                             'after' => 'follower_id'
                         )
                     ),
+                    new Column(
+                        'updated_at',
+                        array(
+                            'type' => Column::TYPE_TIMESTAMP,
+                            'default' => "CURRENT_TIMESTAMP",
+                            'notNull' => true,
+                            'size' => 1,
+                            'after' => 'created_at'
+                        )
+                    ),
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'follower_id'), null),

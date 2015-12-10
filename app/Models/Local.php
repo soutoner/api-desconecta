@@ -17,10 +17,16 @@ class Local extends BaseModel
 
     public $geo;
 
-    public $adress;
+    public $address;
+
+    public $created_at;
+
+    public $updated_at;
 
     public function initialize()
     {
+        parent::initialize();
+
         /**
          * Table name.
          */

@@ -4,10 +4,38 @@
 namespace App\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Behavior\Timestampable;
 use App\Exceptions\ResourceNotFoundException;
 
 class BaseModel extends Model
 {
+    public function initialize(){
+        $this->addBehavior(
+            new Timestampable(
+                array(
+                    'beforeCreate' => array(
+                        'field'  => array(
+                            'created_at',
+                            'updated_at',
+                        ),
+                        'format' => 'Y-m-d H:i:sP'
+                    )
+                )
+            )
+        );
+
+        $this->addBehavior(
+            new Timestampable(
+                array(
+                    'beforeUpdate' => array(
+                        'field'  => 'updated_at',
+                        'format' => 'Y-m-d H:i:sP'
+                    )
+                )
+            )
+        );
+    }
+
     /**
      * FindFirst that throws an ResourceNotFoundException.
      *

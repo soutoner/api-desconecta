@@ -16,8 +16,14 @@ class GuestList extends BaseModel
 
     public $max_capacity;
 
+    public $created_at;
+
+    public $updated_at;
+
     public function initialize()
     {
+        parent::initialize();
+
         /**
          * Table name.
          */

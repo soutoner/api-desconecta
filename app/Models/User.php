@@ -8,7 +8,6 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\Email;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\InclusionIn;
-use Phalcon\Mvc\Model\Behavior\Timestampable;
 
 class User extends BaseModel
 {
@@ -32,6 +31,8 @@ class User extends BaseModel
 
     public function initialize()
     {
+        parent::initialize();
+
         /**
          * Table name.
          */
@@ -56,34 +57,6 @@ class User extends BaseModel
             'App\Models\User',
             'id',
             array('alias' => 'Following')
-        );
-
-        /**
-         * Behaviors.
-         */
-        $this->addBehavior(
-            new Timestampable(
-                array(
-                    'beforeCreate' => array(
-                        'field'  => array(
-                            'created_at',
-                            'updated_at',
-                        ),
-                        'format' => 'Y-m-d H:i:sP'
-                    )
-                )
-            )
-        );
-
-        $this->addBehavior(
-            new Timestampable(
-                array(
-                    'beforeUpdate' => array(
-                        'field'  => 'updated_at',
-                        'format' => 'Y-m-d H:i:sP'
-                    )
-                )
-            )
         );
     }
 
