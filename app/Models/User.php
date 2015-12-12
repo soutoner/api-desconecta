@@ -25,10 +25,6 @@ class User extends BaseModel
 
     public $location;
 
-    public $created_at;
-
-    public $updated_at;
-
     public function initialize()
     {
         parent::initialize();

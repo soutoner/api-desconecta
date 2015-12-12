@@ -14,10 +14,6 @@ class Follower extends BaseModel
 
     public $follower_id;
 
-    public $created_at;
-
-    public $updated_at;
-
     public function initialize()
     {
         $this->setSource('User_follows_User');

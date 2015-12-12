@@ -9,6 +9,10 @@ use App\Exceptions\ResourceNotFoundException;
 
 class BaseModel extends Model
 {
+    public $created_at;
+
+    public $updated_at;
+
     public function initialize(){
         $this->addBehavior(
             new Timestampable(
