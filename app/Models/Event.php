@@ -8,6 +8,8 @@ use Phalcon\Mvc\Model\Validator\PresenceOf;
 
 class Event extends BaseModel
 {
+    public $id;
+
     public $name;
 
     public $desc;
@@ -20,17 +22,11 @@ class Event extends BaseModel
 
     public $flyer;
 
-    public $created_at;
-
-    public $updated_at;
-
     public function initialize()
     {
         parent::initialize();
-        /**
-         * Table name.
-         */
-        $this->setSource('Event');
+
+        $this->setSource($this->class_name());
     }
 
     /**
@@ -89,10 +85,5 @@ class Event extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
-    }
-
-    public static function findFirstOrFail($parameters=null, $resource_id='Event')
-    {
-        return parent::findFirstOrFail($parameters, $resource_id);
     }
 }

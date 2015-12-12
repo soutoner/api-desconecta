@@ -11,6 +11,8 @@ use Phalcon\Mvc\Model\Validator\InclusionIn;
 
 class User extends BaseModel
 {
+    public $id;
+
     public $name;
 
     public $surname;
@@ -32,7 +34,7 @@ class User extends BaseModel
         /**
          * Table name.
          */
-        $this->setSource('User');
+        $this->setSource($this->class_name());
 
         /**
          * Relationships.
@@ -121,10 +123,5 @@ class User extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
-    }
-
-    public static function findFirstOrFail($parameters=null, $resource_id='User')
-    {
-        return parent::findFirstOrFail($parameters, $resource_id);
     }
 }

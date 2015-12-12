@@ -48,13 +48,26 @@ class BaseModel extends Model
      * @return Model
      * @throws ResourceNotFoundException
      */
-    public static function findFirstOrFail($parameters=null, $resource_id='Resource'){
+    public static function findFirstOrFail($parameters=null, $resource_id=null){
         $result = parent::findFirst($parameters);
+
+        if($resource_id == null){
+            $resource_id = end(explode('\\', get_called_class()));
+        }
 
         if(empty($result)){
             throw new ResourceNotFoundException($resource_id . ' Not Found');
         } else {
             return $result;
         }
+    }
+
+    /**
+     * Returns Base Class name of child being called.
+     *
+     * @return mixed : App\Models\User -> User
+     */
+    public function class_name(){
+        return end(explode('\\', get_called_class()));
     }
 }

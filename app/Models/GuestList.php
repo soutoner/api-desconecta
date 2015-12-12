@@ -8,6 +8,8 @@ use Phalcon\Mvc\Model\Validator\PresenceOf;
 
 class GuestList extends BaseModel
 {
+    public $id;
+
     public $start_time;
 
     public $end_time;
@@ -16,18 +18,11 @@ class GuestList extends BaseModel
 
     public $max_capacity;
 
-    public $created_at;
-
-    public $updated_at;
-
     public function initialize()
     {
         parent::initialize();
 
-        /**
-         * Table name.
-         */
-        $this->setSource('GuestList');
+        $this->setSource($this->class_name());
     }
 
     /**
@@ -57,10 +52,5 @@ class GuestList extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
-    }
-
-    public static function findFirstOrFail($parameters=null, $resource_id='GuestList')
-    {
-        return parent::findFirstOrFail($parameters, $resource_id);
     }
 }

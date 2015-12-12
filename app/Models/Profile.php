@@ -6,11 +6,13 @@ use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
-class HashTag extends BaseModel
+class Profile extends BaseModel
 {
     public $id;
 
-    public $value;
+    public $uid;
+
+    public $access_token;
 
     public function initialize()
     {
@@ -27,18 +29,24 @@ class HashTag extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
-                    'field'     => 'HashTag',
-                    'message'   => 'A hashtag is required'
+                    'field'     => 'uid',
+                    'message'   => 'The uid is required'
                 ]
             )
         );
+        $this->validate(
+            new PresenceOf([
+                    'field'     => 'access_token',
+                    'message'   => 'An access_token is required'
+                ]
+            )
+        );
+
         // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }
     }
 }
-

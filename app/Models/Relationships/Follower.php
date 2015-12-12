@@ -88,9 +88,4 @@ class Follower extends BaseModel
             return false;
         }
     }
-
-    public static function findFirstOrFail($parameters=null, $resource_id='Follower Relationship')
-    {
-        return parent::findFirstOrFail($parameters, $resource_id);
-    }
 }

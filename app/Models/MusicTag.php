@@ -8,11 +8,9 @@ use Phalcon\Mvc\Model\Validator\PresenceOf;
 
 class MusicTag extends BaseModel
 {
+    public $id;
+
     public $value;
-
-    public $created_at;
-
-    public $updated_at;
 
     public function initialize()
     {
@@ -21,7 +19,7 @@ class MusicTag extends BaseModel
         /**
          * Table name.
          */
-        $this->setSource('MusicTag');
+        $this->setSource($this->class_name());
     }
 
     /**
@@ -44,11 +42,6 @@ class MusicTag extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
-    }
-
-    public static function findFirstOrFail($parameters=null, $resource_id='MusicTag')
-    {
-        return parent::findFirstOrFail($parameters, $resource_id);
     }
 }
 

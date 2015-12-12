@@ -9,6 +9,8 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class Local extends BaseModel
 {
+    public $id;
+
     public $name;
 
     public $desc;
@@ -19,18 +21,11 @@ class Local extends BaseModel
 
     public $address;
 
-    public $created_at;
-
-    public $updated_at;
-
     public function initialize()
     {
         parent::initialize();
 
-        /**
-         * Table name.
-         */
-        $this->setSource('Local');
+        $this->setSource($this->class_name());
     }
 
     /**
@@ -88,10 +83,5 @@ class Local extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
-    }
-
-    public static function findFirstOrFail($parameters=null, $resource_id='Local')
-    {
-        return parent::findFirstOrFail($parameters, $resource_id);
     }
 }
