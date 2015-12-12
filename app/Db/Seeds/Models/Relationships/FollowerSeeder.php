@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Db\Seeds\Relationships;
+namespace App\Db\Seeds\Models\Relationships;
 
 use App\Models\User;
 use App\Models\Relationships\Follower;

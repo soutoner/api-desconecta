@@ -20,7 +20,7 @@ class CreateTestCest extends EndpointTest
         $this->relationship = [
             'user_id'       => User::findFirst()->id,
             'follower_id'   => User::findFirst([
-                "email = '" . UserSeeder::DbUserSeeds()[1]['email'] . "'",
+                "email = '" . UserSeeder::DbSeeds()[1]['email'] . "'",
             ])->id,
         ];
     }

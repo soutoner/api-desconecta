@@ -15,7 +15,7 @@ class CreateTestCest extends EndpointTest
 
     public function createSuccessfulReturnUser(FunctionalTester $I)
     {
-        $new_user = UserSeeder::UserSeeds()[0];
+        $new_user = UserSeeder::ExtraSeeds()[0];
 
         $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
@@ -28,7 +28,7 @@ class CreateTestCest extends EndpointTest
 
     public function createUnsuccessfulReturnErrors(FunctionalTester $I)
     {
-        $new_user = UserSeeder::UserSeeds()[0];
+        $new_user = UserSeeder::ExtraSeeds()[0];
         $new_user['email'] = User::findFirst()->email;
 
         $I->dontSeeRecord('App\Models\User', $new_user);

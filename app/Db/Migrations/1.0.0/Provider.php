@@ -80,17 +80,12 @@ class ProviderMigration_100 extends Migration
      */
     public function up()
     {
-
-        self::$_connection->insert(
-            'Provider',
-            array('facebook'),
-            array('name')
-        );
-        self::$_connection->insert(
-            'Provider',
-            array('instagram'),
-            array('name')
-        );
+        self::$_connection->insertAsDict('Provider', [
+            'name' => 'facebook'
+        ]);
+        self::$_connection->insertAsDict('Provider',[
+            'name' => 'facebook'
+        ]);
     }
 
     /**

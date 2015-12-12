@@ -14,7 +14,7 @@ class UserValidationsCest
     {
         $this->user = new User();
         $this->user->assign(
-            UserSeeder::UserSeeds()[0]
+            UserSeeder::ExtraSeeds()[0]
         );
     }
 

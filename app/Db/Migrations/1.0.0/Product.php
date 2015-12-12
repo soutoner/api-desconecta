@@ -89,7 +89,30 @@ class ProductMigration_100 extends Migration
      */
     public function up()
     {
-
+        self::$_connection->insertAsDict('Product', [
+            'name' => 'consumicion',
+            'icon' => 'images/consumicion',
+        ]);
+        self::$_connection->insertAsDict('Product',[
+            'name' => 'entrada',
+            'icon' => 'images/entrada',
+        ]);
+        self::$_connection->insertAsDict('Product',[
+            'name' => 'cerveza',
+            'icon' => 'images/cerveza',
+        ]);
+        self::$_connection->insertAsDict('Product',[
+            'name' => 'chupito',
+            'icon' => 'images/chupito',
+        ]);
+        self::$_connection->insertAsDict('Product',[
+            'name' => 'tinto',
+            'icon' => 'images/tinto',
+        ]);
+        self::$_connection->insertAsDict('Product',[
+            'name' => 'mojito',
+            'icon' => 'images/mojito',
+        ]);
     }
 
     /**

@@ -16,7 +16,7 @@ class FollowerCest
     public function _before(FunctionalTester $I)
     {
         $this->user = User::findFirst();
-        $this->follower = User::findFirst(["email = '". UserSeeder::DbUserSeeds()[1]['email'] ."'"]);
+        $this->follower = User::findFirst(["email = '". UserSeeder::DbSeeds()[1]['email'] ."'"]);
 
         $rel = new Follower();
         $rel->create([

@@ -2,24 +2,16 @@
 
 namespace App\Db\Seeds\Models;
 
-use App\Models\User;
-use Faker\Factory;
+use App\Db\Seeds\Models\BaseSeeder;
 
-class UserSeeder
+class UserSeeder extends BaseSeeder
 {
     /**
-     * Number of Faker users that will be inserted.
-     *
-     * @var int
-     */
-    protected static $n_fake_users = 10;
-
-    /**
-     * Define specific Users that are inserted in database here.
+     * Define specific seeds that are inserted in database here.
      *
      * @var array
      */
-    protected static $db_users = [
+    protected static $db_seeds = [
         [
             'name'              => 'Romeo',
             'surname'           => 'Santos',
@@ -40,11 +32,11 @@ class UserSeeder
     ];
 
     /**
-     * Define Users that are not inserted in database here.
+     * Define seeds that are not inserted in database here.
      *
      * @var array
      */
-    protected static $extra_users = [
+    protected static $extra_seeds = [
         [
             'name'              => 'Nicky',
             'surname'           => 'Jam',
@@ -56,50 +48,15 @@ class UserSeeder
         ],
     ];
 
-    /**
-     * Populates the database.
-     *
-     * @param bool $want_fake : Whether to create fake users or not.
-     */
-    public static function Seed($want_fake=true){
-        foreach(self::$db_users as $params){
-            $user = new User();
-            $user->create($params);
-        }
-
-        if($want_fake) {
-            $faker = Factory::create();
-            for ($i = 0; $i < self::$n_fake_users; $i++) {
-                $user = new User();
-                $user->create([
-                    'name'              => $faker->firstName,
-                    'surname'           => $faker->lastName,
-                    'email'             => $faker->unique()->email,
-                    'profile_picture'   => $faker->imageUrl(),
-                    'date_birth'        => $faker->date('Y-m-d'),
-                    'gender'            => $faker->optional()->randomElement(['H', 'M']),
-                    'location'          => $faker->city,
-                ]);
-            }
-        }
+    public static function GenerateFake($faker){
+        return [
+            'name'              => $faker->firstName,
+            'surname'           => $faker->lastName,
+            'email'             => $faker->unique()->email,
+            'profile_picture'   => $faker->imageUrl(),
+            'date_birth'        => $faker->date('Y-m-d'),
+            'gender'            => $faker->optional()->randomElement(['H', 'M']),
+            'location'          => $faker->city,
+        ];
     }
-
-    /**
-     * Returns User params that are saves in database.
-     *
-     * @return array
-     */
-    public static function DbUserSeeds(){
-        return self::$db_users;
-    }
-
-    /**
-     * Returns Users params that are not saved in the database.
-     *
-     * @return array
-     */
-    public static function UserSeeds(){
-        return self::$extra_users;
-    }
-
 }
