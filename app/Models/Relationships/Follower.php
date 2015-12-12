@@ -19,22 +19,20 @@ class Follower extends BaseModel
         $this->setSource('User_follows_User');
 
         $this->belongsTo(
-            'user_id', 'App\Models\User', 'id',
-            array(
+            'user_id', 'App\Models\User', 'id', [
                 'alias' => 'User',
-                'foreignKey' => array(
+                'foreignKey' => [
                     'message' => 'The part_id does not exist on the Parts model'
-                ),
-            )
+                ],
+            ]
         );
         $this->belongsTo(
-            'follower_id', 'App\Models\User', 'id',
-            array(
+            'follower_id', 'App\Models\User', 'id', [
                 'alias' => 'Follower',
-                'foreignKey' => array(
+                'foreignKey' => [
                     'message' => 'The part_id does not exist on the Parts model'
-                ),
-            )
+                ],
+            ]
         );
 
         $this->addBehavior(

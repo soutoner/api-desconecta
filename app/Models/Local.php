@@ -21,6 +21,8 @@ class Local extends BaseModel
 
     public $address;
 
+    public $owner_id;
+
     public function initialize()
     {
         parent::initialize();

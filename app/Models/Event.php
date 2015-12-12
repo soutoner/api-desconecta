@@ -22,6 +22,12 @@ class Event extends BaseModel
 
     public $flyer;
 
+    public $local_id;
+
+    public $guestList_id;
+
+    public $scheduling_id;
+
     public function initialize()
     {
         parent::initialize();

@@ -27,6 +27,8 @@ class User extends BaseModel
 
     public $location;
 
+    public $rrpp_id;
+
     public function initialize()
     {
         parent::initialize();
@@ -45,7 +47,7 @@ class User extends BaseModel
             'user_id', 'follower_id',
             'App\Models\User',
             'id',
-            array('alias' => 'Followers')
+            ['alias' => 'Followers']
         );
 
         $this->hasManyToMany(
@@ -54,8 +56,12 @@ class User extends BaseModel
             'follower_id', 'user_id',
             'App\Models\User',
             'id',
-            array('alias' => 'Following')
+            ['alias' => 'Following']
         );
+
+        $this->hasOne('id', 'App\Models\RRPP', 'rrpp_id', ['alias' => 'RRPPprofile']);
+
+        $this->hasMany('id', 'App\Models\Profile', 'user_id', ['alias' => 'Profiles']);
     }
 
     /**
