@@ -6,17 +6,11 @@ use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
-class Profile extends BaseModel
+class Provider extends BaseModel
 {
     public $id;
 
-    public $uid;
-
-    public $access_token;
-
-    public $user_id;
-
-    public $provider_id;
+    public $name;
 
     public function initialize()
     {
@@ -24,14 +18,12 @@ class Profile extends BaseModel
 
         $this->setSource($this->class_name());
 
-        $this->belongsTo('user_id', 'App\Models\User', 'id', [
-                'alias' => 'User',
+        $this->belongsTo('provider_id', 'App\Models\Profile', 'id', [
+                'alias' => 'Profiles',
                 'foreignKey' => [
-                    'message' => 'The user_id does not exist on the User model'
+                    'message' => 'The provider_id does not exist on the Profile model'
                 ],
             ]);
-
-        $this->hasOne('id', 'App\Models\Provider', 'provider_id', ['alias' => 'Provider']);
     }
 
     /**
@@ -44,15 +36,8 @@ class Profile extends BaseModel
     {
         $this->validate(
             new PresenceOf([
-                    'field'     => 'uid',
-                    'message'   => 'The uid is required'
-                ]
-            )
-        );
-        $this->validate(
-            new PresenceOf([
-                    'field'     => 'access_token',
-                    'message'   => 'An access_token is required'
+                    'field'     => 'name',
+                    'message'   => 'The name is required'
                 ]
             )
         );
