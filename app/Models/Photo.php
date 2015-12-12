@@ -1,2 +1,54 @@
 <?php
 
+namespace App\Models;
+
+use App\Models\BaseModel;
+use Phalcon\Mvc\Model\Message;
+use Phalcon\Mvc\Model\Validator\PresenceOf;
+
+class Photo extends BaseModel
+{
+    public $id;
+
+    public $uri;
+
+    public $desc;
+
+    public $event_id;
+
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->setSource($this->class_name());
+    }
+
+    /**
+     * Executes the validation
+     * @return bool
+     * @internal param \Phalcon\Validation $validator
+     * @internal param string $attribute
+     */
+    public function validation()
+    {
+        // TODO: length of fields
+        $this->validate(
+            new PresenceOf([
+                    'field'     => 'uri',
+                    'message'   => 'An uri is required'
+                ]
+            )
+        );
+        $this->validate(
+            new PresenceOf([
+                    'field'     => 'event_id',
+                    'message'   => 'An event_id is required'
+                ]
+            )
+        );
+        // Check if any messages have been produced
+        if ($this->validationHasFailed() == true) {
+            return false;
+        }
+    }
+}

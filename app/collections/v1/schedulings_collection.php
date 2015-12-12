@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$products = new MicroCollection();
-$products->setHandler($controller_path . 'ProductsController', true);
-$products->setPrefix('/api/'. $version .'/products');
+$schedulings = new MicroCollection();
+$schedulings->setHandler($controller_path . 'SchedulingsController', true);
+$schedulings->setPrefix('/api/'. $version .'/schedulings');
 
 /**
  * Define routes
  */
-$products->get('/', 'index');
-$products->post('/', 'create');
-$products->put('/{id:[0-9]+}', 'update');
-$products->delete('/{id:[0-9]+}', 'delete');
+$schedulings->get('/', 'index');
+$schedulings->post('/', 'create');
+$schedulings->put('/{id:[0-9]+}', 'update');
+$schedulings->delete('/{id:[0-9]+}', 'delete');
 
-return $products;
+return $schedulings;

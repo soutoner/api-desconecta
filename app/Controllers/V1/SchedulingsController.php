@@ -3,26 +3,26 @@
 namespace App\Controllers\V1;
 
 use App\Controllers\ControllerBase;
-use App\Models\Product;
+use App\Models\Scheduling;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class ProductsController extends ControllerBase
+class SchedulingsController extends ControllerBase
 {
     /**
-     * Returns all the products in the database.
+     * Returns all the schedulings in the database.
      *
      * TODO: Pagination
      */
     public function index()
     {
-        $products = Product::find();
+        $schedulings = Scheduling::find();
 
-        return new Response(json_encode($products->toArray()));
+        return new Response(json_encode($schedulings->toArray()));
     }
 
     /**
-     * Creates a product in the database.
+     * Creates a scheduling in the database.
      *
      * TODO: Create custom filters (e.g. filter for dates)
      *
@@ -32,17 +32,17 @@ class ProductsController extends ControllerBase
     {
         $request = $this->request;
 
-        $product = new Product();
-        $product->assign([
-            'name' => $request->get('name', 'string'),
-            'icon' => $request->get('icon', 'strint'),
+        $scheduling = new Product();
+        $scheduling->assign([
+            'end_period' => $request->get('end_period', 'string'),
+            'period_type_id' => $request->get('period_type_id', 'strint'),
         ]);
 
-        return $this->response($request, $product, true);
+        return $this->response($request, $scheduling, true);
     }
 
     /**
-     * Updates a product. Always use `x-www-form-urlencoded` content type for PUT.
+     * Updates a scheduling. Always use `x-www-form-urlencoded` content type for PUT.
      * @param $id - Id of the event to be updated
      * @return Response
      * @throws ResourceNotFoundException
@@ -53,17 +53,17 @@ class ProductsController extends ControllerBase
 
             $request = $this->request;
 
-            $product = Product::findFirstOrFail([
+            $scheduling = Scheduling::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            $product->assign([
+            $scheduling->assign([
                 'id'               => $id,
-                'name'             => $request->getPut('name', 'string', $product->name),
-                'icon'             => $request->getPut('name', 'string', $product->icon),
+                'end_period'       => $request->getPut('end_period', 'string', $scheduling->end_period),
+                'period_type_id'   => $request->getPut('period_type_id', 'string', $scheduling->period_type_id),
             ]);
 
-            return $this->response($request, $product, true);
+            return $this->response($request, $scheduling, true);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();
@@ -71,7 +71,7 @@ class ProductsController extends ControllerBase
     }
 
     /**
-     * Deletes a product from the database.
+     * Deletes a scheduling from the database.
      *
      * @param $id - Id of the pack to be deleted
      * @return Response
@@ -81,11 +81,11 @@ class ProductsController extends ControllerBase
     {
         try {
 
-            $product = Product::findFirstOrFail([
+            $scheduling = Scheduling::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            return $this->response($this->request, $product);
+            return $this->response($this->request, $scheduling);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();

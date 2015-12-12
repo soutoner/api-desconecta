@@ -8,16 +8,13 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$packs = new MicroCollection();
-$packs->setHandler($controller_path . 'PacksController', true);
-$packs->setPrefix('/api/'. $version .'/packs');
+$periods = new MicroCollection();
+$periods->setHandler($controller_path . 'PeriodsController', true);
+$periods->setPrefix('/api/'. $version .'/periods');
 
 /**
  * Define routes
  */
-$packs->get('/', 'index');
-$packs->post('/', 'create');
-$packs->put('/{id:[0-9]+}', 'update');
-$packs->delete('/{id:[0-9]+}', 'delete');
+$periods->get('/', 'index');
 
-return $packs;
+return $periods;

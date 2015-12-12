@@ -47,7 +47,7 @@ class LocalsController extends ControllerBase
     /**
      * Updates a local. Always use `x-www-form-urlencoded` content type for PUT.
      *
-     * @param $id - Id of the event to be deleted
+     * @param $id - Id of the event to be updated
      * @return Response
      * @throws ResourceNotFoundException
      */

@@ -11,6 +11,11 @@ $collections = [
     include APP_PATH . '/app/collections/v1/followers_collection.php',
     include APP_PATH . '/app/collections/v1/hashTags_collection.php',
     include APP_PATH . '/app/collections/v1/musicTags_collection.php',
+    include APP_PATH . '/app/collections/v1/packs_collection.php',
+    include APP_PATH . '/app/collections/v1/periods_collection.php',
+    include APP_PATH . '/app/collections/v1/photos_collection.php',
+    include APP_PATH . '/app/collections/v1/products_collection.php',
+    include APP_PATH . '/app/collections/v1/schedulings_collection.php',
 ];
 
 return $collections;

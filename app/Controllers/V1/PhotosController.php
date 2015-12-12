@@ -3,26 +3,26 @@
 namespace App\Controllers\V1;
 
 use App\Controllers\ControllerBase;
-use App\Models\Pack;
+use App\Models\Photo;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class PacksController extends ControllerBase
+class PhotosController extends ControllerBase
 {
     /**
-     * Returns all the packs in the database.
+     * Returns all the photos in the database.
      *
      * TODO: Pagination
      */
     public function index()
     {
-        $packs = Pack::find();
+        $photos = Photo::find();
 
-        return new Response(json_encode($packs->toArray()));
+        return new Response(json_encode($photos->toArray()));
     }
 
     /**
-     * Creates a pack in the database.
+     * Creates a photo in the database.
      *
      * TODO: Create custom filters (e.g. filter for dates)
      *
@@ -32,16 +32,18 @@ class PacksController extends ControllerBase
     {
         $request = $this->request;
 
-        $pack = new Pack();
-        $pack->assign([
-            'price' => $request->get('price', 'string'),
+        $photo = new Photo();
+        $photo->assign([
+            'uri'        => $request->get('uri', 'string'),
+            'desc'       => $request->get('desc', 'string'),
+            'event_id'   => $request->get('event_id', 'string'),
         ]);
 
-        return $this->response($request, $pack, true);
+        return $this->response($request, $photo, true);
     }
 
     /**
-     * Updates a pack. Always use `x-www-form-urlencoded` content type for PUT.
+     * Updates a photo. Always use `x-www-form-urlencoded` content type for PUT.
      *
      * @param $id - Id of the event to be updated
      * @return Response
@@ -53,16 +55,18 @@ class PacksController extends ControllerBase
 
             $request = $this->request;
 
-            $pack = Local::findFirstOrFail([
+            $photo = Photo::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            $pack->assign([
-                'id'                => $id,
-                'price'             => $request->getPut('price', 'string', $pack->price),
+            $photo->assign([
+                'id'               => $id,
+                'uri'              => $request->getPut('uri', 'string', $photo->uri),
+                'desc'             => $request->getPut('desc', 'string', $photo->desc),
+                'event_id'         => $request->getPut('event_id', 'string', $photo->event_id),
             ]);
 
-            return $this->response($request, $pack, true);
+            return $this->response($request, $photo, true);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();
@@ -70,7 +74,7 @@ class PacksController extends ControllerBase
     }
 
     /**
-     * Deletes a pack from the database.
+     * Deletes a photo from the database.
      *
      * @param $id - Id of the pack to be deleted
      * @return Response
@@ -80,11 +84,11 @@ class PacksController extends ControllerBase
     {
         try {
 
-            $pack = Pack::findFirstOrFail([
+            $photo = Photo::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            return $this->response($this->request, $pack);
+            return $this->response($this->request, $photo);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();

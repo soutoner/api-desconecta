@@ -3,26 +3,26 @@
 namespace App\Controllers\V1;
 
 use App\Controllers\ControllerBase;
-use App\Models\Pack;
+use App\Models\Product;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class PacksController extends ControllerBase
+class ProductsController extends ControllerBase
 {
     /**
-     * Returns all the packs in the database.
+     * Returns all the products in the database.
      *
      * TODO: Pagination
      */
     public function index()
     {
-        $packs = Pack::find();
+        $products = Product::find();
 
-        return new Response(json_encode($packs->toArray()));
+        return new Response(json_encode($products->toArray()));
     }
 
     /**
-     * Creates a pack in the database.
+     * Creates a product in the database.
      *
      * TODO: Create custom filters (e.g. filter for dates)
      *
@@ -32,17 +32,17 @@ class PacksController extends ControllerBase
     {
         $request = $this->request;
 
-        $pack = new Pack();
-        $pack->assign([
-            'price' => $request->get('price', 'string'),
+        $product = new Product();
+        $product->assign([
+            'name' => $request->get('name', 'string'),
+            'icon' => $request->get('icon', 'strint'),
         ]);
 
-        return $this->response($request, $pack, true);
+        return $this->response($request, $product, true);
     }
 
     /**
-     * Updates a pack. Always use `x-www-form-urlencoded` content type for PUT.
-     *
+     * Updates a product. Always use `x-www-form-urlencoded` content type for PUT.
      * @param $id - Id of the event to be updated
      * @return Response
      * @throws ResourceNotFoundException
@@ -53,16 +53,17 @@ class PacksController extends ControllerBase
 
             $request = $this->request;
 
-            $pack = Pack::findFirstOrFail([
+            $product = Product::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            $pack->assign([
-                'id'                => $id,
-                'price'             => $request->getPut('price', 'string', $pack->price),
+            $product->assign([
+                'id'               => $id,
+                'name'             => $request->getPut('name', 'string', $product->name),
+                'icon'             => $request->getPut('name', 'string', $product->icon),
             ]);
 
-            return $this->response($request, $pack, true);
+            return $this->response($request, $product, true);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();
@@ -70,7 +71,7 @@ class PacksController extends ControllerBase
     }
 
     /**
-     * Deletes a pack from the database.
+     * Deletes a product from the database.
      *
      * @param $id - Id of the pack to be deleted
      * @return Response
@@ -80,11 +81,11 @@ class PacksController extends ControllerBase
     {
         try {
 
-            $pack = Pack::findFirstOrFail([
+            $product = Product::findFirstOrFail([
                 'id = ?0', 'bind' => [$id]
             ]);
 
-            return $this->response($this->request, $pack);
+            return $this->response($this->request, $product);
 
         } catch (ResourceNotFoundException $e) {
             return $e->return_response();
