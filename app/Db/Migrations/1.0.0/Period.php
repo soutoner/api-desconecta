@@ -80,13 +80,13 @@ class PeriodMigration_100 extends Migration
      */
     public function up()
     {
-        self::$_connection->insertAsDict('Product',[
+        self::$_connection->insertAsDict('Period',[
             'type' => 'weekly',
         ]);
-        self::$_connection->insertAsDict('Product',[
+        self::$_connection->insertAsDict('Period',[
             'type' => 'monthly',
         ]);
-        self::$_connection->insertAsDict('Product',[
+        self::$_connection->insertAsDict('Period',[
             'type' => 'yearly',
         ]);
     }

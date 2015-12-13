@@ -7,7 +7,7 @@ use \FunctionalTester;
 use App\Models\User;
 use App\Db\Seeds\Models\UserSeeder;
 
-class DeleteTestCest extends EndpointTest
+class DeleteCest extends EndpointTest
 {
     protected $relationship;
 

@@ -6,7 +6,7 @@ use \EndpointTest;
 use \FunctionalTester;
 use App\Models\User;
 
-class IndexTestCest extends EndpointTest
+class IndexCest extends EndpointTest
 {
     public function __construct(){
         parent::__construct(__DIR__, __FILE__);

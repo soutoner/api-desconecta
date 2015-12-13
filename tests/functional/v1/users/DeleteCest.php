@@ -6,7 +6,7 @@ use \EndpointTest;
 use \FunctionalTester;
 use App\Models\User;
 
-class DeleteTestCest extends EndpointTest
+class DeleteCest extends EndpointTest
 {
     public function __construct(){
         parent::__construct(__DIR__, __FILE__);

@@ -7,7 +7,7 @@ use \FunctionalTester;
 use App\Models\User;
 use App\Db\Seeds\Models\UserSeeder;
 
-class CreateTestCest extends EndpointTest
+class CreateCest extends EndpointTest
 {
     public function __construct(){
         parent::__construct(__DIR__, __FILE__);

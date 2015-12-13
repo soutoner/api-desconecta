@@ -2,6 +2,7 @@
 
 namespace App\Db\Seeds\Models;
 
+use Faker\Factory;
 
 abstract class BaseSeeder
 {
@@ -41,7 +42,7 @@ abstract class BaseSeeder
         if($want_fake) {
             $faker = Factory::create();
             for ($i = 0; $i < static::$n_fake_seeds; $i++) {
-                $seed = new User();
+                $seed = new $class();
                 $seed->create(static::GenerateFake($faker));
             }
         }

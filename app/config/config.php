@@ -12,13 +12,13 @@ return new \Phalcon\Config(array(
         'charset'   => 'utf8',
     ),
     'application' => array(
-        'controllersDir' => APP_PATH . '/app/Controllers/',
-        'modelsDir'      => APP_PATH . '/app/Models/',
-        'migrationsDir'  => APP_PATH . '/app/Db/Migrations/',
-        'baseUri'   => '/api/',
+        'controllersDir'    => APP_PATH . '/app/Controllers/',
+        'modelsDir'         => APP_PATH . '/app/Models/',
+        'migrationsDir'     => APP_PATH . '/app/Db/Migrations/',
+        'baseUri'           => '/api/',
     ),
     'namespaces' => array(
         'App'       => APP_PATH . '/app/',
-        'Faker'       => APP_PATH . '/vendor/fzaninotto/faker/src/Faker/',
+        'Faker'     => APP_PATH . '/vendor/fzaninotto/faker/src/Faker/',
     )
 ));
