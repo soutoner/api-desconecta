@@ -18,4 +18,11 @@ class RRPP extends BaseModel
 
         $this->setSource($this->class_name());
     }
+
+    public function beforeCreate()
+    {
+        if(empty($this->verified)){
+            $this->verified = false;
+        }
+    }
 }
