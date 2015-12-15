@@ -16,9 +16,15 @@ return new \Phalcon\Config(array(
         'modelsDir'         => APP_PATH . '/app/Models/',
         'migrationsDir'     => APP_PATH . '/app/Db/Migrations/',
         'baseUri'           => '/api/',
+        'domain'            => 'localhost:8000'
     ),
     'namespaces' => array(
-        'App'       => APP_PATH . '/app/',
-        'Faker'     => APP_PATH . '/vendor/fzaninotto/faker/src/Faker/',
-    )
+        'App'   => APP_PATH . '/app/',
+        'Faker' => APP_PATH . '/vendor/fzaninotto/faker/src/Faker/',
+    ),
+    'fb' => array(
+        'appId'     => '1680673035510242',
+        'secret'    => '9ae01c00dbe4b18d0cbffac1ca6e98de',
+        'callback'  => 'register/facebook/callback',
+    ),
 ));

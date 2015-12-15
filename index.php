@@ -6,6 +6,8 @@ define('APP_PATH', realpath('.'));
 
 try {
 
+    require_once __DIR__ . '/vendor/autoload.php';
+
     /**
      * Read the configuration
      */
@@ -25,6 +27,8 @@ try {
      * Handle the request
      */
     $app = new \Phalcon\Mvc\Micro($di);
+
+    $app->getRouter()->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
 
     /**
      * Mount routes collections

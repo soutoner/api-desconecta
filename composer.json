@@ -5,6 +5,9 @@
             "url": "https://github.com/soutoner/phalcon-devtools"
         }
     ],
+    "require" : {
+        "guzzlehttp/guzzle": "~6.0"
+    },
     "require-dev": {
         "codeception/codeception": "*",
         "fzaninotto/faker": "^1.5",
