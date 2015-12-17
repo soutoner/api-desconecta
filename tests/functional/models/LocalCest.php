@@ -6,7 +6,7 @@ use \FunctionalTester;
 use App\Models\Local;
 use App\Db\Seeds\Models\LocalSeeder;
 
-class LocalValidationsCest
+class LocalCest
 {
     protected $model;
 

@@ -63,7 +63,7 @@ class UserSeeder extends BaseSeeder
             'date_birth'        => $faker->date('Y-m-d'),
             'gender'            => $faker->optional()->randomElement(['H', 'M']),
             'location'          => $faker->city,
-            'rrpp_id'           => $faker->optional()->numberBetween($min = 1, $max = RRPP::count())
+            'rrpp_id'           => $faker->optional()->numberBetween($min = 1, $max = RRPP::count()),
         ];
     }
 }

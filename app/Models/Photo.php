@@ -21,6 +21,15 @@ class Photo extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->belongsTo('event_id', 'App\Models\Event', 'id',
+            [
+                'alias' => 'Event',
+                'foreignKey' => [
+                    'message'    => 'The event_id does not exist on the Event model'
+                ]
+            ]
+        );
     }
 
     /**
@@ -31,7 +40,6 @@ class Photo extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
                     'field'     => 'uri',
@@ -46,6 +54,7 @@ class Photo extends BaseModel
                 ]
             )
         );
+
         // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;

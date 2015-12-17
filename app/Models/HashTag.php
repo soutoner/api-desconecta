@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class HashTag extends BaseModel
 {
@@ -27,14 +28,21 @@ class HashTag extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
-                    'field'     => 'HashTag',
-                    'message'   => 'A hashtag is required'
+                    'field'     => 'value',
+                    'message'   => 'A value is required'
                 ]
             )
         );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => 'value',
+                    'message'   => 'The value must be unique'
+                ]
+            )
+        );
+
         // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;

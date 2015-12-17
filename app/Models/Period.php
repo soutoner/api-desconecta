@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class Period extends BaseModel
 {
@@ -29,7 +30,6 @@ class Period extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
                     'field'     => 'type',
@@ -37,6 +37,14 @@ class Period extends BaseModel
                 ]
             )
         );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => 'type',
+                    'message'   => 'The type must be unique'
+                ]
+            )
+        );
+
         // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;

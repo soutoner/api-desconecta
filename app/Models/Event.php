@@ -63,6 +63,8 @@ class Event extends BaseModel
                 ]
             ]
         );
+
+        $this->hasMany('id', 'App\Models\Photo', 'event_id', ['alias' => 'Photos']);
     }
 
     /**

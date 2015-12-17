@@ -8,11 +8,25 @@ class HashTagSeeder extends BaseSeeder
 {
     protected static $n_fake_seeds;
 
-    protected static $db_seeds = [];
+    protected static $db_seeds = [
+        [
+            'id'    => 1,
+            'value' => 'instamola',
+        ], [
+            'id'    => 2,
+            'value' => 'top',
+        ],
+    ];
 
-    protected static $extra_seeds = [];
+    protected static $extra_seeds = [
+        [
+            'value' => 'lopartimos',
+        ],
+    ];
 
     public static function GenerateFake($faker){
-        return [];
+        return [
+            'value' => $faker->name,
+        ];
     }
 }

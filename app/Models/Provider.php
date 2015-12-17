@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class Provider extends BaseModel
 {
@@ -33,6 +34,13 @@ class Provider extends BaseModel
             new PresenceOf([
                     'field'     => 'name',
                     'message'   => 'The name is required'
+                ]
+            )
+        );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => 'name',
+                    'message'   => 'The name must be unique'
                 ]
             )
         );
