@@ -11,6 +11,15 @@ use App\Db\Seeds\Models\PhotoSeeder;
 use App\Db\Seeds\Models\ProductSeeder;
 use App\Db\Seeds\Models\PackSeeder;
 use App\Db\Seeds\Models\ProviderSeeder;
+use App\Db\Seeds\Models\Relationships\AppearSeeder;
+use App\Db\Seeds\Models\Relationships\AttendSeeder;
+use App\Db\Seeds\Models\Relationships\BelongSeeder;
+use App\Db\Seeds\Models\Relationships\EventHasHashTagSeeder;
+use App\Db\Seeds\Models\Relationships\EventHasMusicTagSeeder;
+use App\Db\Seeds\Models\Relationships\EventHasPackSeeder;
+use App\Db\Seeds\Models\Relationships\FollowSeeder;
+use App\Db\Seeds\Models\Relationships\PackHasProductSeeder;
+use App\Db\Seeds\Models\Relationships\PhotoHasHashTagSeeder;
 use App\Db\Seeds\Models\RRPPSeeder;
 use App\Db\Seeds\Models\SchedulingSeeder;
 use App\Db\Seeds\Models\UserSeeder;
@@ -47,5 +56,14 @@ class DatabaseSeeder
          * Relationships.
          */
         FollowerSeeder::Seed($want_fake);
+        AppearSeeder::Seed($want_fake);
+        AttendSeeder::Seed($want_fake);
+        BelongSeeder::Seed($want_fake);
+        FollowSeeder::Seed($want_fake);
+        PhotoHasHashTagSeeder::Seed($want_fake);
+        PackHasProductSeeder::Seed($want_fake);
+        EventHasPackSeeder::Seed($want_fake);
+        EventHasHashTagSeeder::Seed($want_fake);
+        EventHasMusicTagSeeder::Seed($want_fake);
     }
 }

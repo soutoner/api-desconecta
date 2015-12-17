@@ -21,6 +21,15 @@ class MusicTag extends BaseModel
          * Table name.
          */
         $this->setSource($this->class_name());
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\EventHasMusicTag',
+            'musicTag_id', 'event_id',
+            'App\Models\Event',
+            'id',
+            ['alias' => 'Events']
+        );
     }
 
     /**

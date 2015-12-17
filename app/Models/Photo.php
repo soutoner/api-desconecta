@@ -30,6 +30,24 @@ class Photo extends BaseModel
                 ]
             ]
         );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Appear',
+            'photo_id', 'user_id',
+            'App\Models\User',
+            'id',
+            ['alias' => 'Users']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\PhotoHasHashTag',
+            'photo_id', 'hashTag_id',
+            'App\Models\HashTag',
+            'id',
+            ['alias' => 'HashTags']
+        );
     }
 
     /**

@@ -20,6 +20,15 @@ class Product extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\PackHasProduct',
+            'product_id', 'pack_id',
+            'App\Models\Pack',
+            'id',
+            ['alias' => 'Packs']
+        );
     }
 
     /**

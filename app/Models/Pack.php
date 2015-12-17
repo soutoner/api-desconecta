@@ -18,6 +18,24 @@ class Pack extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\EventHasPack',
+            'pack_id', 'event_id',
+            'App\Models\Event',
+            'id',
+            ['alias' => 'Events']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\PackHasProduct',
+            'pack_id', 'product_id',
+            'App\Models\Product',
+            'id',
+            ['alias' => 'Products']
+        );
     }
 
     /**

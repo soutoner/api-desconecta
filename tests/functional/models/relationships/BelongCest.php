@@ -3,18 +3,18 @@
 namespace models\relationships;
 
 use \FunctionalTester;
-use App\Models\Relationships\Follower;
-use App\Db\Seeds\Models\Relationships\FollowerSeeder;
+use App\Models\Relationships\Belong;
+use App\Db\Seeds\Models\Relationships\BelongSeeder;
 
-class FollowerCest
+class BelongCest
 {
     protected $model;
 
     public function _before(FunctionalTester $I)
     {
-        $this->model = new Follower();
+        $this->model = new Belong();
         $this->model->assign(
-            FollowerSeeder::ExtraSeeds()[0]
+            BelongSeeder::ExtraSeeds()[0]
         );
     }
 
@@ -42,28 +42,23 @@ class FollowerCest
     }
 
     /**
-     * FOLLOWER_ID
+     * PHOTO_ID
      */
 
-    public function followerIdMustBeNotNull(FunctionalTester $I){
-        $this->model->follower_id = '';
+    public function guestListIdMustBeNotNull(FunctionalTester $I){
+        $this->model->guestList_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function followerIdMustBeValid(FunctionalTester $I){
-        $this->model->follower_id = 0;
+    public function guestListIdMustBeValid(FunctionalTester $I){
+        $this->model->guestList_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function followerMustBeUnique(FunctionalTester $I){
-        $rel = Follower::findFirst();
+    public function belongMustBeUnique(FunctionalTester $I){
+        $rel = Belong::findFirst();
         $this->model->user_id = $rel->user_id;
-        $this->model->follower_id = $rel->follower_id;
-        $I->assertFalse($this->model->save());
-    }
-
-    public function followerIsNotReflexive(FunctionalTester $I){
-        $this->model->user_id = $this->model->follower_id;
+        $this->model->guestList_id = $rel->guestList_id;
         $I->assertFalse($this->model->save());
     }
 }

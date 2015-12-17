@@ -25,6 +25,15 @@ class GuestList extends BaseModel
         $this->setSource($this->class_name());
 
         $this->hasOne('id', 'App\Models\Event', 'guestList_id', ['alias' => 'Event']);
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Belong',
+            'guestList_id', 'user_id',
+            'App\Models\User',
+            'id',
+            ['alias' => 'Users']
+        );
     }
 
     /**

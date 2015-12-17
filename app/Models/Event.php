@@ -64,7 +64,43 @@ class Event extends BaseModel
             ]
         );
 
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Attend',
+            'event_id', 'user_id',
+            'App\Models\User',
+            'id',
+            ['alias' => 'Users']
+        );
+
         $this->hasMany('id', 'App\Models\Photo', 'event_id', ['alias' => 'Photos']);
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\EventHasHashTag',
+            'event_id', 'hashTag_id',
+            'App\Models\HashTag',
+            'id',
+            ['alias' => 'HashTags']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\EventHasMusicTag',
+            'event_id', 'musicTag_id',
+            'App\Models\MusicTag',
+            'id',
+            ['alias' => 'MusicTags']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\EventHasPack',
+            'event_id', 'pack_id',
+            'App\Models\Pack',
+            'id',
+            ['alias' => 'Packs']
+        );
     }
 
     /**

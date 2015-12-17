@@ -18,6 +18,24 @@ class HashTag extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\EventHasHashTag',
+            'hashTag_id', 'event_id',
+            'App\Models\Event',
+            'id',
+            ['alias' => 'Events']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\PhotoHasHashTag',
+            'hashTag_id', 'photo_id',
+            'App\Models\Photo',
+            'id',
+            ['alias' => 'Photos']
+        );
     }
 
     /**

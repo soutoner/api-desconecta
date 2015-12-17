@@ -19,6 +19,8 @@ class RRPP extends BaseModel
         $this->setSource($this->class_name());
 
         $this->hasOne('id', 'App\Models\User', 'rrpp_id', ['alias' => 'User']);
+
+        $this->hasMany('id', 'App\Models\Local', 'local_id', ['alias' => 'Locals']);
     }
 
     public function beforeCreate()

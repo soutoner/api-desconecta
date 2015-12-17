@@ -3,18 +3,18 @@
 namespace models\relationships;
 
 use \FunctionalTester;
-use App\Models\Relationships\Follower;
-use App\Db\Seeds\Models\Relationships\FollowerSeeder;
+use App\Models\Relationships\Appear;
+use App\Db\Seeds\Models\Relationships\AppearSeeder;
 
-class FollowerCest
+class AppearCest
 {
     protected $model;
 
     public function _before(FunctionalTester $I)
     {
-        $this->model = new Follower();
+        $this->model = new Appear();
         $this->model->assign(
-            FollowerSeeder::ExtraSeeds()[0]
+            AppearSeeder::ExtraSeeds()[0]
         );
     }
 
@@ -42,28 +42,23 @@ class FollowerCest
     }
 
     /**
-     * FOLLOWER_ID
+     * PHOTO_ID
      */
 
-    public function followerIdMustBeNotNull(FunctionalTester $I){
-        $this->model->follower_id = '';
+    public function photoIdMustBeNotNull(FunctionalTester $I){
+        $this->model->photo_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function followerIdMustBeValid(FunctionalTester $I){
-        $this->model->follower_id = 0;
+    public function photoIdMustBeValid(FunctionalTester $I){
+        $this->model->photo_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function followerMustBeUnique(FunctionalTester $I){
-        $rel = Follower::findFirst();
+    public function appearMustBeUnique(FunctionalTester $I){
+        $rel = Appear::findFirst();
         $this->model->user_id = $rel->user_id;
-        $this->model->follower_id = $rel->follower_id;
-        $I->assertFalse($this->model->save());
-    }
-
-    public function followerIsNotReflexive(FunctionalTester $I){
-        $this->model->user_id = $this->model->follower_id;
+        $this->model->photo_id = $rel->photo_id;
         $I->assertFalse($this->model->save());
     }
 }

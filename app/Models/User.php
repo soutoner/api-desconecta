@@ -59,6 +59,33 @@ class User extends BaseModel
             ['alias' => 'Following']
         );
 
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Appear',
+            'user_id', 'photo_id',
+            'App\Models\Photo',
+            'id',
+            ['alias' => 'Photos']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Attend',
+            'user_id', 'event_id',
+            'App\Models\Event',
+            'id',
+            ['alias' => 'Events']
+        );
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Belong',
+            'user_id', 'guestList_id',
+            'App\Models\GuestList',
+            'id',
+            ['alias' => 'GuestLists']
+        );
+
         $this->belongsTo('rrpp_id', 'App\Models\RRPP', 'id',
             [
                 'alias' => 'RRPPprofile',
