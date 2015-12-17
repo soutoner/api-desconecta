@@ -17,6 +17,8 @@ class Period extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->hasMany('id', 'App\Models\Scheduling', 'period_id', ['alias' => 'Schedulings']);
     }
 
     /**

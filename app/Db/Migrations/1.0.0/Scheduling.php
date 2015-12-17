@@ -39,7 +39,7 @@ class SchedulingMigration_100 extends Migration
                         )
                     ),
                     new Column(
-                        'period_type_id',
+                        'period_id',
                         array(
                             'type' => Column::TYPE_INTEGER,
                             'unsigned' => true,
@@ -55,7 +55,7 @@ class SchedulingMigration_100 extends Migration
                             'default' => "CURRENT_TIMESTAMP",
                             'notNull' => true,
                             'size' => 1,
-                            'after' => 'period_type_id'
+                            'after' => 'period_id'
                         )
                     ),
                     new Column(
@@ -71,7 +71,7 @@ class SchedulingMigration_100 extends Migration
                 'indexes' => array(
                     new Index('PRIMARY', array('id'), null),
                     new Index('id_UNIQUE', array('id'), null),
-                    new Index('fk_Scheduling_Period1_idx', array('period_type_id'), null)
+                    new Index('fk_Scheduling_Period1_idx', array('period_id'), null)
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

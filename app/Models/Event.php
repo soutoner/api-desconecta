@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class Event extends BaseModel
 {
@@ -33,6 +34,35 @@ class Event extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->belongsTo('local_id', 'App\Models\Local', 'id',
+            [
+                'alias' => 'Local',
+                'foreignKey' => [
+                    'message'    => 'The local_id does not exist on the Local model'
+                ]
+            ]
+        );
+
+        $this->belongsTo('guestList_id', 'App\Models\GuestList', 'id',
+            [
+                'alias' => 'GuestList',
+                'foreignKey' => [
+                    'allowNulls' => true,
+                    'message'    => 'The guestList_id does not exist on the GuestList model'
+                ]
+            ]
+        );
+
+        $this->belongsTo('scheduling_id', 'App\Models\Scheduling', 'id',
+            [
+                'alias' => 'Scheduling',
+                'foreignKey' => [
+                    'allowNulls' => true,
+                    'message'    => 'The scheduling_id does not exist on the Scheduling model'
+                ]
+            ]
+        );
     }
 
     /**
@@ -62,14 +92,7 @@ class Event extends BaseModel
         $this->validate(
             new PresenceOf([
                     'field'     => 'photo_cover',
-                    'message'   => 'A photography is required'
-                ]
-            )
-        );
-        $this->validate(
-            new PresenceOf([
-                    'field'     => 'profile_picture',
-                    'message'   => 'The profile picture is required'
+                    'message'   => 'A cover photo is required'
                 ]
             )
         );
@@ -87,6 +110,25 @@ class Event extends BaseModel
                 ]
             )
         );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => 'guestList_id',
+                    'message'   => 'The guestList_id must be unique',
+                ]
+            )
+        );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => 'scheduling_id',
+                    'message'   => 'The scheduling_id must be unique',
+                ]
+            )
+        );
+
+        if($this->end_date <= $this->start_date){
+            return false;
+        }
+
         // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;

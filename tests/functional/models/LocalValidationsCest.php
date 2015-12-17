@@ -8,23 +8,23 @@ use App\Db\Seeds\Models\LocalSeeder;
 
 class LocalValidationsCest
 {
-    protected $local;
+    protected $model;
 
     public function _before(FunctionalTester $I)
     {
-        $this->local = new Local();
-        $this->local->assign(
+        $this->model = new Local();
+        $this->model->assign(
             LocalSeeder::ExtraSeeds()[0]
         );
     }
 
     public function _after(FunctionalTester $I)
     {
-        unset($this->local);
+        unset($this->model);
     }
 
-    public function givenLocalIsValid(FunctionalTester $I){
-        $I->assertTrue($this->local->save(), implode("|", $this->local->getMessages()));
+    public function givenModelIsValid(FunctionalTester $I){
+        $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
     /**
@@ -32,13 +32,13 @@ class LocalValidationsCest
      */
 
     public function nameMustBeNotNull(FunctionalTester $I){
-        $this->local->name = '';
-        $I->assertFalse($this->local->save());
+        $this->model->name = '';
+        $I->assertFalse($this->model->save());
     }
 
     public function nameMustBeUnique(FunctionalTester $I){
-        $this->local->name = Local::findFirst()->name;
-        $I->assertFalse($this->local->save());
+        $this->model->name = Local::findFirst()->name;
+        $I->assertFalse($this->model->save());
     }
 
     /**
@@ -46,8 +46,8 @@ class LocalValidationsCest
      */
 
     public function descMustBeNotNull(FunctionalTester $I){
-        $this->local->desc = '';
-        $I->assertFalse($this->local->save());
+        $this->model->desc = '';
+        $I->assertFalse($this->model->save());
     }
 
     /**
@@ -55,8 +55,8 @@ class LocalValidationsCest
      */
 
     public function photoCoverMustBeNotNull(FunctionalTester $I){
-        $this->local->photo_cover = '';
-        $I->assertFalse($this->local->save());
+        $this->model->photo_cover = '';
+        $I->assertFalse($this->model->save());
     }
 
     /**
@@ -64,8 +64,8 @@ class LocalValidationsCest
      */
 
     public function geoMustBeNotNull(FunctionalTester $I){
-        $this->local->geo = '';
-        $I->assertFalse($this->local->save());
+        $this->model->geo = '';
+        $I->assertFalse($this->model->save());
     }
 
     /**
@@ -73,16 +73,21 @@ class LocalValidationsCest
      */
 
     public function addressMustBeNotNull(FunctionalTester $I){
-        $this->local->address = '';
-        $I->assertFalse($this->local->save());
+        $this->model->address = '';
+        $I->assertFalse($this->model->save());
     }
 
     /**
      * OWNER_ID
      */
 
+    public function ownerIdMustBeNotNull(FunctionalTester $I){
+        $this->model->owner_id = '';
+        $I->assertFalse($this->model->save());
+    }
+
     public function ownerIdMustBeValidRRPP(FunctionalTester $I){
-        $this->local->owner_id = 0;
-        $I->assertFalse($this->local->save());
+        $this->model->owner_id = 0;
+        $I->assertFalse($this->model->save());
     }
 }

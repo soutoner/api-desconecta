@@ -36,6 +36,8 @@ class Local extends BaseModel
                 ],
             ]
         );
+
+        $this->hasMany('id', 'App\Models\Event', 'local_id', ['alias' => 'Events']);
     }
 
     /**

@@ -23,6 +23,8 @@ class GuestList extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->hasOne('id', 'App\Models\Event', 'guestList_id', ['alias' => 'Event']);
     }
 
     /**
@@ -48,6 +50,15 @@ class GuestList extends BaseModel
                 ]
             )
         );
+
+        if($this->max_capacity < 0 || $this->max_friends < 0){
+            return false;
+        }
+
+        if($this->end_time <= $this->start_time){
+            return false;
+        }
+
         // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
