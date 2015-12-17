@@ -3,69 +3,68 @@
 namespace models\relationships;
 
 use \FunctionalTester;
-use App\Models\User;
 use App\Models\Relationships\Follower;
-use App\Db\Seeds\Models\UserSeeder;
+use App\Db\Seeds\Models\Relationships\FollowerSeeder;
 
 class FollowerCest
 {
-    protected $user;
-
-    protected $follower;
+    protected $model;
 
     public function _before(FunctionalTester $I)
     {
-        $this->user = User::findFirst();
-        $this->follower = User::findFirst(["email = '". UserSeeder::DbSeeds()[1]['email'] ."'"]);
-
-        $rel = new Follower();
-        $rel->create([
-            'user_id'       => $this->user->id,
-            'follower_id'   => $this->follower->id,
-        ]);
+        $this->model = new Follower();
+        $this->model->assign(
+            FollowerSeeder::ExtraSeeds()[0]
+        );
     }
 
     public function _after(FunctionalTester $I)
     {
+        unset($this->model);
     }
 
-    public function followersRelationshipSuccessful(FunctionalTester $I)
-    {
-        $I->assertEquals($this->user->getFollowers()->getFirst()->email, $this->follower->email);
-        $I->assertEquals($this->follower->getFollowing()->getFirst()->email, $this->user->email);
-        $I->assertEmpty($this->user->getFollowing());
+    public function givenModelIsValid(FunctionalTester $I){
+        $I->assertGreaterThan(0, Follower::count());
+        $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
-    public function deleteFollowersRelationshipSuccessful(FunctionalTester $I)
-    {
-        $I->assertEquals($this->user->getFollowers()->getFirst()->email, $this->follower->email);
-        Follower::findFirst(
-            ['user_id = '. $this->user->id,
-            'folower_id = '. $this->follower->id]
-        )->delete();
-        $I->assertEmpty($this->user->getFollowers());
-        $I->assertEmpty($this->follower->getFollowing());
+    /**
+     * USER_ID
+     */
+
+    public function userIdMustBeNotNull(FunctionalTester $I){
+        $this->model->user_id = '';
+        $I->assertFalse($this->model->save());
     }
 
-    public function folowersAreUnique(FunctionalTester $I)
-    {
-        $rel = new Follower();
-        $I->assertFalse(
-            $rel->create([
-                'user_id'       => $this->user->id,
-                'follower_id'   => $this->follower->id,
-            ])
-        );
+    public function userIdMustBeValid(FunctionalTester $I){
+        $this->model->user_id = 0;
+        $I->assertFalse($this->model->save());
     }
 
-    public function youCantFollowYourself(FunctionalTester $I)
-    {
-        $rel = new Follower();
-        $I->assertFalse(
-            $rel->create([
-                'user_id'       => $this->user->id,
-                'follower_id'   => $this->user->id,
-            ])
-        );
+    /**
+     * FOLLOWER_ID
+     */
+
+    public function followerIdMustBeNotNull(FunctionalTester $I){
+        $this->model->follower_id = '';
+        $I->assertFalse($this->model->save());
+    }
+
+    public function followerIdMustBeValid(FunctionalTester $I){
+        $this->model->follower_id = 0;
+        $I->assertFalse($this->model->save());
+    }
+
+    public function followerMustBeUnique(FunctionalTester $I){
+        $rel = Follower::findFirst();
+        $this->model->user_id = $rel->user_id;
+        $this->model->follower_id = $rel->follower_id;
+        $I->assertFalse($this->model->save());
+    }
+
+    public function followerIsNotReflexive(FunctionalTester $I){
+        $this->model->user_id = $this->model->follower_id;
+        $I->assertFalse($this->model->save());
     }
 }

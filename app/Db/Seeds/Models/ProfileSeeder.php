@@ -10,14 +10,26 @@ class ProfileSeeder extends BaseSeeder
 {
     protected static $n_fake_seeds;
 
-    protected static $db_seeds = [];
+    protected static $db_seeds = [
+        [
+            'uid'           => '895345',
+            'access_token'  => 'access_token895345',
+            'user_id'       => 2,
+            'provider_id'   => 1,
+        ], [
+            'uid'           => '2345',
+            'access_token'  => 'access_token2345',
+            'user_id'       => 1,
+            'provider_id'   => 2,
+        ],
+    ];
 
     protected static $extra_seeds = [
         [
             'uid'           => '12345',
             'access_token'  => 'access_token1234',
-            'user_id'       => '1',
-            'provider_id'   => '1',
+            'user_id'       => 1,
+            'provider_id'   => 1,
         ],
     ];
 

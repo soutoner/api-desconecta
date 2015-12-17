@@ -18,12 +18,7 @@ class Provider extends BaseModel
 
         $this->setSource($this->class_name());
 
-        $this->belongsTo('provider_id', 'App\Models\Profile', 'id', [
-                'alias' => 'Profiles',
-                'foreignKey' => [
-                    'message' => 'The provider_id does not exist on the Profile model'
-                ],
-            ]);
+        $this->hasMany('id', 'App\Models\Profile', 'provider_id', ['alias' => 'Profiles']);
     }
 
     /**

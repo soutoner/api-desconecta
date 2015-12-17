@@ -2,32 +2,31 @@
 
 namespace App\Db\Seeds\Models\Relationships;
 
+use App\Db\Seeds\Models\BaseSeeder;
 use App\Models\User;
-use App\Models\Relationships\Follower;
-use Faker\Factory;
 
-class FollowerSeeder
+class FollowerSeeder extends BaseSeeder
 {
-    /**
-     * Number of relationships to be created.
-     *
-     * @var int
-     */
-    protected static $n_of_relationships = 15;
+    protected static $n_fake_seeds = 20;
 
-    public static function Seed(){
-        $user_ids = [];
-        foreach(User::find()->toArray() as $user_params){
-            $user_ids[] = $user_params['id'];
-        }
+    protected static $db_seeds = [
+        [
+            'user_id'       => 2,
+            'follower_id'   => 1,
+        ],
+    ];
 
-        $faker = Factory::create();
-        for($i = 0; $i < self::$n_of_relationships; $i++){
-            $rel = new Follower();
-            $rel->create([
-                'user_id'       => $faker->randomElement($user_ids),
-                'follower_id'   => $faker->randomElement($user_ids),
-            ]);
-        }
+    protected static $extra_seeds = [
+        [
+            'user_id'       => 1,
+            'follower_id'   => 2,
+        ],
+    ];
+
+    public static function GenerateFake($faker){
+        return [
+            'user_id'       =>  $faker->numberBetween($min = 1, $max = User::count()),
+            'follower_id'   =>  $faker->numberBetween($min = 1, $max = User::count()),
+        ];
     }
 }

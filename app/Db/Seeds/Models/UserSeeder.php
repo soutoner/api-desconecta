@@ -3,6 +3,7 @@
 namespace App\Db\Seeds\Models;
 
 use App\Db\Seeds\Models\BaseSeeder;
+use App\Models\RRPP;
 
 class UserSeeder extends BaseSeeder
 {
@@ -13,6 +14,7 @@ class UserSeeder extends BaseSeeder
      */
     protected static $db_seeds = [
         [
+            'id'                => 1,
             'name'              => 'Romeo',
             'surname'           => 'Santos',
             'email'             => 'theking@staysking.com',
@@ -20,7 +22,9 @@ class UserSeeder extends BaseSeeder
             'date_birth'        => '1994-11-11',
             'gender'            => 'H',
             'location'          => 'Bronx, New York',
+            'rrpp_id'           => 1,
         ], [
+            'id'                => 2,
             'name'              => 'Daddy',
             'surname'           => 'Yankee',
             'email'             => 'dy@sigueme.com',
@@ -28,6 +32,7 @@ class UserSeeder extends BaseSeeder
             'date_birth'        => '1994-11-11',
             'gender'            => 'H',
             'location'          => 'Puerto Rico',
+            'rrpp_id'           => null,
         ],
     ];
 
@@ -45,6 +50,7 @@ class UserSeeder extends BaseSeeder
             'date_birth'        => '1981-11-11',
             'gender'            => 'H',
             'location'          => 'Boston',
+            'rrpp_id'           => 2,
         ],
     ];
 
@@ -57,6 +63,7 @@ class UserSeeder extends BaseSeeder
             'date_birth'        => $faker->date('Y-m-d'),
             'gender'            => $faker->optional()->randomElement(['H', 'M']),
             'location'          => $faker->city,
+            'rrpp_id'           => $faker->optional()->numberBetween($min = 1, $max = RRPP::count())
         ];
     }
 }

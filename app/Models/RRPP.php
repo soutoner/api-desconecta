@@ -17,6 +17,8 @@ class RRPP extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->hasOne('id', 'App\Models\User', 'rrpp_id', ['alias' => 'User']);
     }
 
     public function beforeCreate()

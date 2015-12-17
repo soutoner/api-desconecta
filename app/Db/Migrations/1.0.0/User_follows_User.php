@@ -60,7 +60,6 @@ class UserFollowsUserMigration_100 extends Migration
                 ),
                 'indexes' => array(
                     new Index('PRIMARY', array('user_id', 'follower_id'), null),
-                    new Index('user_id-follower_id-UNIQUE', array('user_id', 'follower_id'), null),
                     new Index('fk_User_has_Follower_User_idx', array('follower_id'), null),
                     new Index('fk_User_has_User_User_idx', array('user_id'), null)
                 ),

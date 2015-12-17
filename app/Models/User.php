@@ -59,7 +59,16 @@ class User extends BaseModel
             ['alias' => 'Following']
         );
 
-        $this->hasOne('id', 'App\Models\RRPP', 'rrpp_id', ['alias' => 'RRPPprofile']);
+        $this->belongsTo('rrpp_id', 'App\Models\RRPP', 'id',
+            [
+                'alias' => 'RRPPprofile',
+                'foreignKey' => [
+                    'allowNulls' => true,
+                    'message'    => 'The rrpp_id does not exist on the RRPP model'
+                ]
+            ]
+        );
+
 
         $this->hasMany('id', 'App\Models\Profile', 'user_id', ['alias' => 'Profiles']);
     }
@@ -121,6 +130,13 @@ class User extends BaseModel
                     'field'     => 'gender',
                     'message'   => 'The gender must be H or M',
                     'domain'    => ['H', 'M', '']
+                ]
+            )
+        );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => 'rrpp_id',
+                    'message'   => 'The user rrpp_id must be unique'
                 ]
             )
         );

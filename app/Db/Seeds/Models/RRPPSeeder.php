@@ -8,14 +8,21 @@ class RRPPSeeder extends BaseSeeder
 {
     protected static $n_fake_seeds = 5;
 
-    protected static $db_seeds = [];
+    protected static $db_seeds = [
+        [
+            'id'        => 1,
+            'verified'  => true,
+        ], [
+            'id'        => 2,
+            'verified'  => false
+        ],
+    ];
 
     protected static $extra_seeds = [
         [
-            'verified'  => 'false',
-        ],
-        [
-            'verified'  => 'true',
+            'verified'  => false,
+        ], [
+            'verified'  => true,
         ],
     ];
 

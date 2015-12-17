@@ -18,32 +18,19 @@ class Follower extends BaseModel
     {
         $this->setSource('User_follows_User');
 
-        $this->belongsTo(
-            'user_id', 'App\Models\User', 'id', [
+        $this->belongsTo('user_id', 'App\Models\User', 'id', [
                 'alias' => 'User',
                 'foreignKey' => [
-                    'message' => 'The part_id does not exist on the Parts model'
+                    'message' => 'The user_id does not exist on the User model'
                 ],
             ]
         );
-        $this->belongsTo(
-            'follower_id', 'App\Models\User', 'id', [
+        $this->belongsTo('follower_id', 'App\Models\User', 'id', [
                 'alias' => 'Follower',
                 'foreignKey' => [
-                    'message' => 'The part_id does not exist on the Parts model'
+                    'message' => 'The follower_id does not exist on the User model'
                 ],
             ]
-        );
-
-        $this->addBehavior(
-            new Timestampable(
-                array(
-                    'beforeCreate' => array(
-                        'field'  => 'created_at',
-                        'format' => 'Y-m-d H:i:sP'
-                    )
-                )
-            )
         );
     }
 

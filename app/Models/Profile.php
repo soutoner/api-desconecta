@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class Profile extends BaseModel
 {
@@ -29,9 +30,16 @@ class Profile extends BaseModel
                 'foreignKey' => [
                     'message' => 'The user_id does not exist on the User model'
                 ],
-            ]);
+            ]
+        );
 
-        $this->hasOne('id', 'App\Models\Provider', 'provider_id', ['alias' => 'Provider']);
+        $this->belongsTo('provider_id', 'App\Models\Provider', 'id', [
+                'alias' => 'Provider',
+                'foreignKey' => [
+                    'message' => 'The provider_id does not exist on the Provider model'
+                ],
+            ]
+        );
     }
 
     /**
@@ -53,6 +61,27 @@ class Profile extends BaseModel
             new PresenceOf([
                     'field'     => 'access_token',
                     'message'   => 'An access_token is required'
+                ]
+            )
+        );
+        $this->validate(
+            new PresenceOf([
+                    'field'     => 'user_id',
+                    'message'   => 'The user_id is required'
+                ]
+            )
+        );
+        $this->validate(
+            new PresenceOf([
+                    'field'     => 'provider_id',
+                    'message'   => 'The provider_id is required'
+                ]
+            )
+        );
+        $this->validate(
+            new Uniqueness([
+                    'field'     => ['user_id', 'provider_id'],
+                    'message'   => 'The (user_id-provider_id) must be unique'
                 ]
             )
         );

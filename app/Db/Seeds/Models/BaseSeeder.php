@@ -33,7 +33,7 @@ abstract class BaseSeeder
      * @param bool $want_fake : Whether to create fake seeds or not.
      */
     public static function Seed($want_fake=true){
-        $class = 'App\Models\\' . str_replace('Seeder', '', end(explode('\\', get_called_class())));
+        $class = 'App\\'. str_replace('Seeder', '', implode('\\', array_slice(explode('\\', get_called_class()), 3)));
         foreach(static::$db_seeds as $params){
             $seed = new $class();
             $seed->create($params);

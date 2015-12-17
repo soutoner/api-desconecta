@@ -7,26 +7,26 @@ use App\Models\Profile;
 use App\Db\Seeds\Models\RRPPSeeder;
 use App\Models\RRPP;
 
-class RRPPValidationsCest
+class RRPPCest
 {
-    protected $rrpp;
+    protected $model;
 
     public function _before(FunctionalTester $I)
     {
-        $this->rrpp = new RRPP();
-        $this->rrpp->assign(
+        $this->model = new RRPP();
+        $this->model->assign(
             RRPPSeeder::ExtraSeeds()[0]
         );
     }
 
     public function _after(FunctionalTester $I)
     {
-        unset($this->rrpp);
+        unset($this->model);
     }
 
-    public function givenRRPPisValid(FunctionalTester $I)
+    public function givenModelisValid(FunctionalTester $I)
     {
-        $I->assertTrue($this->rrpp->save());
+        $I->assertTrue($this->model->save());
     }
 
     /**
@@ -35,8 +35,8 @@ class RRPPValidationsCest
 
     public function verifiedIsDefaultFalse(FunctionalTester $I)
     {
-        $this->rrpp->verified = '';
-        $I->assertTrue($this->rrpp->save());
-        $I->assertFalse($this->rrpp->verified);
+        $this->model->verified = '';
+        $I->assertTrue($this->model->save());
+        $I->assertFalse($this->model->verified);
     }
 }

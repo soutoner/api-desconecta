@@ -28,6 +28,14 @@ class Local extends BaseModel
         parent::initialize();
 
         $this->setSource($this->class_name());
+
+        $this->belongsTo('owner_id', 'App\Models\RRPP', 'id', [
+                'alias' => 'Owner',
+                'foreignKey' => [
+                    'message' => 'The owner_id does not exist on the RRPP model'
+                ],
+            ]
+        );
     }
 
     /**
@@ -76,8 +84,8 @@ class Local extends BaseModel
         );
         $this->validate(
             new PresenceOf([
-                    'field'     => 'adress',
-                    'message'   => 'The local must have an adress',
+                    'field'     => 'address',
+                    'message'   => 'The local must have an address',
                 ]
             )
         );

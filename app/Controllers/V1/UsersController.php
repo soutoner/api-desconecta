@@ -41,6 +41,7 @@ class UsersController extends ControllerBase
             'date_birth'        => $request->get('date_birth', 'string'),
             'gender'            => $request->get('gender', 'string'),
             'location'          => $request->get('location', 'string'),
+            'rrpp_id'           => $request->get('rrpp_id', 'string'),
         ]);
 
         return $this->response($request, $user, true);
