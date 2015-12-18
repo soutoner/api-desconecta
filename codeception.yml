@@ -11,8 +11,18 @@ settings:
     memory_limit: 1024M
 coverage:
     enabled: true
-    exclude:
-      - vendor/*
+    whitelist:
+      include:
+        - app/*
+      exclude:
+        - app/Db/*
+        - app/Tasks/*
+        - app/config/*
+        - app/cli.php
+    blacklist:
+      include:
+        - vendor/*
+        - tests/*
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
