@@ -23,7 +23,8 @@ class AttendCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class AttendCest
      * USER_ID
      */
 
-    public function userIdMustBeNotNull(FunctionalTester $I){
+    public function userIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->user_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function userIdMustBeValid(FunctionalTester $I){
+    public function userIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->user_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class AttendCest
      * EVENT_ID
      */
 
-    public function eventIdMustBeNotNull(FunctionalTester $I){
+    public function eventIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->event_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function eventIdMustBeValid(FunctionalTester $I){
+    public function eventIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->event_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function attendMustBeUnique(FunctionalTester $I){
+    public function attendMustBeUnique(FunctionalTester $I)
+    {
         $rel = Attend::findFirst();
         $this->model->user_id = $rel->user_id;
         $this->model->event_id = $rel->event_id;
@@ -66,7 +72,8 @@ class AttendCest
      * GEO_ATTENDED
      */
 
-    public function geoAttendedIsOptionalAndFalseByDefault(FunctionalTester $I){
+    public function geoAttendedIsOptionalAndFalseByDefault(FunctionalTester $I)
+    {
         $this->model->geo_attended = '';
         $I->assertTrue($this->model->save());
         $I->assertFalse($this->model->geo_attended);

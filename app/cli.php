@@ -1,7 +1,7 @@
 <?php
 
-use Phalcon\DI\FactoryDefault\CLI as CliDI,
-    Phalcon\CLI\Console as ConsoleApp;
+use Phalcon\DI\FactoryDefault\CLI as CliDI;
+use Phalcon\CLI\Console as ConsoleApp;
 
 define('VERSION', '1.0.0');
 
@@ -54,7 +54,7 @@ foreach ($argv as $k => $arg) {
 }
 
 // Define global constants for the current task and action
-define('CURRENT_TASK',   (isset($argv[1]) ? $argv[1] : null));
+define('CURRENT_TASK', (isset($argv[1]) ? $argv[1] : null));
 define('CURRENT_ACTION', (isset($argv[2]) ? $argv[2] : null));
 
 try {

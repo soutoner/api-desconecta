@@ -23,7 +23,8 @@ class PeriodCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class PeriodCest
      * TYPE
      */
 
-    public function typeMustBeNotNull(FunctionalTester $I){
+    public function typeMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->type = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function typeMustBeUnique(FunctionalTester $I){
+    public function typeMustBeUnique(FunctionalTester $I)
+    {
         $this->model->type = Period::findFirst()->type;
         $I->assertFalse($this->model->save());
     }

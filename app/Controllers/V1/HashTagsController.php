@@ -29,11 +29,12 @@ class HashTagsController extends ControllerBase
         $request = $this->request;
 
         $hashtag = new HashTag();
-        $hashtag->assign([
+        $hashtag->assign(
+            [
             'value' => $request->get('value', 'string'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $hashtag, true);
     }
-
 }

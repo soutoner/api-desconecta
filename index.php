@@ -34,7 +34,7 @@ try {
      * Mount routes collections
      */
     $collections = include APP_PATH . '/app/collections/collections.php';
-    foreach($collections as $collection) {
+    foreach ($collections as $collection) {
         $app->mount($collection);
     }
 

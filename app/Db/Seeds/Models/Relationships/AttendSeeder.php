@@ -26,7 +26,8 @@ class AttendSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'user_id'       => $faker->numberBetween($min = 1, $max = User::count()),
             'event_id'      => $faker->numberBetween($min = 1, $max = Event::count()),

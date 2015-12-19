@@ -17,7 +17,8 @@ class PeriodSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'type'  => $faker->name.'ly',
         ];

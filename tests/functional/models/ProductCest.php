@@ -23,7 +23,8 @@ class ProductCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class ProductCest
      * NAME
      */
 
-    public function nameMustBeNotNull(FunctionalTester $I){
+    public function nameMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->name = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function nameMustBeUnique(FunctionalTester $I){
+    public function nameMustBeUnique(FunctionalTester $I)
+    {
         $this->model->name = Product::findFirst()->name;
         $I->assertFalse($this->model->save());
     }
@@ -45,7 +48,8 @@ class ProductCest
      * ICON
      */
 
-    public function iconMustBeNotNull(FunctionalTester $I){
+    public function iconMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->icon = '';
         $I->assertFalse($this->model->save());
     }

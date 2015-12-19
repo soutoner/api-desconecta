@@ -18,17 +18,27 @@ class Belong extends BaseModel
     {
         $this->setSource('User_belongs_GuestList');
 
-        $this->belongsTo('user_id', 'App\Models\User', 'id', [
-                'alias' => 'User',
-                'foreignKey' => [
-                    'message' => 'The user_id does not exist on the User model'
+        $this->belongsTo(
+            'user_id',
+            'App\Models\User',
+            'id',
+            [
+            'alias' => 'User',
+            'foreignKey' =>
+                [
+                'message' => 'The user_id does not exist on the User model'
                 ],
             ]
         );
-        $this->belongsTo('guestList_id', 'App\Models\GuestList', 'id', [
-                'alias' => 'GuestList',
-                'foreignKey' => [
-                    'message' => 'The guestList_id does not exist on the GuestList model'
+        $this->belongsTo(
+            'guestList_id',
+            'App\Models\GuestList',
+            'id',
+            [
+            'alias' => 'GuestList',
+            'foreignKey' =>
+                [
+                'message' => 'The guestList_id does not exist on the GuestList model'
                 ],
             ]
         );
@@ -43,28 +53,30 @@ class Belong extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'user_id',
-                    'message'   => 'The user_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'user_id',
+                'message'   => 'The user_id is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'guestList_id',
-                    'message'   => 'The guestList_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'guestList_id',
+                'message'   => 'The guestList_id is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => ['user_id', 'guestList_id'],
-                    'message'   => 'The user_id and guestList_id combination must be unique'
+            new Uniqueness(
+                [
+                'field'     => ['user_id', 'guestList_id'],
+                'message'   => 'The user_id and guestList_id combination must be unique'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

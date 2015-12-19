@@ -23,7 +23,8 @@ class PhotoCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,7 +32,8 @@ class PhotoCest
      * URI
      */
 
-    public function uriMustBeNotNull(FunctionalTester $I){
+    public function uriMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->uri = '';
         $I->assertFalse($this->model->save());
     }
@@ -40,7 +42,8 @@ class PhotoCest
      * DESC
      */
 
-    public function descMustBeOptional(FunctionalTester $I){
+    public function descMustBeOptional(FunctionalTester $I)
+    {
         $this->model->desc = '';
         $I->assertTrue($this->model->save());
     }
@@ -49,12 +52,14 @@ class PhotoCest
      * EVENT_ID
      */
 
-    public function eventIdMustBeNotNull(FunctionalTester $I){
+    public function eventIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->event_id = null;
         $I->assertFalse($this->model->save());
     }
 
-    public function eventIdMustBeValid(FunctionalTester $I){
+    public function eventIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->event_id = 0;
         $I->assertFalse($this->model->save());
     }

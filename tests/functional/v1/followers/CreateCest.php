@@ -11,7 +11,8 @@ class CreateCest extends EndpointTest
 {
     protected $relationship;
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(__DIR__, __FILE__);
     }
 
@@ -19,9 +20,11 @@ class CreateCest extends EndpointTest
     {
         $this->relationship = [
             'user_id'       => User::findFirst()->id,
-            'follower_id'   => User::findFirst([
+            'follower_id'   => User::findFirst(
+                [
                 "email = '" . UserSeeder::DbSeeds()[1]['email'] . "'",
-            ])->id,
+                ]
+            )->id,
         ];
     }
 
@@ -29,10 +32,14 @@ class CreateCest extends EndpointTest
     {
 
         $I->dontSeeRecord('App\Models\Relationships\Follower', $this->relationship);
-        $I->sendPOST($this->endpoint . '/' . $this->relationship['user_id'], [
+        $I->sendPOST(
+            $this->endpoint . '/' . $this->relationship['user_id'],
+            [
             'follower_id'   => $this->relationship['follower_id']
-        ]);
-        $I->seeResponseCodeIs(201); $I->seeResponseIsJson();
+            ]
+        );
+        $I->seeResponseCodeIs(201);
+        $I->seeResponseIsJson();
         $I->seeResponseContainsJson($this->relationship);
         $I->seeRecord('App\Models\Relationships\Follower', $this->relationship);
     }
@@ -42,10 +49,14 @@ class CreateCest extends EndpointTest
         $this->relationship['follower_id'] = User::findFirst()->id;
 
         $I->dontSeeRecord('App\Models\Relationships\Follower', $this->relationship);
-        $I->sendPOST($this->endpoint . '/' . $this->relationship['user_id'], [
+        $I->sendPOST(
+            $this->endpoint . '/' . $this->relationship['user_id'],
+            [
             'follower_id'   => $this->relationship['follower_id']
-        ]);
-        $I->seeResponseCodeIs(409); $I->seeResponseIsJson();
+            ]
+        );
+        $I->seeResponseCodeIs(409);
+        $I->seeResponseIsJson();
         $json_response = json_decode($I->grabResponse());
         $I->assertGreaterThan(0, $json_response->messages);
         $I->dontSeeRecord('App\Models\Relationships\Follower', $this->relationship);
@@ -54,24 +65,36 @@ class CreateCest extends EndpointTest
     public function createOnNonExistentUserReturns404(FunctionalTester $I)
     {
         $this->relationship['user_id'] = 0;
-        $I->sendPOST($this->endpoint . '/' . $this->relationship['user_id'], [
+        $I->sendPOST(
+            $this->endpoint . '/' . $this->relationship['user_id'],
+            [
             'follower_id'   => $this->relationship['follower_id']
-        ]);
-        $I->seeResponseCodeIs(404); $I->seeResponseIsJson();
-        $I->seeResponseContainsJson([
+            ]
+        );
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(
+            [
             'message' => 'User Not Found',
-        ]);
+            ]
+        );
     }
 
     public function createWithNonExistentUserReturns404(FunctionalTester $I)
     {
         $this->relationship['follower_id'] = 0;
-        $I->sendPOST($this->endpoint . '/' . $this->relationship['user_id'], [
+        $I->sendPOST(
+            $this->endpoint . '/' . $this->relationship['user_id'],
+            [
             'follower_id'   => $this->relationship['follower_id']
-        ]);
-        $I->seeResponseCodeIs(404); $I->seeResponseIsJson();
-        $I->seeResponseContainsJson([
+            ]
+        );
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(
+            [
             'message' => 'Follower User Not Found',
-        ]);
+            ]
+        );
     }
 }

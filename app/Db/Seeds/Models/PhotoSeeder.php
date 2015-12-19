@@ -31,7 +31,8 @@ class PhotoSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'uri'       => $faker->imageUrl($width = 640, $height = 480),
             'desc'      => $faker->optional()->text($maxNbChars = 200),

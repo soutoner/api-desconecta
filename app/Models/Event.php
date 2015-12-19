@@ -33,9 +33,12 @@ class Event extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
-        $this->belongsTo('local_id', 'App\Models\Local', 'id',
+        $this->belongsTo(
+            'local_id',
+            'App\Models\Local',
+            'id',
             [
                 'alias' => 'Local',
                 'foreignKey' => [
@@ -44,7 +47,10 @@ class Event extends BaseModel
             ]
         );
 
-        $this->belongsTo('guestList_id', 'App\Models\GuestList', 'id',
+        $this->belongsTo(
+            'guestList_id',
+            'App\Models\GuestList',
+            'id',
             [
                 'alias' => 'GuestList',
                 'foreignKey' => [
@@ -54,7 +60,10 @@ class Event extends BaseModel
             ]
         );
 
-        $this->belongsTo('scheduling_id', 'App\Models\Scheduling', 'id',
+        $this->belongsTo(
+            'scheduling_id',
+            'App\Models\Scheduling',
+            'id',
             [
                 'alias' => 'Scheduling',
                 'foreignKey' => [
@@ -67,7 +76,8 @@ class Event extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\Attend',
-            'event_id', 'user_id',
+            'event_id',
+            'user_id',
             'App\Models\User',
             'id',
             ['alias' => 'Users']
@@ -78,7 +88,8 @@ class Event extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\EventHasHashTag',
-            'event_id', 'hashTag_id',
+            'event_id',
+            'hashTag_id',
             'App\Models\HashTag',
             'id',
             ['alias' => 'HashTags']
@@ -87,7 +98,8 @@ class Event extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\EventHasMusicTag',
-            'event_id', 'musicTag_id',
+            'event_id',
+            'musicTag_id',
             'App\Models\MusicTag',
             'id',
             ['alias' => 'MusicTags']
@@ -96,7 +108,8 @@ class Event extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\EventHasPack',
-            'event_id', 'pack_id',
+            'event_id',
+            'pack_id',
             'App\Models\Pack',
             'id',
             ['alias' => 'Packs']
@@ -112,60 +125,66 @@ class Event extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'name',
-                    'message'   => 'The name is required'
+            new PresenceOf(
+                [
+                'field'     => 'name',
+                'message'   => 'The name is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'desc',
-                    'message'   => 'A description is required'
+            new PresenceOf(
+                [
+                'field'     => 'desc',
+                'message'   => 'A description is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'photo_cover',
-                    'message'   => 'A cover photo is required'
+            new PresenceOf(
+                [
+                'field'     => 'photo_cover',
+                'message'   => 'A cover photo is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'start_date',
-                    'message'   => 'The event must have a start date',
+            new PresenceOf(
+                [
+                'field'     => 'start_date',
+                'message'   => 'The event must have a start date',
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'end_date',
-                    'message'   => 'The event must have an end date',
+            new PresenceOf(
+                [
+                'field'     => 'end_date',
+                'message'   => 'The event must have an end date',
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'guestList_id',
-                    'message'   => 'The guestList_id must be unique',
+            new Uniqueness(
+                [
+                'field'     => 'guestList_id',
+                'message'   => 'The guestList_id must be unique',
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'scheduling_id',
-                    'message'   => 'The scheduling_id must be unique',
+            new Uniqueness(
+                [
+                'field'     => 'scheduling_id',
+                'message'   => 'The scheduling_id must be unique',
                 ]
             )
         );
 
-        if($this->end_date <= $this->start_date){
+        if ($this->end_date <= $this->start_date) {
             return false;
         }
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

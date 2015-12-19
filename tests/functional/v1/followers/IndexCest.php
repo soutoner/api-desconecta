@@ -8,7 +8,8 @@ use App\Models\User;
 
 class IndexCest extends EndpointTest
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(__DIR__, __FILE__);
     }
 
@@ -16,7 +17,8 @@ class IndexCest extends EndpointTest
     {
         $user = User::findFirst();
         $I->sendGet($this->endpoint . '/' . $user->id);
-        $I->seeResponseCodeIs(200); $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
         $I->assertEquals(count($user->getFollowers()), count(json_decode($I->grabResponse())));
         $I->seeResponseContainsJson($user->getFollowers()->toArray());
     }

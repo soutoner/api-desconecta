@@ -17,7 +17,7 @@ class Provider extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
         $this->hasMany('id', 'App\Models\Profile', 'provider_id', ['alias' => 'Profiles']);
     }
@@ -31,21 +31,22 @@ class Provider extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'name',
-                    'message'   => 'The name is required'
+            new PresenceOf(
+                [
+                'field'     => 'name',
+                'message'   => 'The name is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'name',
-                    'message'   => 'The name must be unique'
+            new Uniqueness(
+                [
+                'field'     => 'name',
+                'message'   => 'The name must be unique'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

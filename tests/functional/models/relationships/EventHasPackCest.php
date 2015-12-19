@@ -23,7 +23,8 @@ class EventHasPackCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class EventHasPackCest
      * USER_ID
      */
 
-    public function eventIdMustBeNotNull(FunctionalTester $I){
+    public function eventIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->event_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function eventIdMustBeValid(FunctionalTester $I){
+    public function eventIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->event_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class EventHasPackCest
      * PHOTO_ID
      */
 
-    public function packIdMustBeNotNull(FunctionalTester $I){
+    public function packIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->pack_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function packIdMustBeValid(FunctionalTester $I){
+    public function packIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->pack_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function relMustBeUnique(FunctionalTester $I){
+    public function relMustBeUnique(FunctionalTester $I)
+    {
         $rel = EventHasPack::findFirst();
         $this->model->event_id = $rel->event_id;
         $this->model->pack_id = $rel->pack_id;

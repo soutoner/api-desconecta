@@ -17,7 +17,8 @@ class ProviderSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'name'  => $faker->name.' provider',
         ];

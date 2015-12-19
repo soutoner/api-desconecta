@@ -18,11 +18,13 @@ class Scheduling extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
-        $this->belongsTo('period_id', 'App\Models\Period', 'id',
-            [
-                'alias' => 'Period',
+        $this->belongsTo(
+            'period_id',
+            'App\Models\Period',
+            'id',
+            ['alias' => 'Period',
                 'foreignKey' => [
                     'message'    => 'The period_id does not exist on the Period model'
                 ]
@@ -41,23 +43,24 @@ class Scheduling extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'end_period',
-                    'message'   => 'A icon is required'
+            new PresenceOf(
+                [
+                'field'     => 'end_period',
+                'message'   => 'A icon is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'period_id',
-                    'message'   => 'A period_id is required',
+            new PresenceOf(
+                [
+                'field'     => 'period_id',
+                'message'   => 'A period_id is required',
                 ]
             )
         );
-        // Check if any messages have been produced
+
         if ($this->validationHasFailed() == true) {
             return false;
         }
-
     }
 }

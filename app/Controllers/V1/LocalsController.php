@@ -29,13 +29,15 @@ class LocalsController extends ControllerBase
         $request = $this->request;
 
         $local = new Local();
-        $local->assign([
+        $local->assign(
+            [
             'name'              => $request->get('name', 'string'),
             'desc'              => $request->get('desc', 'string'),
             'photo_cover'       => $request->get('photo_cover', 'string'),
             'geo'               => $request->get('geo', 'string'),
             'adress'            => $request->get('adress', 'string'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $local, true);
     }
@@ -43,7 +45,7 @@ class LocalsController extends ControllerBase
     /**
      * Updates a local. Always use `x-www-form-urlencoded` content type for PUT.
      *
-     * @param $id - Id of the event to be updated
+     * @param  $id - Id of the event to be updated
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -53,30 +55,34 @@ class LocalsController extends ControllerBase
 
             $request = $this->request;
 
-            $local = Local::findFirstOrFail([
+            $local = Local::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
-            $local->assign([
+            $local->assign(
+                [
                 'id'                => $id,
                 'name'              => $request->getPut('name', 'string', $local->name),
                 'desc'              => $request->getPut('desc', 'string', $local->desc),
                 'photo_cover'       => $request->getPut('photo_cover', 'string', $local->photo_cover),
                 'geo'               => $request->getPut('geo', 'string', $local->geo),
                 'adress'            => $request->getPut('adress', 'string', $local->adress),
-            ]);
+                ]
+            );
 
             return $this->response($request, $local, true);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 
     /**
      * Deletes a local from the database.
      *
-     * @param $id - Id of the local to be deleted
+     * @param  $id - Id of the local to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -84,14 +90,16 @@ class LocalsController extends ControllerBase
     {
         try {
 
-            $local = Local::findFirstOrFail([
+            $local = Local::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
             return $this->response($this->request, $local);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 }

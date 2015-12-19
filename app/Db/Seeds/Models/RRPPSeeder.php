@@ -26,7 +26,8 @@ class RRPPSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'verified' => $faker->boolean($chanceOfGettingTrue = 50),
         ];

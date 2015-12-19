@@ -29,10 +29,12 @@ class ProductsController extends ControllerBase
         $request = $this->request;
 
         $product = new Product();
-        $product->assign([
+        $product->assign(
+            [
             'name' => $request->get('name', 'string'),
             'icon' => $request->get('icon', 'strint'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $product, true);
     }
@@ -49,27 +51,31 @@ class ProductsController extends ControllerBase
 
             $request = $this->request;
 
-            $product = Product::findFirstOrFail([
+            $product = Product::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
-            $product->assign([
+            $product->assign(
+                [
                 'id'               => $id,
                 'name'             => $request->getPut('name', 'string', $product->name),
                 'icon'             => $request->getPut('name', 'string', $product->icon),
-            ]);
+                ]
+            );
 
             return $this->response($request, $product, true);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 
     /**
      * Deletes a product from the database.
      *
-     * @param $id - Id of the pack to be deleted
+     * @param  $id - Id of the pack to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -77,14 +83,16 @@ class ProductsController extends ControllerBase
     {
         try {
 
-            $product = Product::findFirstOrFail([
+            $product = Product::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
             return $this->response($this->request, $product);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 }

@@ -23,7 +23,8 @@ class AppearCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class AppearCest
      * USER_ID
      */
 
-    public function userIdMustBeNotNull(FunctionalTester $I){
+    public function userIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->user_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function userIdMustBeValid(FunctionalTester $I){
+    public function userIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->user_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class AppearCest
      * PHOTO_ID
      */
 
-    public function photoIdMustBeNotNull(FunctionalTester $I){
+    public function photoIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->photo_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function photoIdMustBeValid(FunctionalTester $I){
+    public function photoIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->photo_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function appearMustBeUnique(FunctionalTester $I){
+    public function appearMustBeUnique(FunctionalTester $I)
+    {
         $rel = Appear::findFirst();
         $this->model->user_id = $rel->user_id;
         $this->model->photo_id = $rel->photo_id;

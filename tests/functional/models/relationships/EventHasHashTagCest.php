@@ -23,7 +23,8 @@ class EventHasHashTagCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class EventHasHashTagCest
      * USER_ID
      */
 
-    public function eventIdMustBeNotNull(FunctionalTester $I){
+    public function eventIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->event_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function eventIdMustBeValid(FunctionalTester $I){
+    public function eventIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->event_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class EventHasHashTagCest
      * PHOTO_ID
      */
 
-    public function hashTagIdMustBeNotNull(FunctionalTester $I){
+    public function hashTagIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->hashTag_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function hashTagIdMustBeValid(FunctionalTester $I){
+    public function hashTagIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->hashTag_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function relMustBeUnique(FunctionalTester $I){
+    public function relMustBeUnique(FunctionalTester $I)
+    {
         $rel = EventHasHashTag::findFirst();
         $this->model->event_id = $rel->event_id;
         $this->model->hashTag_id = $rel->hashTag_id;

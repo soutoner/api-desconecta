@@ -54,7 +54,8 @@ class UserSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'name'              => $faker->firstName,
             'surname'           => $faker->lastName,

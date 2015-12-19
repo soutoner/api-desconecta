@@ -5,7 +5,6 @@ namespace App\Controllers\V1;
 use App\Controllers\ControllerBase;
 use Phalcon\Http\Response;
 
-
 class RegisterController extends ControllerBase
 {
     public function getAuthFacebook()
@@ -18,4 +17,3 @@ class RegisterController extends ControllerBase
         return new Response($this->facebook->getAccessToken($this->request->getQuery('code')));
     }
 }
-

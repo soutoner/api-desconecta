@@ -23,7 +23,8 @@ class PackCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,17 +32,20 @@ class PackCest
      * PRICE
      */
 
-    public function priceMustBeNotNull(FunctionalTester $I){
+    public function priceMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->price = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function priceMustBeUnique(FunctionalTester $I){
+    public function priceMustBeUnique(FunctionalTester $I)
+    {
         $this->model->price = Pack::findFirst()->price;
         $I->assertFalse($this->model->save());
     }
 
-    public function priceMustBePositive(FunctionalTester $I){
+    public function priceMustBePositive(FunctionalTester $I)
+    {
         $this->model->price = -10;
         $I->assertFalse($this->model->save());
     }

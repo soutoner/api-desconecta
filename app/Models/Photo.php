@@ -21,13 +21,17 @@ class Photo extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
-        $this->belongsTo('event_id', 'App\Models\Event', 'id',
+        $this->belongsTo(
+            'event_id',
+            'App\Models\Event',
+            'id',
             [
-                'alias' => 'Event',
-                'foreignKey' => [
-                    'message'    => 'The event_id does not exist on the Event model'
+            'alias' => 'Event',
+            'foreignKey' =>
+                [
+                'message'    => 'The event_id does not exist on the Event model'
                 ]
             ]
         );
@@ -35,7 +39,8 @@ class Photo extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\Appear',
-            'photo_id', 'user_id',
+            'photo_id',
+            'user_id',
             'App\Models\User',
             'id',
             ['alias' => 'UsersAppearing']
@@ -44,7 +49,8 @@ class Photo extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\PhotoHasHashTag',
-            'photo_id', 'hashTag_id',
+            'photo_id',
+            'hashTag_id',
             'App\Models\HashTag',
             'id',
             ['alias' => 'HashTags']
@@ -60,21 +66,22 @@ class Photo extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'uri',
-                    'message'   => 'An uri is required'
+            new PresenceOf(
+                [
+                'field'     => 'uri',
+                'message'   => 'An uri is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'event_id',
-                    'message'   => 'An event_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'event_id',
+                'message'   => 'An event_id is required'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

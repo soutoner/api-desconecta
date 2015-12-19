@@ -29,11 +29,13 @@ class PhotosController extends ControllerBase
         $request = $this->request;
 
         $photo = new Photo();
-        $photo->assign([
+        $photo->assign(
+            [
             'uri'        => $request->get('uri', 'string'),
             'desc'       => $request->get('desc', 'string'),
             'event_id'   => $request->get('event_id', 'string'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $photo, true);
     }
@@ -41,7 +43,7 @@ class PhotosController extends ControllerBase
     /**
      * Updates a photo. Always use `x-www-form-urlencoded` content type for PUT.
      *
-     * @param $id - Id of the event to be updated
+     * @param  $id - Id of the event to be updated
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -51,28 +53,32 @@ class PhotosController extends ControllerBase
 
             $request = $this->request;
 
-            $photo = Photo::findFirstOrFail([
+            $photo = Photo::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
-            $photo->assign([
+            $photo->assign(
+                [
                 'id'               => $id,
                 'uri'              => $request->getPut('uri', 'string', $photo->uri),
                 'desc'             => $request->getPut('desc', 'string', $photo->desc),
                 'event_id'         => $request->getPut('event_id', 'string', $photo->event_id),
-            ]);
+                ]
+            );
 
             return $this->response($request, $photo, true);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 
     /**
      * Deletes a photo from the database.
      *
-     * @param $id - Id of the pack to be deleted
+     * @param  $id - Id of the pack to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -80,14 +86,16 @@ class PhotosController extends ControllerBase
     {
         try {
 
-            $photo = Photo::findFirstOrFail([
+            $photo = Photo::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
             return $this->response($this->request, $photo);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 }

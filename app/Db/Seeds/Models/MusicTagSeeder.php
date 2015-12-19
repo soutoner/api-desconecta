@@ -24,7 +24,8 @@ class MusicTagSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'value' => $faker->name,
         ];

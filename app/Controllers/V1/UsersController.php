@@ -29,7 +29,8 @@ class UsersController extends ControllerBase
         $request = $this->request;
 
         $user = new User();
-        $user->assign([
+        $user->assign(
+            [
             'name'              => $request->get('name', 'string'),
             'surname'           => $request->get('surname', 'string'),
             'email'             => $request->get('email', 'email'),
@@ -38,7 +39,8 @@ class UsersController extends ControllerBase
             'gender'            => $request->get('gender', 'string'),
             'location'          => $request->get('location', 'string'),
             'rrpp_id'           => $request->get('rrpp_id', 'string'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $user, true);
     }
@@ -46,7 +48,7 @@ class UsersController extends ControllerBase
     /**
      * Updates an user. Always use `x-www-form-urlencoded` content type for PUT.
      *
-     * @param $id - Id of the user to be deleted
+     * @param  $id - Id of the user to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -56,11 +58,14 @@ class UsersController extends ControllerBase
 
             $request = $this->request;
 
-            $user = User::findFirstOrFail([
+            $user = User::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
-            $user->assign([
+            $user->assign(
+                [
                 'id'                => $id,
                 'name'              => $request->getPut('name', 'string', $user->name),
                 'surname'           => $request->getPut('surname', 'string', $user->surname),
@@ -69,19 +74,20 @@ class UsersController extends ControllerBase
                 'date_birth'        => $request->getPut('date_birth', 'string', $user->date_birth),
                 'gender'            => $request->getPut('gender', 'string', $user->gender),
                 'location'          => $request->getPut('location', 'string', $user->location),
-            ]);
+                ]
+            );
 
             return $this->response($request, $user, true);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 
     /**
      * Deletes an user from the database.
      *
-     * @param $id - Id of the user to be deleted
+     * @param  $id - Id of the user to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -89,15 +95,16 @@ class UsersController extends ControllerBase
     {
         try {
 
-            $user = User::findFirstOrFail([
+            $user = User::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
             return $this->response($this->request, $user);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 }
-

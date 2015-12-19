@@ -19,12 +19,13 @@ class Product extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\PackHasProduct',
-            'product_id', 'pack_id',
+            'product_id',
+            'pack_id',
             'App\Models\Pack',
             'id',
             ['alias' => 'Packs']
@@ -40,30 +41,32 @@ class Product extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'name',
-                    'message'   => 'A name is required'
+            new PresenceOf(
+                [
+                'field'     => 'name',
+                'message'   => 'A name is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'icon',
-                    'message'   => 'A icon is required'
+            new PresenceOf(
+                [
+                'field'     => 'icon',
+                'message'   => 'A icon is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'name',
-                    'message'   => 'The name must be unique',
+            new Uniqueness(
+                [
+                'field'     => 'name',
+                'message'   => 'The name must be unique',
                 ]
             )
         );
-        // Check if any messages have been produced
+
         if ($this->validationHasFailed() == true) {
             return false;
         }
-
     }
 }

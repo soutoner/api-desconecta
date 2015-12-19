@@ -24,9 +24,10 @@ class PackSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
-            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = NULL)
+            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = null)
         ];
     }
 }

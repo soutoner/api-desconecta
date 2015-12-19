@@ -29,10 +29,12 @@ class SchedulingsController extends ControllerBase
         $request = $this->request;
 
         $scheduling = new Product();
-        $scheduling->assign([
+        $scheduling->assign(
+            [
             'end_period' => $request->get('end_period', 'string'),
             'period_type_id' => $request->get('period_type_id', 'strint'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $scheduling, true);
     }
@@ -49,27 +51,31 @@ class SchedulingsController extends ControllerBase
 
             $request = $this->request;
 
-            $scheduling = Scheduling::findFirstOrFail([
+            $scheduling = Scheduling::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
-            $scheduling->assign([
+            $scheduling->assign(
+                [
                 'id'               => $id,
                 'end_period'       => $request->getPut('end_period', 'string', $scheduling->end_period),
                 'period_type_id'   => $request->getPut('period_type_id', 'string', $scheduling->period_type_id),
-            ]);
+                ]
+            );
 
             return $this->response($request, $scheduling, true);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 
     /**
      * Deletes a scheduling from the database.
      *
-     * @param $id - Id of the pack to be deleted
+     * @param  $id - Id of the pack to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -77,14 +83,16 @@ class SchedulingsController extends ControllerBase
     {
         try {
 
-            $scheduling = Scheduling::findFirstOrFail([
+            $scheduling = Scheduling::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
             return $this->response($this->request, $scheduling);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 }

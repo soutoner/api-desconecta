@@ -27,12 +27,17 @@ class Local extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
-        $this->belongsTo('owner_id', 'App\Models\RRPP', 'id', [
-                'alias' => 'Owner',
-                'foreignKey' => [
-                    'message' => 'The owner_id does not exist on the RRPP model'
+        $this->belongsTo(
+            'owner_id',
+            'App\Models\RRPP',
+            'id',
+            [
+            'alias' => 'Owner',
+            'foreignKey' =>
+                [
+                'message' => 'The owner_id does not exist on the RRPP model'
                 ],
             ]
         );
@@ -42,7 +47,8 @@ class Local extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\Follow',
-            'local_id', 'user_id',
+            'local_id',
+            'user_id',
             'App\Models\User',
             'id',
             ['alias' => 'Followers']
@@ -58,48 +64,54 @@ class Local extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'name',
-                    'message'   => 'The name is required'
+            new PresenceOf(
+                [
+                'field'     => 'name',
+                'message'   => 'The name is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'name',
-                    'message'   => 'The name must be unique'
+            new Uniqueness(
+                [
+                'field'     => 'name',
+                'message'   => 'The name must be unique'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'desc',
-                    'message'   => 'A description is required'
+            new PresenceOf(
+                [
+                'field'     => 'desc',
+                'message'   => 'A description is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'photo_cover',
-                    'message'   => 'A photography is required'
+            new PresenceOf(
+                [
+                'field'     => 'photo_cover',
+                'message'   => 'A photography is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'geo',
-                    'message'   => 'The geological position is required'
+            new PresenceOf(
+                [
+                'field'     => 'geo',
+                'message'   => 'The geological position is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'address',
-                    'message'   => 'The local must have an address',
+            new PresenceOf(
+                [
+                'field'     => 'address',
+                'message'   => 'The local must have an address',
                 ]
             )
         );
-        // Check if any messages have been produced
+
         if ($this->validationHasFailed() == true) {
             return false;
         }

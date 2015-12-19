@@ -17,12 +17,13 @@ class HashTag extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\EventHasHashTag',
-            'hashTag_id', 'event_id',
+            'hashTag_id',
+            'event_id',
             'App\Models\Event',
             'id',
             ['alias' => 'Events']
@@ -31,7 +32,8 @@ class HashTag extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\PhotoHasHashTag',
-            'hashTag_id', 'photo_id',
+            'hashTag_id',
+            'photo_id',
             'App\Models\Photo',
             'id',
             ['alias' => 'Photos']
@@ -47,24 +49,24 @@ class HashTag extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'value',
-                    'message'   => 'A value is required'
+            new PresenceOf(
+                [
+                'field'     => 'value',
+                'message'   => 'A value is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'value',
-                    'message'   => 'The value must be unique'
+            new Uniqueness(
+                [
+                'field'     => 'value',
+                'message'   => 'The value must be unique'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }
     }
 }
-

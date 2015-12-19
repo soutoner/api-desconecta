@@ -23,7 +23,8 @@ class SchedulingCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,7 +32,8 @@ class SchedulingCest
      * END_PERIOD
      */
 
-    public function endPeriodMustBeNotNull(FunctionalTester $I){
+    public function endPeriodMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->end_period = '';
         $I->assertFalse($this->model->save());
     }
@@ -42,12 +44,14 @@ class SchedulingCest
      * PERIOD_ID
      */
 
-    public function periodIdMustBeNotNull(FunctionalTester $I){
+    public function periodIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->period_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function periodIdMustBeValid(FunctionalTester $I){
+    public function periodIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->period_id = 0;
         $I->assertFalse($this->model->save());
     }

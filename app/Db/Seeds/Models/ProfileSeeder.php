@@ -33,7 +33,8 @@ class ProfileSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'uid'           => $faker->uuid,
             'access_token'  => $faker->swiftBicNumber,

@@ -23,7 +23,8 @@ class LocalCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class LocalCest
      * NAME
      */
 
-    public function nameMustBeNotNull(FunctionalTester $I){
+    public function nameMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->name = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function nameMustBeUnique(FunctionalTester $I){
+    public function nameMustBeUnique(FunctionalTester $I)
+    {
         $this->model->name = Local::findFirst()->name;
         $I->assertFalse($this->model->save());
     }
@@ -45,7 +48,8 @@ class LocalCest
      * DESC
      */
 
-    public function descMustBeNotNull(FunctionalTester $I){
+    public function descMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->desc = '';
         $I->assertFalse($this->model->save());
     }
@@ -54,7 +58,8 @@ class LocalCest
      * PHOTO_COVER
      */
 
-    public function photoCoverMustBeNotNull(FunctionalTester $I){
+    public function photoCoverMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->photo_cover = '';
         $I->assertFalse($this->model->save());
     }
@@ -63,7 +68,8 @@ class LocalCest
      * GEO
      */
 
-    public function geoMustBeNotNull(FunctionalTester $I){
+    public function geoMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->geo = '';
         $I->assertFalse($this->model->save());
     }
@@ -72,7 +78,8 @@ class LocalCest
      * ADDRESS
      */
 
-    public function addressMustBeNotNull(FunctionalTester $I){
+    public function addressMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->address = '';
         $I->assertFalse($this->model->save());
     }
@@ -81,12 +88,14 @@ class LocalCest
      * OWNER_ID
      */
 
-    public function ownerIdMustBeNotNull(FunctionalTester $I){
+    public function ownerIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->owner_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function ownerIdMustBeValidRRPP(FunctionalTester $I){
+    public function ownerIdMustBeValidRRPP(FunctionalTester $I)
+    {
         $this->model->owner_id = 0;
         $I->assertFalse($this->model->save());
     }

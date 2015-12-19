@@ -23,7 +23,8 @@ class FollowCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class FollowCest
      * USER_ID
      */
 
-    public function userIdMustBeNotNull(FunctionalTester $I){
+    public function userIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->user_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function userIdMustBeValid(FunctionalTester $I){
+    public function userIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->user_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class FollowCest
      * PHOTO_ID
      */
 
-    public function localIdMustBeNotNull(FunctionalTester $I){
+    public function localIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->local_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function localIdMustBeValid(FunctionalTester $I){
+    public function localIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->local_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function followMustBeUnique(FunctionalTester $I){
+    public function followMustBeUnique(FunctionalTester $I)
+    {
         $rel = Follow::findFirst();
         $this->model->user_id = $rel->user_id;
         $this->model->local_id = $rel->local_id;

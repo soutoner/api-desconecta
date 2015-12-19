@@ -33,14 +33,16 @@ class EventsController extends ControllerBase
         $request = $this->request;
 
         $event = new Event();
-        $event->assign([
+        $event->assign(
+            [
             'name'              => $request->get('name', 'string'),
             'desc'              => $request->get('desc', 'string'),
             'photo_cover'       => $request->get('photo_cover', 'string'),
             'start_date'        => $request->get('start_date', 'string'),
             'end_date'          => $request->get('end_date', 'string'),
             'flyer'             => $request->get('flyer', 'string'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $event, true);
     }
@@ -48,7 +50,7 @@ class EventsController extends ControllerBase
     /**
      * Updates an event. Always use `x-www-form-urlencoded` content type for PUT.
      *
-     * @param $id - Id of the event to be deleted
+     * @param  $id - Id of the event to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -58,11 +60,14 @@ class EventsController extends ControllerBase
 
             $request = $this->request;
 
-            $event = Event::findFirstOrFail([
+            $event = Event::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
-            $event->assign([
+            $event->assign(
+                [
                 'id'                => $id,
                 'name'              => $request->getPut('name', 'string', $event->name),
                 'desc'              => $request->getPut('desc', 'string', $event->desc),
@@ -70,19 +75,20 @@ class EventsController extends ControllerBase
                 'start_date'        => $request->getPut('start_date', 'string', $event->start_date),
                 'end_date'          => $request->getPut('end_date', 'string', $event->end_date),
                 'flyer'             => $request->getPut('flyer', 'string', $event->flyer),
-            ]);
+                ]
+            );
 
             return $this->response($request, $event, true);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 
     /**
      * Deletes an event from the database.
      *
-     * @param $id - Id of the events to be deleted
+     * @param  $id - Id of the events to be deleted
      * @return Response
      * @throws ResourceNotFoundException
      */
@@ -90,14 +96,16 @@ class EventsController extends ControllerBase
     {
         try {
 
-            $event = Event::findFirstOrFail([
+            $event = Event::findFirstOrFail(
+                [
                 'id = ?0', 'bind' => [$id]
-            ]);
+                ]
+            );
 
             return $this->response($this->request, $event);
 
         } catch (ResourceNotFoundException $e) {
-            return $e->return_response();
+            return $e->returnResponse();
         }
     }
 }

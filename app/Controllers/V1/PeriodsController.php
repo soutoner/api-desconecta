@@ -18,5 +18,4 @@ class PeriodsController extends ControllerBase
 
         return new Response(json_encode($periods->toArray()));
     }
-
 }

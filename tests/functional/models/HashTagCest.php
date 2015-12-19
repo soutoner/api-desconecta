@@ -23,7 +23,8 @@ class HashTagCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class HashTagCest
      * VALUE
      */
 
-    public function valueMustBeNotNull(FunctionalTester $I){
+    public function valueMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->value = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function valueMustBeUnique(FunctionalTester $I){
+    public function valueMustBeUnique(FunctionalTester $I)
+    {
         $this->model->value = HashTag::findFirst()->value;
         $I->assertFalse($this->model->save());
     }

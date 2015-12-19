@@ -23,7 +23,8 @@ class EventHasMusicTagCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class EventHasMusicTagCest
      * USER_ID
      */
 
-    public function eventIdMustBeNotNull(FunctionalTester $I){
+    public function eventIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->event_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function eventIdMustBeValid(FunctionalTester $I){
+    public function eventIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->event_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class EventHasMusicTagCest
      * PHOTO_ID
      */
 
-    public function musicTagIdMustBeNotNull(FunctionalTester $I){
+    public function musicTagIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->musicTag_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function musicTagIdMustBeValid(FunctionalTester $I){
+    public function musicTagIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->musicTag_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function relMustBeUnique(FunctionalTester $I){
+    public function relMustBeUnique(FunctionalTester $I)
+    {
         $rel = EventHasMusicTag::findFirst();
         $this->model->event_id = $rel->event_id;
         $this->model->musicTag_id = $rel->musicTag_id;

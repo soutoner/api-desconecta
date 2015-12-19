@@ -33,7 +33,8 @@ class GuestListSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'start_time'    => $faker->dateTime($min = 'now'),
             'end_time'      => $faker->dateTime($min = 'now'),

@@ -24,7 +24,8 @@ class FollowSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'user_id'   =>  $faker->numberBetween($min = 1, $max = User::count()),
             'local_id'  =>  $faker->numberBetween($min = 1, $max = Local::count()),

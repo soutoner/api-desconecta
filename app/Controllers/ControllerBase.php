@@ -21,10 +21,10 @@ class ControllerBase extends Controller
         // Request method
         $method = $request->getMethod();
 
-        if ($method === "POST" || $method === "PUT"){
+        if ($method === "POST" || $method === "PUT") {
             if ($resource->save() == true) {
                 // Change the HTTP status
-                if($method === "POST") {
+                if ($method === "POST") {
                     $response->setStatusCode(201, "Created");
                 } else {
                     $response->setStatusCode(200, "Updated");
@@ -54,7 +54,7 @@ class ControllerBase extends Controller
                 );
             }
         } else {
-            if($resource->delete() == true){
+            if ($resource->delete() == true) {
                 $response->setStatusCode(200, "Deleted");
 
                 $response->setJsonContent(

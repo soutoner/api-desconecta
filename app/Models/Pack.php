@@ -17,12 +17,13 @@ class Pack extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\EventHasPack',
-            'pack_id', 'event_id',
+            'pack_id',
+            'event_id',
             'App\Models\Event',
             'id',
             ['alias' => 'Events']
@@ -31,7 +32,8 @@ class Pack extends BaseModel
         $this->hasManyToMany(
             'id',
             'App\Models\Relationships\PackHasProduct',
-            'pack_id', 'product_id',
+            'pack_id',
+            'product_id',
             'App\Models\Product',
             'id',
             ['alias' => 'Products']
@@ -47,25 +49,26 @@ class Pack extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'price',
-                    'message'   => 'A price is required'
+            new PresenceOf(
+                [
+                'field'     => 'price',
+                'message'   => 'A price is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'price',
-                    'message'   => 'The price must be unique'
+            new Uniqueness(
+                [
+                'field'     => 'price',
+                'message'   => 'The price must be unique'
                 ]
             )
         );
 
-        if($this->price < 0){
+        if ($this->price < 0) {
             return false;
         }
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

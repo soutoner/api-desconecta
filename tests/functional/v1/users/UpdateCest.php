@@ -8,7 +8,8 @@ use App\Models\User;
 
 class UpdateCest extends EndpointTest
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(__DIR__, __FILE__);
     }
 
@@ -22,7 +23,8 @@ class UpdateCest extends EndpointTest
         // We send get
         $I->sendPUT($this->endpoint.'/'.User::findFirst()->id, 'name='.$updated_param['name']);
         // We see the response is OK and JSON
-        $I->seeResponseCodeIs(200); $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
         // We check that the resource is updated
         $I->assertEquals($updated_param['name'], User::findFirst()->name);
     }
@@ -38,7 +40,8 @@ class UpdateCest extends EndpointTest
         // We send get
         $I->sendPUT($this->endpoint.'/'.User::findFirst()->id, 'name='.$updated_param['name']);
         // We see the response is OK and JSON
-        $I->seeResponseCodeIs(409); $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(409);
+        $I->seeResponseIsJson();
         // We see the response contains error messages
         $json_response = json_decode($I->grabResponse());
         $I->assertGreaterThan(0, $json_response->messages);
@@ -52,9 +55,12 @@ class UpdateCest extends EndpointTest
         // We send get
         $I->sendPUT($this->endpoint.'/'. $userId);
         // We see the response is OK and JSON
-        $I->seeResponseCodeIs(404); $I->seeResponseIsJson();
-        $I->seeResponseContainsJson([
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(
+            [
             'message' => 'User Not Found',
-        ]);
+            ]
+        );
     }
 }

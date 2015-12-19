@@ -23,7 +23,8 @@ class GuestListCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,7 +32,8 @@ class GuestListCest
      * START_TIME
      */
 
-    public function startTimeMustBeNotNull(FunctionalTester $I){
+    public function startTimeMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->start_time = '';
         $I->assertFalse($this->model->save());
     }
@@ -40,12 +42,14 @@ class GuestListCest
      * END_TIME
      */
 
-    public function endTimeMustBeNotNull(FunctionalTester $I){
+    public function endTimeMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->end_time = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function endTimeMustBeAfterStartTime(FunctionalTester $I){
+    public function endTimeMustBeAfterStartTime(FunctionalTester $I)
+    {
         $this->model->end_time = date('Y-m-d H:i:s');
         sleep(1);
         $this->model->start_time = date('Y-m-d H:i:s');
@@ -56,7 +60,8 @@ class GuestListCest
      * MAX_FRIENDS
      */
 
-    public function maxFriendsMustBePositive(FunctionalTester $I){
+    public function maxFriendsMustBePositive(FunctionalTester $I)
+    {
         $this->model->max_friends = -10;
         $I->assertFalse($this->model->save());
     }
@@ -65,7 +70,8 @@ class GuestListCest
      * MAX_CAPACITY
      */
 
-    public function maxCapacityMustBePositive(FunctionalTester $I){
+    public function maxCapacityMustBePositive(FunctionalTester $I)
+    {
         $this->model->max_capacity = -10;
         $I->assertFalse($this->model->save());
     }

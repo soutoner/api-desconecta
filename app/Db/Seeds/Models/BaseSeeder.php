@@ -32,7 +32,8 @@ abstract class BaseSeeder
      *
      * @param bool $want_fake : Whether to create fake seeds or not.
      */
-    public static function Seed($want_fake=true){
+    public static function Seed($want_fake=true)
+    {
         $class = 'App\\'. str_replace('Seeder', '', implode('\\', array_slice(explode('\\', get_called_class()), 3)));
         foreach(static::$db_seeds as $params){
             $seed = new $class();
@@ -50,7 +51,8 @@ abstract class BaseSeeder
 
     /**
      * Generate fake parameters.
-     * @param $faker
+     *
+     * @param  $faker
      * @return
      */
     public abstract static function GenerateFake($faker);
@@ -60,7 +62,8 @@ abstract class BaseSeeder
      *
      * @return array
      */
-    public static function DbSeeds(){
+    public static function DbSeeds()
+    {
         return static::$db_seeds;
     }
 
@@ -69,7 +72,8 @@ abstract class BaseSeeder
      *
      * @return array
      */
-    public static function ExtraSeeds(){
+    public static function ExtraSeeds()
+    {
         return static::$extra_seeds;
     }
 }

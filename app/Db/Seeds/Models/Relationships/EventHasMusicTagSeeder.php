@@ -24,7 +24,8 @@ class EventHasMusicTagSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'event_id'   =>  $faker->numberBetween($min = 1, $max = Event::count()),
             'musicTag_id'  =>  $faker->numberBetween($min = 1, $max = MusicTag::count()),

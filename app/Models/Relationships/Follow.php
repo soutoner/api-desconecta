@@ -18,17 +18,27 @@ class Follow extends BaseModel
     {
         $this->setSource('User_follows_Local');
 
-        $this->belongsTo('user_id', 'App\Models\User', 'id', [
-                'alias' => 'User',
-                'foreignKey' => [
-                    'message' => 'The user_id does not exist on the User model'
+        $this->belongsTo(
+            'user_id',
+            'App\Models\User',
+            'id',
+            [
+            'alias' => 'User',
+            'foreignKey' =>
+                [
+                'message' => 'The user_id does not exist on the User model'
                 ],
             ]
         );
-        $this->belongsTo('local_id', 'App\Models\Local', 'id', [
-                'alias' => 'Local',
-                'foreignKey' => [
-                    'message' => 'The local_id does not exist on the Local model'
+        $this->belongsTo(
+            'local_id',
+            'App\Models\Local',
+            'id',
+            [
+            'alias' => 'Local',
+            'foreignKey' =>
+                [
+                'message' => 'The local_id does not exist on the Local model'
                 ],
             ]
         );
@@ -43,28 +53,30 @@ class Follow extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'user_id',
-                    'message'   => 'The user_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'user_id',
+                'message'   => 'The user_id is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'local_id',
-                    'message'   => 'The local_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'local_id',
+                'message'   => 'The local_id is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => ['user_id', 'local_id'],
-                    'message'   => 'The user_id and local_id combination must be unique'
+            new Uniqueness(
+                [
+                'field'     => ['user_id', 'local_id'],
+                'message'   => 'The user_id and local_id combination must be unique'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

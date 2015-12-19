@@ -23,7 +23,8 @@ class ProviderCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode("|", $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class ProviderCest
      * VALUE
      */
 
-    public function nameMustBeNotNull(FunctionalTester $I){
+    public function nameMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->name = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function nameMustBeUnique(FunctionalTester $I){
+    public function nameMustBeUnique(FunctionalTester $I)
+    {
         $this->model->name = Provider::findFirst()->name;
         $I->assertFalse($this->model->save());
     }

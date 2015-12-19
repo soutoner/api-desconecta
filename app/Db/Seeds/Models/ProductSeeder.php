@@ -18,7 +18,8 @@ class ProductSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'name'  => $faker->name,
             'icon'  => $faker->imageUrl($width = 640, $height = 480)

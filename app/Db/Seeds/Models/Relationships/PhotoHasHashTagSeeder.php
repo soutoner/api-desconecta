@@ -24,7 +24,8 @@ class PhotoHasHashTagSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'photo_id'   =>  $faker->numberBetween($min = 1, $max = Photo::count()),
             'hashTag_id'  =>  $faker->numberBetween($min = 1, $max = HashTag::count()),

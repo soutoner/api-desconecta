@@ -24,7 +24,8 @@ class PackHasProductSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'pack_id'   =>  $faker->numberBetween($min = 1, $max = Pack::count()),
             'product_id'  =>  $faker->numberBetween($min = 1, $max = Product::count()),

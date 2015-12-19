@@ -17,7 +17,7 @@ class Period extends BaseModel
     {
         parent::initialize();
 
-        $this->setSource($this->class_name());
+        $this->setSource($this->className());
 
         $this->hasMany('id', 'App\Models\Scheduling', 'period_id', ['alias' => 'Schedulings']);
     }
@@ -31,21 +31,22 @@ class Period extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'type',
-                    'message'   => 'A type is required'
+            new PresenceOf(
+                [
+                'field'     => 'type',
+                'message'   => 'A type is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => 'type',
-                    'message'   => 'The type must be unique'
+            new Uniqueness(
+                [
+                'field'     => 'type',
+                'message'   => 'The type must be unique'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

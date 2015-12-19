@@ -8,7 +8,8 @@ use App\Models\User;
 
 class DeleteCest extends EndpointTest
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(__DIR__, __FILE__);
     }
 
@@ -18,7 +19,8 @@ class DeleteCest extends EndpointTest
         // We send get
         $I->sendDELETE($this->endpoint.'/'. $user->id);
         // We see the response is OK and JSON
-        $I->seeResponseCodeIs(200); $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
         // We check that the user is deleted from database
         $I->dontSeeRecord('App\Models\User', $user);
     }
@@ -29,9 +31,12 @@ class DeleteCest extends EndpointTest
         // We send get
         $I->sendDELETE($this->endpoint.'/'. $userId);
         // We see the response is OK and JSON
-        $I->seeResponseCodeIs(404); $I->seeResponseIsJson();
-        $I->seeResponseContainsJson([
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(
+            [
             'message' => 'User Not Found',
-        ]);
+            ]
+        );
     }
 }

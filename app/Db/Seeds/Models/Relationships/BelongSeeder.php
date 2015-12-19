@@ -24,7 +24,8 @@ class BelongSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'user_id'   =>  $faker->numberBetween($min = 1, $max = User::count()),
             'guestList_id'  =>  $faker->numberBetween($min = 1, $max = GuestList::count()),

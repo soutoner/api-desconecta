@@ -24,7 +24,8 @@ class AppearSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'user_id'   =>  $faker->numberBetween($min = 1, $max = User::count()),
             'photo_id'  =>  $faker->numberBetween($min = 1, $max = Photo::count()),

@@ -40,7 +40,8 @@ class EventSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'name'          => $faker->sentence($nbWords = 6),
             'desc'          => $faker->text($maxNbChars = 200),

@@ -59,7 +59,7 @@ $di->setShared('session', function () {
 /**
  * Set Facebook API credentials.
  */
-$di->setShared('facebook', function() use ($config) {
+$di->setShared('facebook', function () use ($config) {
     return new Facebook([
         'app_id'        => $config->fb->appId,
         'app_secret'    => $config->fb->secret,

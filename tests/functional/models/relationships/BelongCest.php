@@ -23,7 +23,8 @@ class BelongCest
         unset($this->model);
     }
 
-    public function givenModelIsValid(FunctionalTester $I){
+    public function givenModelIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save(), implode(',', $this->model->getMessages()));
     }
 
@@ -31,12 +32,14 @@ class BelongCest
      * USER_ID
      */
 
-    public function userIdMustBeNotNull(FunctionalTester $I){
+    public function userIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->user_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function userIdMustBeValid(FunctionalTester $I){
+    public function userIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->user_id = 0;
         $I->assertFalse($this->model->save());
     }
@@ -45,17 +48,20 @@ class BelongCest
      * PHOTO_ID
      */
 
-    public function guestListIdMustBeNotNull(FunctionalTester $I){
+    public function guestListIdMustBeNotNull(FunctionalTester $I)
+    {
         $this->model->guestList_id = '';
         $I->assertFalse($this->model->save());
     }
 
-    public function guestListIdMustBeValid(FunctionalTester $I){
+    public function guestListIdMustBeValid(FunctionalTester $I)
+    {
         $this->model->guestList_id = 0;
         $I->assertFalse($this->model->save());
     }
 
-    public function belongMustBeUnique(FunctionalTester $I){
+    public function belongMustBeUnique(FunctionalTester $I)
+    {
         $rel = Belong::findFirst();
         $this->model->user_id = $rel->user_id;
         $this->model->guestList_id = $rel->guestList_id;

@@ -23,7 +23,8 @@ class UserCest
         unset($this->model);
     }
 
-    public function givenUserIsValid(FunctionalTester $I){
+    public function givenUserIsValid(FunctionalTester $I)
+    {
         $I->assertTrue($this->model->save());
     }
 
@@ -109,7 +110,8 @@ class UserCest
      * CREATED_AT
      */
 
-    public function createdAtContainsTimeStampOfCreation(FunctionalTester $I){
+    public function createdAtContainsTimeStampOfCreation(FunctionalTester $I)
+    {
         $creation_timestamp = date('Y-m-d H:i:sP', time());
         $this->model->save();
         $I->assertEquals($creation_timestamp, $this->model->created_at);
@@ -119,13 +121,15 @@ class UserCest
      * UPDATED_AT
      */
 
-    public function updatedAtContainsTimeStampOfCreation(FunctionalTester $I){
+    public function updatedAtContainsTimeStampOfCreation(FunctionalTester $I)
+    {
         $creation_timestamp = date('Y-m-d H:i:sP', time());
         $this->model->save();
         $I->assertEquals($creation_timestamp, $this->model->updated_at);
     }
 
-    public function updatedAtUpdatesTimeStampOnUpdate(FunctionalTester $I){
+    public function updatedAtUpdatesTimeStampOnUpdate(FunctionalTester $I)
+    {
         $this->model->save();
         sleep(1);
         $update_timestamp = date('Y-m-d H:i:sP', time());

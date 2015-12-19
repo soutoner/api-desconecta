@@ -9,7 +9,8 @@ use App\Db\Seeds\Models\UserSeeder;
 
 class CreateCest extends EndpointTest
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(__DIR__, __FILE__);
     }
 
@@ -19,7 +20,8 @@ class CreateCest extends EndpointTest
 
         $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
-        $I->seeResponseCodeIs(201); $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(201);
+        $I->seeResponseIsJson();
         // We see the response contains the created user
         $I->seeResponseContainsJson($new_user);
         // We check that the database contains
@@ -34,7 +36,8 @@ class CreateCest extends EndpointTest
         $I->dontSeeRecord('App\Models\User', $new_user);
         $I->sendPOST($this->endpoint, $new_user);
         // We see the response is OK and JSON
-        $I->seeResponseCodeIs(409); $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(409);
+        $I->seeResponseIsJson();
         // We see the response contains error messages
         $json_response = json_decode($I->grabResponse());
         $I->assertGreaterThan(0, $json_response->messages);

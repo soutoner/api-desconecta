@@ -28,11 +28,12 @@ class MusicTagsController extends ControllerBase
         $request = $this->request;
 
         $musictag = new MusicTag();
-        $musictag->assign([
+        $musictag->assign(
+            [
             'value' => $request->get('value', 'string'),
-        ]);
+            ]
+        );
 
         return $this->response($request, $musictag, true);
     }
-
 }

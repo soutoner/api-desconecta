@@ -40,7 +40,8 @@ class LocalSeeder extends BaseSeeder
         ],
     ];
 
-    public static function GenerateFake($faker){
+    public static function GenerateFake($faker)
+    {
         return [
             'name'          => $faker->company,
             'desc'          => $faker->text($maxNbChars = 200),

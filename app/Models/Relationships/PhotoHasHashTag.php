@@ -18,17 +18,27 @@ class PhotoHasHashTag extends BaseModel
     {
         $this->setSource('Photo_has_HashTag');
 
-        $this->belongsTo('photo_id', 'App\Models\Photo', 'id', [
-                'alias' => 'Photo',
-                'foreignKey' => [
-                    'message' => 'The photo_id does not exist on the Photo model'
+        $this->belongsTo(
+            'photo_id',
+            'App\Models\Photo',
+            'id',
+            [
+            'alias' => 'Photo',
+            'foreignKey' =>
+                [
+                'message' => 'The photo_id does not exist on the Photo model'
                 ],
             ]
         );
-        $this->belongsTo('hashTag_id', 'App\Models\HashTag', 'id', [
-                'alias' => 'HashTag',
-                'foreignKey' => [
-                    'message' => 'The hashTag_id does not exist on the HashTag model'
+        $this->belongsTo(
+            'hashTag_id',
+            'App\Models\HashTag',
+            'id',
+            [
+            'alias' => 'HashTag',
+            'foreignKey' =>
+                [
+                'message' => 'The hashTag_id does not exist on the HashTag model'
                 ],
             ]
         );
@@ -43,28 +53,30 @@ class PhotoHasHashTag extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'photo_id',
-                    'message'   => 'The photo_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'photo_id',
+                'message'   => 'The photo_id is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'hashTag_id',
-                    'message'   => 'The hashTag_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'hashTag_id',
+                'message'   => 'The hashTag_id is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => ['photo_id', 'hashTag_id'],
-                    'message'   => 'The photo_id and hashTag_id combination must be unique'
+            new Uniqueness(
+                [
+                'field'     => ['photo_id', 'hashTag_id'],
+                'message'   => 'The photo_id and hashTag_id combination must be unique'
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

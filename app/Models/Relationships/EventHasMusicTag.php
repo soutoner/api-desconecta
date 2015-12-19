@@ -18,17 +18,27 @@ class EventHasMusicTag extends BaseModel
     {
         $this->setSource('Event_has_MusicTag');
 
-        $this->belongsTo('event_id', 'App\Models\Event', 'id', [
-                'alias' => 'Event',
-                'foreignKey' => [
-                    'message' => 'The event_id does not exist on the Event model'
+        $this->belongsTo(
+            'event_id',
+            'App\Models\Event',
+            'id',
+            [
+            'alias' => 'Event',
+            'foreignKey' =>
+                [
+                'message' => 'The event_id does not exist on the Event model'
                 ],
             ]
         );
-        $this->belongsTo('musicTag_id', 'App\Models\MusicTag', 'id', [
-                'alias' => 'MusicTag',
-                'foreignKey' => [
-                    'message' => 'The musicTag_id does not exist on the MusicTag model'
+        $this->belongsTo(
+            'musicTag_id',
+            'App\Models\MusicTag',
+            'id',
+            [
+            'alias' => 'MusicTag',
+            'foreignKey' =>
+                [
+                'message' => 'The musicTag_id does not exist on the MusicTag model'
                 ],
             ]
         );
@@ -43,23 +53,26 @@ class EventHasMusicTag extends BaseModel
     public function validation()
     {
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'event_id',
-                    'message'   => 'The event_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'event_id',
+                'message'   => 'The event_id is required'
                 ]
             )
         );
         $this->validate(
-            new PresenceOf([
-                    'field'     => 'musicTag_id',
-                    'message'   => 'The musicTag_id is required'
+            new PresenceOf(
+                [
+                'field'     => 'musicTag_id',
+                'message'   => 'The musicTag_id is required'
                 ]
             )
         );
         $this->validate(
-            new Uniqueness([
-                    'field'     => ['event_id', 'musicTag_id'],
-                    'message'   => 'The event_id and musicTag_id combination must be unique'
+            new Uniqueness(
+                [
+                'field'     => ['event_id', 'musicTag_id'],
+                'message'   => 'The event_id and musicTag_id combination must be unique'
                 ]
             )
         );

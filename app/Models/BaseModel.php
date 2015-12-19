@@ -13,7 +13,8 @@ class BaseModel extends Model
 
     public $updated_at;
 
-    public function initialize(){
+    public function initialize()
+    {
         $this->addBehavior(
             new Timestampable(
                 array(
@@ -43,19 +44,20 @@ class BaseModel extends Model
     /**
      * FindFirst that throws an ResourceNotFoundException.
      *
-     * @param null $parameters
-     * @param string $resource_id
+     * @param  null   $parameters
+     * @param  string $resource_id
      * @return Model
      * @throws ResourceNotFoundException
      */
-    public static function findFirstOrFail($parameters=null, $resource_id=null){
+    public static function findFirstOrFail($parameters = null, $resource_id = null)
+    {
         $result = parent::findFirst($parameters);
 
-        if($resource_id == null){
+        if ($resource_id == null) {
             $resource_id = end(explode('\\', get_called_class()));
         }
 
-        if(empty($result)){
+        if (empty($result)) {
             throw new ResourceNotFoundException($resource_id . ' Not Found');
         } else {
             return $result;
@@ -67,7 +69,8 @@ class BaseModel extends Model
      *
      * @return mixed : App\Models\User -> User
      */
-    public function class_name(){
+    public function className()
+    {
         return end(explode('\\', get_called_class()));
     }
 }
