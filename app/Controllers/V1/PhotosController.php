@@ -47,6 +47,8 @@ class PhotosController extends ControllerBase
      */
     public function update($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $request = $this->request;
@@ -82,6 +84,8 @@ class PhotosController extends ControllerBase
      */
     public function delete($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $photo = Photo::findFirstOrFail(

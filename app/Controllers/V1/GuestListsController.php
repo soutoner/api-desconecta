@@ -61,6 +61,8 @@ class GuestListsController extends ControllerBase
      */
     public function update($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $request = $this->request;
@@ -97,6 +99,8 @@ class GuestListsController extends ControllerBase
      */
     public function delete($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $list = GuestList::findFirstOrFail(

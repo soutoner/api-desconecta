@@ -51,6 +51,8 @@ class EventsController extends ControllerBase
      */
     public function update($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $request = $this->request;
@@ -89,6 +91,8 @@ class EventsController extends ControllerBase
      */
     public function delete($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $event = Event::findFirstOrFail(

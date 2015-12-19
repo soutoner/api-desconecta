@@ -49,6 +49,8 @@ class LocalsController extends ControllerBase
      */
     public function update($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $request = $this->request;
@@ -86,6 +88,8 @@ class LocalsController extends ControllerBase
      */
     public function delete($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $local = Local::findFirstOrFail(

@@ -18,6 +18,8 @@ class FollowersController extends ControllerBase
      */
     public function index($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $user = User::findFirstOrFail(
@@ -41,6 +43,8 @@ class FollowersController extends ControllerBase
      */
     public function create($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
             $user = User::findFirstOrFail(
                 [
@@ -78,6 +82,8 @@ class FollowersController extends ControllerBase
      */
     public function delete($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
             $user = User::findFirstOrFail(
                 [

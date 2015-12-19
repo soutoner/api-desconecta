@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Lib\Validators\TimestampValidator;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
@@ -157,10 +158,24 @@ class Event extends BaseModel
             )
         );
         $this->validate(
+            new TimestampValidator(
+                [
+                    'field'     => 'start_date',
+                ]
+            )
+        );
+        $this->validate(
             new PresenceOf(
                 [
                 'field'     => 'end_date',
                 'message'   => 'The event must have an end date',
+                ]
+            )
+        );
+        $this->validate(
+            new TimestampValidator(
+                [
+                    'field'     => 'end_date',
                 ]
             )
         );

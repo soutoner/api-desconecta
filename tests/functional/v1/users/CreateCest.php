@@ -28,6 +28,23 @@ class CreateCest extends EndpointTest
         $I->seeRecord('App\Models\User', $new_user);
     }
 
+    public function createNada(FunctionalTester $I)
+    {
+        $new_user = UserSeeder::ExtraSeeds()[0];
+
+        $new_user['date_birth'] = 'hola';
+
+        $I->dontSeeRecord('App\Models\User', $new_user);
+        $I->sendPOST($this->endpoint, $new_user);
+        $I->seeResponseEquals('', $I->grabResponse());
+        $I->seeResponseCodeIs(409);
+        $I->seeResponseIsJson();
+        // We see the response contains the created user
+        $I->seeResponseContainsJson($new_user);
+        // We check that the database contains
+        $I->seeRecord('App\Models\User', $new_user);
+    }
+
     public function createUnsuccessfulReturnErrors(FunctionalTester $I)
     {
         $new_user = UserSeeder::ExtraSeeds()[0];

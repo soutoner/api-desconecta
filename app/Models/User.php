@@ -4,10 +4,13 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
+use Phalcon\Mvc\Model\Validator\Numericality;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\Email;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\InclusionIn;
+use Phalcon\Mvc\Model\Validator\Url;
+use App\Lib\Validators\DateValidator;
 
 class User extends BaseModel
 {
@@ -173,7 +176,14 @@ class User extends BaseModel
                 ]
             )
         );
-        // TODO: valid date of birth
+        $this->validate(
+            new Url(
+                [
+                    'field'     => 'profile_picture',
+                    'message'   => 'The profile picture must be valid'
+                ]
+            )
+        );
         $this->validate(
             new InclusionIn(
                 [
@@ -184,10 +194,26 @@ class User extends BaseModel
             )
         );
         $this->validate(
+            new DateValidator(
+                [
+                    'field'     => 'date_birth',
+                    'message'   => 'The field doesn\'t have a valid date (Y-m-d)'
+                ]
+            )
+        );
+        $this->validate(
             new Uniqueness(
                 [
                 'field'     => 'rrpp_id',
                 'message'   => 'The user rrpp_id must be unique'
+                ]
+            )
+        );
+        $this->validate(
+            new Numericality(
+                [
+                    'field'     => 'rrpp_id',
+                    'message'   => 'The user rrpp_id must be an id'
                 ]
             )
         );

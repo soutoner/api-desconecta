@@ -52,6 +52,8 @@ class UsersController extends ControllerBase
      */
     public function update($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $request = $this->request;
@@ -91,6 +93,8 @@ class UsersController extends ControllerBase
      */
     public function delete($id)
     {
+        $id = $this->filter->sanitize($id, 'int');
+
         try {
 
             $user = User::findFirstOrFail(

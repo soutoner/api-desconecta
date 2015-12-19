@@ -88,7 +88,8 @@ class ControllerBase extends Controller
     public function paginate($resource = null)
     {
         if (empty($resource)) {
-            $className = 'App\Models\\'.str_replace('sController', '', end(explode('\\', get_called_class())));
+            $full_path = explode('\\', get_called_class());
+            $className = 'App\Models\\'.str_replace('sController', '', end($full_path));
             $resource = $className::find();
         }
 

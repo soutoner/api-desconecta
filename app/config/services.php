@@ -9,6 +9,10 @@ use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
+use Phalcon\Filter;
+use App\Lib\Filters\UrlFilter;
+use App\Lib\Filters\DateFilter;
+use App\Lib\Filters\TimestampFilter;
 use App\Lib\Facebook\Facebook;
 
 /**
@@ -17,7 +21,7 @@ use App\Lib\Facebook\Facebook;
 $di = new FactoryDefault();
 
 /**
- * The URL component is used to generate all kind of urls in the application
+ * The URL component is used to generate all kind of urls in the application.
  */
 $di->setShared('url', function () use ($config) {
     $url = new UrlResolver();
@@ -27,7 +31,7 @@ $di->setShared('url', function () use ($config) {
 });
 
 /**
- * Database connection is created based in the parameters defined in the configuration file
+ * Database connection is created based in the parameters defined in the configuration file.
  */
 $di->setShared('db', function () use ($config) {
     $dbConfig = $config->database->toArray();
@@ -40,14 +44,14 @@ $di->setShared('db', function () use ($config) {
 });
 
 /**
- * If the configuration specify the use of metadata adapter use it or use memory otherwise
+ * If the configuration specify the use of metadata adapter use it or use memory otherwise.
  */
 $di->setShared('modelsMetadata', function () {
     return new MetaDataAdapter();
 });
 
 /**
- * Start the session the first time some component request the session service
+ * Start the session the first time some component request the session service.
  */
 $di->setShared('session', function () {
     $session = new SessionAdapter();
