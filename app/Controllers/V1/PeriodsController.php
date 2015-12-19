@@ -14,8 +14,6 @@ class PeriodsController extends ControllerBase
      */
     public function index()
     {
-        $periods = Period::find();
-
-        return new Response(json_encode($periods->toArray()));
+        return $this->paginate();
     }
 }

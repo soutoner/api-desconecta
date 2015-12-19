@@ -14,9 +14,7 @@ class LocalsController extends ControllerBase
      */
     public function index()
     {
-        $locals = Local::find();
-
-        return new Response(json_encode($locals->toArray()));
+        return $this->paginate();
     }
 
     /**

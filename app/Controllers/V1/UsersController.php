@@ -14,9 +14,7 @@ class UsersController extends ControllerBase
      */
     public function index()
     {
-        $users = User::find();
-
-        return new Response(json_encode($users->toArray()));
+        return $this->paginate();
     }
 
     /**
@@ -38,7 +36,7 @@ class UsersController extends ControllerBase
             'date_birth'        => $request->get('date_birth', 'string'),
             'gender'            => $request->get('gender', 'string'),
             'location'          => $request->get('location', 'string'),
-            'rrpp_id'           => $request->get('rrpp_id', 'string'),
+            'rrpp_id'           => $request->get('rrpp_id', 'int'),
             ]
         );
 

@@ -19,7 +19,7 @@ class IndexCest extends EndpointTest
         $I->sendGet($this->endpoint . '/' . $user->id);
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
-        $I->assertEquals(count($user->getFollowers()), count(json_decode($I->grabResponse())));
+        $I->assertEquals(count($user->getFollowers()), count(json_decode($I->grabResponse())->items));
         $I->seeResponseContainsJson($user->getFollowers()->toArray());
     }
 }

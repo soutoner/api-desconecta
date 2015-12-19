@@ -14,9 +14,20 @@ class GuestListsController extends ControllerBase
      */
     public function index()
     {
-        $lists = GuestList::find();
+        $models = GuestList::find();
 
-        return new Response(json_encode($lists->toArray()));
+        $currentPage = (int) $this->request->getQuery('page', 'int', '1');
+
+        $paginator   = new PaginatorModel(
+            array(
+                'data'  => $models,
+                'limit' => 10,
+                'page'  => $currentPage
+            )
+        );
+        $page = $paginator->getPaginate();
+
+        return new Response(json_encode($page));
     }
 
     /**

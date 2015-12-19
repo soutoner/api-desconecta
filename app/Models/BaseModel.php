@@ -54,7 +54,8 @@ class BaseModel extends Model
         $result = parent::findFirst($parameters);
 
         if ($resource_id == null) {
-            $resource_id = end(explode('\\', get_called_class()));
+            $full_path = explode('\\', get_called_class());
+            $resource_id = end($full_path);
         }
 
         if (empty($result)) {
@@ -71,6 +72,7 @@ class BaseModel extends Model
      */
     public function className()
     {
-        return end(explode('\\', get_called_class()));
+        $full_path = explode('\\', get_called_class());
+        return end($full_path);
     }
 }

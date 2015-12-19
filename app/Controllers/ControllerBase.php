@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Phalcon\Mvc\Controller;
 use Phalcon\Http\Response;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 class ControllerBase extends Controller
 {
@@ -76,5 +77,29 @@ class ControllerBase extends Controller
         }
 
         return $response;
+    }
+
+    /**
+     * Paginates given Resource. By default paginates ::find of caller Model.
+     *
+     * @param null $resource : Resource to be paginated
+     * @return Response
+     */
+    public function paginate($resource = null)
+    {
+        if (empty($resource)) {
+            $className = 'App\Models\\'.str_replace('sController', '', end(explode('\\', get_called_class())));
+            $resource = $className::find();
+        }
+
+        $paginator = new PaginatorModel(
+            array(
+                'data'  => $resource,
+                'limit' => 10,
+                'page'  => (int) $this->request->getQuery('page', 'int', '1')
+            )
+        );
+
+        return new Response(json_encode($paginator->getPaginate()));
     }
 }

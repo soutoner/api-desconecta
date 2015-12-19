@@ -14,9 +14,7 @@ class SchedulingsController extends ControllerBase
      */
     public function index()
     {
-        $schedulings = Scheduling::find();
-
-        return new Response(json_encode($schedulings->toArray()));
+        return $this->paginate();
     }
 
     /**

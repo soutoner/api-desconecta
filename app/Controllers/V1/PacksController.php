@@ -14,9 +14,7 @@ class PacksController extends ControllerBase
      */
     public function index()
     {
-        $packs = Pack::find();
-
-        return new Response(json_encode($packs->toArray()));
+        return $this->paginate();
     }
 
     /**

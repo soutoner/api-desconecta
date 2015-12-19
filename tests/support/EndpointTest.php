@@ -17,6 +17,13 @@ class EndpointTest
      */
     protected $endpoint;
 
+    /**
+     * Pagination items per page.
+     *
+     * @var int
+     */
+    protected $items_per_page = 10;
+
     public function __construct($dir = __DIR__, $file = __FILE__)
     {
         $this->version = basename(dirname($dir));

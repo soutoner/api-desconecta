@@ -6,25 +6,20 @@ use App\Controllers\ControllerBase;
 use App\Models\Event;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 class EventsController extends ControllerBase
 {
     /**
      * Returns all the events in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {
-        $events = Event::find();
-
-        return new Response(json_encode($events->toArray()));
+        return $this->paginate();
     }
 
     /**
      * Creates an event in the database.
-     *
-     * TODO: Create custom filters (e.g. filter for dates)
      *
      * @return Response
      */
@@ -37,10 +32,10 @@ class EventsController extends ControllerBase
             [
             'name'              => $request->get('name', 'string'),
             'desc'              => $request->get('desc', 'string'),
-            'photo_cover'       => $request->get('photo_cover', 'string'),
-            'start_date'        => $request->get('start_date', 'string'),
-            'end_date'          => $request->get('end_date', 'string'),
-            'flyer'             => $request->get('flyer', 'string'),
+            'photo_cover'       => $request->get('photo_cover', 'url'),
+            'start_date'        => $request->get('start_date', 'timestamp'),
+            'end_date'          => $request->get('end_date', 'timestamp'),
+            'flyer'             => $request->get('flyer', 'url'),
             ]
         );
 
@@ -71,10 +66,10 @@ class EventsController extends ControllerBase
                 'id'                => $id,
                 'name'              => $request->getPut('name', 'string', $event->name),
                 'desc'              => $request->getPut('desc', 'string', $event->desc),
-                'photo_cover'       => $request->getPut('photo_cover', 'string', $event->photo_cover),
-                'start_date'        => $request->getPut('start_date', 'string', $event->start_date),
-                'end_date'          => $request->getPut('end_date', 'string', $event->end_date),
-                'flyer'             => $request->getPut('flyer', 'string', $event->flyer),
+                'photo_cover'       => $request->getPut('photo_cover', 'url', $event->photo_cover),
+                'start_date'        => $request->getPut('start_date', 'timestamp', $event->start_date),
+                'end_date'          => $request->getPut('end_date', 'timestamp', $event->end_date),
+                'flyer'             => $request->getPut('flyer', 'url', $event->flyer),
                 ]
             );
 

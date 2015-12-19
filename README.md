@@ -32,3 +32,17 @@ Launch test
 With code-coverage
 
 `php -d zend_extension=xdebug.so vendor/bin/codecept run --coverage --coverage-html`
+
+### Grumphp
+
+Run checks (triggered also with commits):
+
+`vendor/bin/grumphp run`
+
+Run CBF for dummy fixes:
+
+`vendor/bin/phpcbf app/ tests/`
+
+Run CS to scan problems without the entire Grum- suite checks:
+
+`vendor/bin/phpcs app/ tests/`

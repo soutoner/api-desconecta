@@ -13,9 +13,7 @@ class MusicTagsController extends ControllerBase
      */
     public function index()
     {
-        $musictags = MusicTag::find();
-
-        return new Response(json_encode($musictags->toArray()));
+        return $this->paginate();
     }
 
     /**

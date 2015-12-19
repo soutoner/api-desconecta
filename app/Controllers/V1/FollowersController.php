@@ -26,7 +26,7 @@ class FollowersController extends ControllerBase
                 ]
             );
 
-            return new Response(json_encode($user->getFollowers()->toArray()));
+            return $this->paginate($user->getFollowers());
 
         } catch (ResourceNotFoundException $e) {
             return $e->returnResponse();

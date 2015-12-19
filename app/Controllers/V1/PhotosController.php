@@ -14,9 +14,7 @@ class PhotosController extends ControllerBase
      */
     public function index()
     {
-        $photos = Photo::find();
-
-        return new Response(json_encode($photos->toArray()));
+        return $this->paginate();
     }
 
     /**

@@ -14,9 +14,7 @@ class ProductsController extends ControllerBase
      */
     public function index()
     {
-        $products = Product::find();
-
-        return new Response(json_encode($products->toArray()));
+        return $this->paginate();
     }
 
     /**

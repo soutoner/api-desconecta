@@ -14,9 +14,7 @@ class HashTagsController extends ControllerBase
      */
     public function index()
     {
-        $hashtags = HashTag::find();
-
-        return new Response(json_encode($hashtags->toArray()));
+        return $this->paginate();
     }
 
     /**
