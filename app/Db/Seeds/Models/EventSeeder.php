@@ -5,6 +5,7 @@ namespace App\Db\Seeds\Models;
 use App\Db\Seeds\Models\BaseSeeder;
 use App\Models\GuestList;
 use App\Models\Scheduling;
+use App\Models\Local;
 
 
 class EventSeeder extends BaseSeeder
@@ -46,12 +47,12 @@ class EventSeeder extends BaseSeeder
             'name'          => $faker->sentence($nbWords = 6),
             'desc'          => $faker->text($maxNbChars = 200),
             'photo_cover'   => $faker->imageUrl($width = 640, $height = 480),
-            'start_date'    => $faker->dateTime($min = 'now'),
-            'end_date'      => $faker->dateTime($min = 'now'),
+            'start_date'    => $faker->dateTime($min = 'now')->format('Y-m-d h:m:s'),
+            'end_date'      => $faker->dateTime($min = 'now')->format('Y-m-d h:m:s'),
             'flyer'         => $faker->imageUrl($width = 640, $height = 480),
-            'local_id'      => $faker->numberBetween($min = 1, $max = RRPP::count()),
-            'guestList_id'  => $faker->optional()->unique()->numberBetween($min = 1, $max = GuestList::count()),
-            'scheduling_id' => $faker->optional()->unique()->numberBetween($min = 1, $max = Scheduling::count()),
+            'local_id'      => $faker->numberBetween($min = 1, $max = Local::count()),
+            'guestList_id'  => $faker->optional()->numberBetween($min = 1, $max = GuestList::count()),
+            'scheduling_id' => $faker->optional()->numberBetween($min = 1, $max = Scheduling::count()),
         ];
     }
 }

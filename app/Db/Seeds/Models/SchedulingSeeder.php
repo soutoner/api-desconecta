@@ -31,7 +31,7 @@ class SchedulingSeeder extends BaseSeeder
     public static function GenerateFake($faker)
     {
         return [
-            'end_period'    => $faker->dateTime($min = 'now'),
+            'end_period'    => $faker->dateTime($min = 'now')->format('Y-m-d h:m:s'),
             'period_id'     => $faker->numberBetween($min = 1, $max = Period::count()),
         ];
     }

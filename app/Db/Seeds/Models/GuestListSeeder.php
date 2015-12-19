@@ -36,8 +36,8 @@ class GuestListSeeder extends BaseSeeder
     public static function GenerateFake($faker)
     {
         return [
-            'start_time'    => $faker->dateTime($min = 'now'),
-            'end_time'      => $faker->dateTime($min = 'now'),
+            'start_time'    => $faker->dateTime($min = 'now')->format('Y-m-d h:m:s'),
+            'end_time'      => $faker->dateTime($min = 'now')->format('Y-m-d h:m:s'),
             'max_friends'   => $faker->optional()->randomDigit,
             'max_capacity'  => $faker->optional()->randomDigit,
         ];
