@@ -11,8 +11,6 @@ class PacksController extends ControllerBase
 {
     /**
      * Returns all the packs in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {
@@ -23,8 +21,6 @@ class PacksController extends ControllerBase
 
     /**
      * Creates a pack in the database.
-     *
-     * TODO: Create custom filters (e.g. filter for dates)
      *
      * @return Response
      */

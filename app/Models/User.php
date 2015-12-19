@@ -70,6 +70,15 @@ class User extends BaseModel
 
         $this->hasManyToMany(
             'id',
+            'App\Models\Relationships\Follow',
+            'user_id', 'local_id',
+            'App\Models\Local',
+            'id',
+            ['alias' => 'LocalsFollowed']
+        );
+
+        $this->hasManyToMany(
+            'id',
             'App\Models\Relationships\Attend',
             'user_id', 'event_id',
             'App\Models\Event',
@@ -108,7 +117,6 @@ class User extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
                     'field'     => 'name',

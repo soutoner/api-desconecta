@@ -11,8 +11,6 @@ class PeriodsController extends ControllerBase
 {
     /**
      * Returns all the period in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {

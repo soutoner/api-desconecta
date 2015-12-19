@@ -11,8 +11,6 @@ class PhotosController extends ControllerBase
 {
     /**
      * Returns all the photos in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {
@@ -23,8 +21,6 @@ class PhotosController extends ControllerBase
 
     /**
      * Creates a photo in the database.
-     *
-     * TODO: Create custom filters (e.g. filter for dates)
      *
      * @return Response
      */

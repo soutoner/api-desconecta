@@ -11,8 +11,6 @@ class ProductsController extends ControllerBase
 {
     /**
      * Returns all the products in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {
@@ -23,8 +21,6 @@ class ProductsController extends ControllerBase
 
     /**
      * Creates a product in the database.
-     *
-     * TODO: Create custom filters (e.g. filter for dates)
      *
      * @return Response
      */

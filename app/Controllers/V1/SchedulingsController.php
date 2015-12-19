@@ -11,8 +11,6 @@ class SchedulingsController extends ControllerBase
 {
     /**
      * Returns all the schedulings in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {
@@ -23,8 +21,6 @@ class SchedulingsController extends ControllerBase
 
     /**
      * Creates a scheduling in the database.
-     *
-     * TODO: Create custom filters (e.g. filter for dates)
      *
      * @return Response
      */

@@ -34,8 +34,6 @@ class FollowersController extends ControllerBase
     /**
      * Creates a follower of the given user.
      *
-     * TODO: disallow self-following.
-     *
      * @param $id
      * @return \App\Controllers\Phalcon\Http\Response
      */
@@ -65,8 +63,6 @@ class FollowersController extends ControllerBase
 
     /**
      * Deletes a follower of the given user.
-     *
-     * TODO: disallow self-following.
      *
      * @param $id
      * @return \App\Controllers\Phalcon\Http\Response

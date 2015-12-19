@@ -40,7 +40,6 @@ class Scheduling extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
                     'field'     => 'end_period',

@@ -32,7 +32,3 @@ Launch test
 With code-coverage
 
 `php -d zend_extension=xdebug.so vendor/bin/codecept run --coverage --coverage-html`
-
-### TODO
-
-* Check existence of resource before deleting or updating

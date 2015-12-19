@@ -111,8 +111,6 @@ class Event extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
-        // TODO: Validate end_date>start_date
         $this->validate(
             new PresenceOf([
                     'field'     => 'name',

@@ -38,6 +38,15 @@ class Local extends BaseModel
         );
 
         $this->hasMany('id', 'App\Models\Event', 'local_id', ['alias' => 'Events']);
+
+        $this->hasManyToMany(
+            'id',
+            'App\Models\Relationships\Follow',
+            'local_id', 'user_id',
+            'App\Models\User',
+            'id',
+            ['alias' => 'Followers']
+        );
     }
 
     /**
@@ -48,7 +57,6 @@ class Local extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
                     'field'     => 'name',

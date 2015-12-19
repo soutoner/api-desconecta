@@ -11,8 +11,6 @@ class LocalsController extends ControllerBase
 {
     /**
      * Returns all the events in the database.
-     *
-     * TODO: Pagination
      */
     public function index()
     {
@@ -23,8 +21,6 @@ class LocalsController extends ControllerBase
 
     /**
      * Creates a local in the database.
-     *
-     * TODO: Create custom filters (e.g. filter for dates)
      *
      * @return Response
      */

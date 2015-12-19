@@ -44,7 +44,6 @@ class GuestList extends BaseModel
      */
     public function validation()
     {
-        // TODO: length of fields
         $this->validate(
             new PresenceOf([
                     'field'     => 'start_time',

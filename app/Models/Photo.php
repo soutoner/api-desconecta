@@ -8,6 +8,7 @@ use Phalcon\Mvc\Model\Validator\PresenceOf;
 
 class Photo extends BaseModel
 {
+    // TODO: who owns a photo?
     public $id;
 
     public $uri;
@@ -37,7 +38,7 @@ class Photo extends BaseModel
             'photo_id', 'user_id',
             'App\Models\User',
             'id',
-            ['alias' => 'Users']
+            ['alias' => 'UsersAppearing']
         );
 
         $this->hasManyToMany(
