@@ -23,10 +23,9 @@ class Belong extends BaseModel
             'App\Models\User',
             'id',
             [
-            'alias' => 'User',
-            'foreignKey' =>
-                [
-                'message' => 'The user_id does not exist on the User model'
+                'alias' => 'User',
+                'foreignKey' => [
+                    'message' => 'The user_id does not exist on the User model',
                 ],
             ]
         );
@@ -35,10 +34,9 @@ class Belong extends BaseModel
             'App\Models\GuestList',
             'id',
             [
-            'alias' => 'GuestList',
-            'foreignKey' =>
-                [
-                'message' => 'The guestList_id does not exist on the GuestList model'
+                'alias' => 'GuestList',
+                'foreignKey' => [
+                    'message' => 'The guestList_id does not exist on the GuestList model',
                 ],
             ]
         );
@@ -55,24 +53,24 @@ class Belong extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'user_id',
-                'message'   => 'The user_id is required'
+                    'field'     => 'user_id',
+                    'message'   => 'The user_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'guestList_id',
-                'message'   => 'The guestList_id is required'
+                    'field'     => 'guestList_id',
+                    'message'   => 'The guestList_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['user_id', 'guestList_id'],
-                'message'   => 'The user_id and guestList_id combination must be unique'
+                    'field'     => ['user_id', 'guestList_id'],
+                    'message'   => 'The user_id and guestList_id combination must be unique',
                 ]
             )
         );

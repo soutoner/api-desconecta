@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
-use Phalcon\Mvc\Model\Validator\Numericality;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\Email;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
@@ -131,48 +130,48 @@ class User extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'name',
-                'message'   => 'The name is required'
+                    'field'     => 'name',
+                    'message'   => 'The user name is required'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'surname',
-                'message'   => 'The surname is required'
+                    'field'     => 'surname',
+                    'message'   => 'The user surname is required'
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'email',
-                'message'   => 'The user email must be unique'
+                    'field'     => 'email',
+                    'message'   => 'The user email must be unique'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'email',
-                'message'   => 'The email is required'
+                    'field'     => 'email',
+                    'message'   => 'The user email is required'
                 ]
             )
         );
         $this->validate(
             new Email(
                 [
-                'field'     => 'email',
-                'message'   => 'You must provide a valid email'
+                    'field'     => 'email',
+                    'message'   => 'The user email must be valid'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'profile_picture',
-                'message'   => 'The profile picture is required'
+                    'field'     => 'profile_picture',
+                    'message'   => 'The user profile picture is requires'
                 ]
             )
         );
@@ -180,16 +179,16 @@ class User extends BaseModel
             new Url(
                 [
                     'field'     => 'profile_picture',
-                    'message'   => 'The profile picture must be valid'
+                    'message'   => 'The user profile picture must be valid'
                 ]
             )
         );
         $this->validate(
             new InclusionIn(
                 [
-                'field'     => 'gender',
-                'message'   => 'The gender must be H or M',
-                'domain'    => ['H', 'M', '']
+                    'field'     => 'gender',
+                    'message'   => 'The user gender must be H or M',
+                    'domain'    => ['H', 'M', '']
                 ]
             )
         );
@@ -197,23 +196,15 @@ class User extends BaseModel
             new DateValidator(
                 [
                     'field'     => 'date_birth',
-                    'message'   => 'The field doesn\'t have a valid date (Y-m-d)'
+                    'message'   => 'The user date of birth must be valid'
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'rrpp_id',
-                'message'   => 'The user rrpp_id must be unique'
-                ]
-            )
-        );
-        $this->validate(
-            new Numericality(
-                [
                     'field'     => 'rrpp_id',
-                    'message'   => 'The user rrpp_id must be an id'
+                    'message'   => 'The user rrpp_id must be unique'
                 ]
             )
         );

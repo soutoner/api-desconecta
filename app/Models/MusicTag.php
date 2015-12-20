@@ -41,16 +41,16 @@ class MusicTag extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'value',
-                'message'   => 'A value is required'
+                    'field'     => 'value',
+                    'message'   => 'The musictag value is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'value',
-                'message'   => 'The value must be unique'
+                    'field'     => 'value',
+                    'message'   => 'The musictag value must be unique',
                 ]
             )
         );

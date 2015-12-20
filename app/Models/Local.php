@@ -35,9 +35,8 @@ class Local extends BaseModel
             'id',
             [
             'alias' => 'Owner',
-            'foreignKey' =>
-                [
-                'message' => 'The owner_id does not exist on the RRPP model'
+            'foreignKey' => [
+                'message' => 'The owner_id does not exist on the RRPP model',
                 ],
             ]
         );
@@ -66,48 +65,56 @@ class Local extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'name',
-                'message'   => 'The name is required'
+                    'field'     => 'name',
+                    'message'   => 'The local name is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'name',
-                'message'   => 'The name must be unique'
+                    'field'     => 'name',
+                    'message'   => 'The local name must be unique',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'desc',
-                'message'   => 'A description is required'
+                    'field'     => 'desc',
+                    'message'   => 'The local description is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'photo_cover',
-                'message'   => 'A photography is required'
+                    'field'     => 'photo_cover',
+                    'message'   => 'The local cover photo is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'geo',
-                'message'   => 'The geological position is required'
+                    'field'     => 'geo',
+                    'message'   => 'The local geological position is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'address',
-                'message'   => 'The local must have an address',
+                    'field'     => 'address',
+                    'message'   => 'The local address is required',
+                ]
+            )
+        );
+        $this->validate(
+            new PresenceOf(
+                [
+                    'field'     => 'owner_id',
+                    'message'   => 'The local owner is required',
                 ]
             )
         );

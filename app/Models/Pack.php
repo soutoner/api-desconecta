@@ -51,16 +51,16 @@ class Pack extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'price',
-                'message'   => 'A price is required'
+                    'field'     => 'price',
+                    'message'   => 'The pack price is required'
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'price',
-                'message'   => 'The price must be unique'
+                    'field'     => 'price',
+                    'message'   => 'The pack price must be unique'
                 ]
             )
         );

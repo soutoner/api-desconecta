@@ -23,10 +23,9 @@ class Follower extends BaseModel
             'App\Models\User',
             'id',
             [
-            'alias' => 'User',
-            'foreignKey' =>
-                [
-                'message' => 'The user_id does not exist on the User model'
+                'alias' => 'User',
+                'foreignKey' => [
+                    'message' => 'The user_id does not exist on the User model',
                 ],
             ]
         );
@@ -35,10 +34,9 @@ class Follower extends BaseModel
             'App\Models\User',
             'id',
             [
-            'alias' => 'Follower',
-            'foreignKey' =>
-                [
-                'message' => 'The follower_id does not exist on the User model'
+                'alias' => 'Follower',
+                'foreignKey' => [
+                    'message' => 'The follower_id does not exist on the User model',
                 ],
             ]
         );
@@ -55,24 +53,24 @@ class Follower extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'user_id',
-                'message'   => 'The user_id is required'
+                    'field'     => 'user_id',
+                    'message'   => 'The user_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'follower_id',
-                'message'   => 'The follower_id is required'
+                    'field'     => 'follower_id',
+                    'message'   => 'The follower_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['user_id', 'follower_id'],
-                'message'   => 'The user_id and follower_id combination must be unique'
+                    'field'     => ['user_id', 'follower_id'],
+                    'message'   => 'The user_id and follower_id combination must be unique',
                 ]
             )
         );

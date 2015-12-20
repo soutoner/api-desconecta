@@ -28,11 +28,10 @@ class Photo extends BaseModel
             'App\Models\Event',
             'id',
             [
-            'alias' => 'Event',
-            'foreignKey' =>
-                [
-                'message'    => 'The event_id does not exist on the Event model'
-                ]
+                'alias' => 'Event',
+                'foreignKey' => [
+                    'message' => 'The event_id does not exist on the Event model',
+                ],
             ]
         );
 
@@ -68,16 +67,16 @@ class Photo extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'uri',
-                'message'   => 'An uri is required'
+                    'field'     => 'uri',
+                    'message'   => 'The photo uri is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'event_id',
-                'message'   => 'An event_id is required'
+                    'field'     => 'event_id',
+                    'message'   => 'The photo event_id is required',
                 ]
             )
         );

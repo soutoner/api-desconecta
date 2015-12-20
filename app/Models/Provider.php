@@ -33,16 +33,16 @@ class Provider extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'name',
-                'message'   => 'The name is required'
+                    'field'     => 'name',
+                    'message'   => 'The provider name is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'name',
-                'message'   => 'The name must be unique'
+                    'field'     => 'name',
+                    'message'   => 'The provider name must be unique',
                 ]
             )
         );

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Lib\Validators\TimestampValidator;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
+use Phalcon\Mvc\Model\Validator\Numericality;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
 class GuestList extends BaseModel
@@ -48,16 +50,48 @@ class GuestList extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'start_time',
-                'message'   => 'The start date is required'
+                    'field'     => 'start_time',
+                    'message'   => 'The start date is required'
+                ]
+            )
+        );
+        $this->validate(
+            new TimestampValidator(
+                [
+                    'field'     => 'start_time',
+                    'message'   => 'The guest list start time must be valid',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'end_time',
-                'message'   => 'The end date is required'
+                    'field'     => 'end_time',
+                    'message'   => 'The end date is required'
+                ]
+            )
+        );
+        $this->validate(
+            new TimestampValidator(
+                [
+                    'field'     => 'end_time',
+                    'message'   => 'The guest list end time must be valid',
+                ]
+            )
+        );
+        $this->validate(
+            new Numericality(
+                [
+                    'field'     => 'max_friends',
+                    'message'   => 'The guest list max friends must be a number',
+                ]
+            )
+        );
+        $this->validate(
+            new Numericality(
+                [
+                    'field'     => 'max_capacity',
+                    'message'   => 'The guest list max capacity must be a number',
                 ]
             )
         );
@@ -73,5 +107,11 @@ class GuestList extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
+    }
+
+    public function beforeSave()
+    {
+        $this->max_friends = ceil($this->max_friends);
+        $this->max_capacity = ceil($this->max_capacity);
     }
 }

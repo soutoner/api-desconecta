@@ -23,10 +23,9 @@ class PhotoHasHashTag extends BaseModel
             'App\Models\Photo',
             'id',
             [
-            'alias' => 'Photo',
-            'foreignKey' =>
-                [
-                'message' => 'The photo_id does not exist on the Photo model'
+                'alias' => 'Photo',
+                'foreignKey' => [
+                    'message' => 'The photo_id does not exist on the Photo model',
                 ],
             ]
         );
@@ -35,10 +34,9 @@ class PhotoHasHashTag extends BaseModel
             'App\Models\HashTag',
             'id',
             [
-            'alias' => 'HashTag',
-            'foreignKey' =>
-                [
-                'message' => 'The hashTag_id does not exist on the HashTag model'
+                'alias' => 'HashTag',
+                'foreignKey' => [
+                    'message' => 'The hashTag_id does not exist on the HashTag model',
                 ],
             ]
         );
@@ -55,24 +53,24 @@ class PhotoHasHashTag extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'photo_id',
-                'message'   => 'The photo_id is required'
+                    'field'     => 'photo_id',
+                    'message'   => 'The photo_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'hashTag_id',
-                'message'   => 'The hashTag_id is required'
+                    'field'     => 'hashTag_id',
+                    'message'   => 'The hashTag_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['photo_id', 'hashTag_id'],
-                'message'   => 'The photo_id and hashTag_id combination must be unique'
+                    'field'     => ['photo_id', 'hashTag_id'],
+                    'message'   => 'The photo_id and hashTag_id combination must be unique',
                 ]
             )
         );

@@ -23,10 +23,9 @@ class EventHasMusicTag extends BaseModel
             'App\Models\Event',
             'id',
             [
-            'alias' => 'Event',
-            'foreignKey' =>
-                [
-                'message' => 'The event_id does not exist on the Event model'
+                'alias' => 'Event',
+                'foreignKey' => [
+                    'message' => 'The event_id does not exist on the Event model',
                 ],
             ]
         );
@@ -35,10 +34,9 @@ class EventHasMusicTag extends BaseModel
             'App\Models\MusicTag',
             'id',
             [
-            'alias' => 'MusicTag',
-            'foreignKey' =>
-                [
-                'message' => 'The musicTag_id does not exist on the MusicTag model'
+                'alias' => 'MusicTag',
+                'foreignKey' => [
+                    'message' => 'The musicTag_id does not exist on the MusicTag model',
                 ],
             ]
         );
@@ -55,29 +53,28 @@ class EventHasMusicTag extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'event_id',
-                'message'   => 'The event_id is required'
+                    'field'     => 'event_id',
+                    'message'   => 'The event_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'musicTag_id',
-                'message'   => 'The musicTag_id is required'
+                    'field'     => 'musicTag_id',
+                    'message'   => 'The musicTag_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['event_id', 'musicTag_id'],
-                'message'   => 'The event_id and musicTag_id combination must be unique'
+                    'field'     => ['event_id', 'musicTag_id'],
+                    'message'   => 'The event_id and musicTag_id combination must be unique',
                 ]
             )
         );
 
-        // Check if any messages have been produced
         if ($this->validationHasFailed() == true) {
             return false;
         }

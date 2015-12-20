@@ -51,16 +51,16 @@ class HashTag extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'value',
-                'message'   => 'A value is required'
+                    'field'     => 'value',
+                    'message'   => 'The hashtag value is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'value',
-                'message'   => 'The value must be unique'
+                    'field'     => 'value',
+                    'message'   => 'The hashtag value must be unique',
                 ]
             )
         );

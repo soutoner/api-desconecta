@@ -23,10 +23,9 @@ class EventHasHashTag extends BaseModel
             'App\Models\Event',
             'id',
             [
-            'alias' => 'Event',
-            'foreignKey' =>
-                [
-                'message' => 'The event_id does not exist on the Event model'
+                'alias' => 'Event',
+                'foreignKey' => [
+                    'message' => 'The event_id does not exist on the Event model',
                 ],
             ]
         );
@@ -35,10 +34,9 @@ class EventHasHashTag extends BaseModel
             'App\Models\HashTag',
             'id',
             [
-            'alias' => 'HashTag',
-            'foreignKey' =>
-                [
-                'message' => 'The hashTag_id does not exist on the HashTag model'
+                'alias' => 'HashTag',
+                'foreignKey' => [
+                    'message' => 'The hashTag_id does not exist on the HashTag model',
                 ],
             ]
         );
@@ -55,24 +53,24 @@ class EventHasHashTag extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'event_id',
-                'message'   => 'The event_id is required'
+                    'field'     => 'event_id',
+                    'message'   => 'The event_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'hashTag_id',
-                'message'   => 'The hashTag_id is required'
+                    'field'     => 'hashTag_id',
+                    'message'   => 'The hashTag_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['event_id', 'hashTag_id'],
-                'message'   => 'The event_id and hashTag_id combination must be unique'
+                    'field'     => ['event_id', 'hashTag_id'],
+                    'message'   => 'The event_id and hashTag_id combination must be unique',
                 ]
             )
         );

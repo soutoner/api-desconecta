@@ -23,7 +23,7 @@ class BaseModel extends Model
                             'created_at',
                             'updated_at',
                         ),
-                        'format' => 'Y-m-d H:i:sP'
+                        'format' => 'Y-m-d H:i:s'
                     )
                 )
             )
@@ -34,7 +34,7 @@ class BaseModel extends Model
                 array(
                     'beforeUpdate' => array(
                         'field'  => 'updated_at',
-                        'format' => 'Y-m-d H:i:sP'
+                        'format' => 'Y-m-d H:i:s'
                     )
                 )
             )

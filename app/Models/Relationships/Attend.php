@@ -25,10 +25,9 @@ class Attend extends BaseModel
             'App\Models\User',
             'id',
             [
-            'alias' => 'User',
-            'foreignKey' =>
-                [
-                'message' => 'The user_id does not exist on the User model'
+                'alias' => 'User',
+                'foreignKey' => [
+                    'message' => 'The user_id does not exist on the User model',
                 ],
             ]
         );
@@ -37,10 +36,9 @@ class Attend extends BaseModel
             'App\Models\Event',
             'id',
             [
-            'alias' => 'Event',
-            'foreignKey' =>
-                [
-                'message' => 'The event_id does not exist on the Event model'
+                'alias' => 'Event',
+                'foreignKey' => [
+                    'message' => 'The event_id does not exist on the Event model',
                 ],
             ]
         );
@@ -57,24 +55,24 @@ class Attend extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'user_id',
-                'message'   => 'The user_id is required'
+                    'field'     => 'user_id',
+                    'message'   => 'The user_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'event_id',
-                'message'   => 'The event_id is required'
+                    'field'     => 'event_id',
+                    'message'   => 'The event_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['user_id', 'event_id'],
-                'message'   => 'The user_id and event_id combination must be unique'
+                    'field'     => ['user_id', 'event_id'],
+                    'message'   => 'The user_id and event_id combination must be unique',
                 ]
             )
         );

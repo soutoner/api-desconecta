@@ -23,10 +23,9 @@ class Follow extends BaseModel
             'App\Models\User',
             'id',
             [
-            'alias' => 'User',
-            'foreignKey' =>
-                [
-                'message' => 'The user_id does not exist on the User model'
+                'alias' => 'User',
+                'foreignKey' => [
+                    'message' => 'The user_id does not exist on the User model',
                 ],
             ]
         );
@@ -35,10 +34,9 @@ class Follow extends BaseModel
             'App\Models\Local',
             'id',
             [
-            'alias' => 'Local',
-            'foreignKey' =>
-                [
-                'message' => 'The local_id does not exist on the Local model'
+                'alias' => 'Local',
+                'foreignKey' => [
+                    'message' => 'The local_id does not exist on the Local model',
                 ],
             ]
         );
@@ -55,24 +53,24 @@ class Follow extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'user_id',
-                'message'   => 'The user_id is required'
+                    'field'     => 'user_id',
+                    'message'   => 'The user_id is required',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'local_id',
-                'message'   => 'The local_id is required'
+                    'field'     => 'local_id',
+                    'message'   => 'The local_id is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => ['user_id', 'local_id'],
-                'message'   => 'The user_id and local_id combination must be unique'
+                    'field'     => ['user_id', 'local_id'],
+                    'message'   => 'The user_id and local_id combination must be unique',
                 ]
             )
         );

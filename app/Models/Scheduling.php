@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Lib\Validators\TimestampValidator;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
@@ -26,8 +27,8 @@ class Scheduling extends BaseModel
             'id',
             ['alias' => 'Period',
                 'foreignKey' => [
-                    'message'    => 'The period_id does not exist on the Period model'
-                ]
+                    'message'    => 'The period_id does not exist on the Period model',
+                ],
             ]
         );
 
@@ -45,16 +46,24 @@ class Scheduling extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'end_period',
-                'message'   => 'A icon is required'
+                    'field'     => 'end_period',
+                    'message'   => 'The scheduling end_period is required',
+                ]
+            )
+        );
+        $this->validate(
+            new TimestampValidator(
+                [
+                    'field'     => 'end_period',
+                    'message'   => 'The scheduling end_period must be validd',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'period_id',
-                'message'   => 'A period_id is required',
+                    'field'     => 'period_id',
+                    'message'   => 'The scheduling period_id is required',
                 ]
             )
         );

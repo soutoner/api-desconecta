@@ -43,8 +43,8 @@ class Event extends BaseModel
             [
                 'alias' => 'Local',
                 'foreignKey' => [
-                    'message'    => 'The local_id does not exist on the Local model'
-                ]
+                    'message'    => 'The local_id does not exist on the Local model',
+                ],
             ]
         );
 
@@ -56,8 +56,8 @@ class Event extends BaseModel
                 'alias' => 'GuestList',
                 'foreignKey' => [
                     'allowNulls' => true,
-                    'message'    => 'The guestList_id does not exist on the GuestList model'
-                ]
+                    'message'    => 'The guestList_id does not exist on the GuestList model',
+                ],
             ]
         );
 
@@ -69,8 +69,8 @@ class Event extends BaseModel
                 'alias' => 'Scheduling',
                 'foreignKey' => [
                     'allowNulls' => true,
-                    'message'    => 'The scheduling_id does not exist on the Scheduling model'
-                ]
+                    'message'    => 'The scheduling_id does not exist on the Scheduling model',
+                ],
             ]
         );
 
@@ -125,35 +125,36 @@ class Event extends BaseModel
      */
     public function validation()
     {
+        // TODO: validates image paths
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'name',
-                'message'   => 'The name is required'
+                    'field'     => 'name',
+                    'message'   => 'The event name is required'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'desc',
-                'message'   => 'A description is required'
+                    'field'     => 'desc',
+                    'message'   => 'The event description is required'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'photo_cover',
-                'message'   => 'A cover photo is required'
+                    'field'     => 'photo_cover',
+                    'message'   => 'The event cover photo is required'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'start_date',
-                'message'   => 'The event must have a start date',
+                    'field'     => 'start_date',
+                    'message'   => 'The event start date is required',
                 ]
             )
         );
@@ -161,14 +162,15 @@ class Event extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'start_date',
+                    'message'   => 'The event start date must be valid',
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'end_date',
-                'message'   => 'The event must have an end date',
+                    'field'     => 'end_date',
+                    'message'   => 'The event end date is required',
                 ]
             )
         );
@@ -176,22 +178,23 @@ class Event extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'end_date',
+                    'message'   => 'The event end date must be valid',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'guestList_id',
-                'message'   => 'The guestList_id must be unique',
+                    'field'     => 'guestList_id',
+                    'message'   => 'The guestList_id must be unique',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'scheduling_id',
-                'message'   => 'The scheduling_id must be unique',
+                    'field'     => 'scheduling_id',
+                    'message'   => 'The scheduling_id must be unique',
                 ]
             )
         );

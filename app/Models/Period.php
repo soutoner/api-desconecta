@@ -33,16 +33,16 @@ class Period extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'type',
-                'message'   => 'A type is required'
+                    'field'     => 'type',
+                    'message'   => 'The period type is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'type',
-                'message'   => 'The type must be unique'
+                    'field'     => 'type',
+                    'message'   => 'The period type must be unique',
                 ]
             )
         );

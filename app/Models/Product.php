@@ -43,24 +43,24 @@ class Product extends BaseModel
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'name',
-                'message'   => 'A name is required'
+                    'field'     => 'name',
+                    'message'   => 'The product name is required'
                 ]
             )
         );
         $this->validate(
             new PresenceOf(
                 [
-                'field'     => 'icon',
-                'message'   => 'A icon is required'
+                    'field'     => 'icon',
+                    'message'   => 'The product icon is required',
                 ]
             )
         );
         $this->validate(
             new Uniqueness(
                 [
-                'field'     => 'name',
-                'message'   => 'The name must be unique',
+                    'field'     => 'name',
+                    'message'   => 'The product name must be unique',
                 ]
             )
         );
