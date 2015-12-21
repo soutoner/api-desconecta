@@ -8,14 +8,14 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$hashtags = new MicroCollection();
-$hashtags->setHandler($controller_path . 'HashTagsController', true);
-$hashtags->setPrefix('/api/'. $version .'/hashtags');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'HashTagsController', true);
+$collection->setPrefix('/api/'. $version .'/hashtags');
 
 /**
  * Define routes
  */
-$hashtags->get('/', 'index');
-$hashtags->post('/', 'create');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
 
-return $hashtags;
+return $collection;

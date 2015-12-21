@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\User;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class UsersController extends ControllerBase
+class UsersController extends BaseController
 {
     /**
      * Returns all the users in the database.

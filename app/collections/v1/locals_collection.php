@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$locals = new MicroCollection();
-$locals->setHandler($controller_path . 'LocalsController', true);
-$locals->setPrefix('/api/'. $version .'/locals');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'LocalsController', true);
+$collection->setPrefix('/api/'. $version .'/locals');
 
 /**
  * Define routes
  */
-$locals->get('/', 'index');
-$locals->post('/', 'create');
-$locals->put('/{id:[0-9]+}', 'update');
-$locals->delete('/{id:[0-9]+}', 'delete');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
+$collection->put('/{id:[0-9]+}', 'update');
+$collection->delete('/{id:[0-9]+}', 'delete');
 
-return $locals;
+return $collection;

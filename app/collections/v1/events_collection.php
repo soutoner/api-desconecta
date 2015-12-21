@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$events = new MicroCollection();
-$events->setHandler($controller_path . 'EventsController', true);
-$events->setPrefix('/api/'. $version .'/events');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'EventsController', true);
+$collection->setPrefix('/api/'. $version .'/events');
 
 /**
  * Define routes
  */
-$events->get('/', 'index');
-$events->post('/', 'create');
-$events->put('/{id:[0-9]+}', 'update');
-$events->delete('/{id:[0-9]+}', 'delete');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
+$collection->put('/{id:[0-9]+}', 'update');
+$collection->delete('/{id:[0-9]+}', 'delete');
 
-return $events;
+return $collection;

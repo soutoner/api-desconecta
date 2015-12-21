@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$photos = new MicroCollection();
-$photos->setHandler($controller_path . 'PhotosController', true);
-$photos->setPrefix('/api/'. $version .'/photos');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'PhotosController', true);
+$collection->setPrefix('/api/'. $version .'/photos');
 
 /**
  * Define routes
  */
-$photos->get('/', 'index');
-$photos->post('/', 'create');
-$photos->put('/{id:[0-9]+}', 'update');
-$photos->delete('/{id:[0-9]+}', 'delete');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
+$collection->put('/{id:[0-9]+}', 'update');
+$collection->delete('/{id:[0-9]+}', 'delete');
 
-return $photos;
+return $collection;

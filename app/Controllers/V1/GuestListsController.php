@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\GuestList;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class GuestListsController extends ControllerBase
+class GuestListsController extends BaseController
 {
     /**
      * Returns all the lists in the database.

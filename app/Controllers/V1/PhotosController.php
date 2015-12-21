@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\Photo;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class PhotosController extends ControllerBase
+class PhotosController extends BaseController
 {
     /**
      * Returns all the photos in the database.

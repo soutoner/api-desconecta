@@ -2,14 +2,14 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Exceptions\Facebook\FbCallbackException;
 use App\Exceptions\Facebook\InvalidFbUser;
 use App\Models\Profile;
 use App\Models\User;
 use Phalcon\Http\Response;
 
-class RegisterController extends ControllerBase
+class RegisterController extends BaseController
 {
     /**
      * Returns the URL that drives the user to the authorize page.

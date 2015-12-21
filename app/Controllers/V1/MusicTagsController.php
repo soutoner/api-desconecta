@@ -2,11 +2,11 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\MusicTag;
 use Phalcon\Http\Response;
 
-class MusicTagsController extends ControllerBase
+class MusicTagsController extends BaseController
 {
     /**
      * Returns all the Musictags in the database.

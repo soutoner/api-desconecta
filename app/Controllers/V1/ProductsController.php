@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\Product;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class ProductsController extends ControllerBase
+class ProductsController extends BaseController
 {
     /**
      * Returns all the products in the database.

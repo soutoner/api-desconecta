@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\Pack;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class PacksController extends ControllerBase
+class PacksController extends BaseController
 {
     /**
      * Returns all the packs in the database.

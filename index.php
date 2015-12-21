@@ -30,6 +30,8 @@ try {
 
     $app->getRouter()->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
 
+    $app->before(new App\Middleware\OAuthMiddleware());
+
     /**
      * Mount routes collections
      */

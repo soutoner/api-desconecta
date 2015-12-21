@@ -6,7 +6,7 @@ use Phalcon\Mvc\Controller;
 use Phalcon\Http\Response;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
-class ControllerBase extends Controller
+class BaseController extends Controller
 {
     /**
      * Check if the resource is saved or not and returns a response depending on this.
