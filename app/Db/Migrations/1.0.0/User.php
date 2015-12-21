@@ -79,7 +79,7 @@ class UserMigration_100 extends Migration
                 'gender',
                 array(
                             'type' => Column::TYPE_VARCHAR,
-                            'size' => 1,
+                            'size' => 6,
                             'after' => 'date_birth'
                         )
             ),

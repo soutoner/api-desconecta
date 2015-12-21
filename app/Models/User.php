@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\Facebook\FbCallbackException;
 use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
@@ -187,8 +188,8 @@ class User extends BaseModel
             new InclusionIn(
                 [
                     'field'     => 'gender',
-                    'message'   => 'The user gender must be H or M',
-                    'domain'    => ['H', 'M', '']
+                    'message'   => 'The user gender must be male or female',
+                    'domain'    => ['male', 'female', '']
                 ]
             )
         );
@@ -212,5 +213,31 @@ class User extends BaseModel
         if ($this->validationHasFailed() == true) {
             return false;
         }
+    }
+
+    /**
+     * Assigns User variables to the given ones of Facebook.
+     *
+     * @param  $me
+     * @return \Phalcon\Mvc\Model
+     * @throws FbCallbackException
+     */
+    public function assignFromFacebook($me)
+    {
+        if (empty($me->email)) {
+            throw new FbCallbackException('User is not providing email.');
+        }
+
+        return $this->assign(
+            [
+            'name'              => $me->first_name,
+            'surname'           => $me->last_name,
+            'email'             => $me->email,
+            'profile_picture'   => $me->picture->data->url,
+            'date_birth'        => date('Y-m-d', strtotime($me->birthday)),
+            'gender'            => $me->gender,
+            'from'              => $me->location->name,
+            ]
+        );
     }
 }

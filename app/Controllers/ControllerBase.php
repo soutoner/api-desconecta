@@ -82,7 +82,7 @@ class ControllerBase extends Controller
     /**
      * Paginates given Resource. By default paginates ::find of caller Model.
      *
-     * @param null $resource : Resource to be paginated
+     * @param  null $resource : Resource to be paginated
      * @return Response
      */
     public function paginate($resource = null)

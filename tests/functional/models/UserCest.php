@@ -112,7 +112,7 @@ class UserCest
 
     public function createdAtContainsTimeStampOfCreation(FunctionalTester $I)
     {
-        $creation_timestamp = date('Y-m-d H:i:sP', time());
+        $creation_timestamp = date('Y-m-d H:i:s', time());
         $this->model->save();
         $I->assertEquals($creation_timestamp, $this->model->created_at);
     }
@@ -123,7 +123,7 @@ class UserCest
 
     public function updatedAtContainsTimeStampOfCreation(FunctionalTester $I)
     {
-        $creation_timestamp = date('Y-m-d H:i:sP', time());
+        $creation_timestamp = date('Y-m-d H:i:s', time());
         $this->model->save();
         $I->assertEquals($creation_timestamp, $this->model->updated_at);
     }
@@ -132,7 +132,7 @@ class UserCest
     {
         $this->model->save();
         sleep(1);
-        $update_timestamp = date('Y-m-d H:i:sP', time());
+        $update_timestamp = date('Y-m-d H:i:s', time());
         $this->model->update([ 'name' => 'Foo' ]);
         $I->assertNotEquals($this->model->created_at, $this->model->updated_at);
         $I->assertEquals($update_timestamp, $this->model->updated_at);

@@ -103,4 +103,24 @@ class Profile extends BaseModel
             return false;
         }
     }
+
+    /**
+     * Create Facebook profile with the given data.
+     *
+     * @param  $id
+     * @param  $access_token
+     * @param  $user_id
+     * @return bool
+     */
+    public function createFromFacebook($id, $access_token, $user_id)
+    {
+        return $this->create(
+            [
+            'uid'           => $id,
+            'access_token'  => $access_token,
+            'user_id'       => $user_id,
+            'provider_id'   => Provider::findFirst("name = 'facebook'")->id,
+            ]
+        );
+    }
 }

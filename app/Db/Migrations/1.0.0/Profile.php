@@ -44,7 +44,7 @@ class ProfileMigration_100 extends Migration
                 array(
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
-                            'size' => 45,
+                            'size' => 255,
                             'after' => 'uid'
                         )
             ),
@@ -91,6 +91,7 @@ class ProfileMigration_100 extends Migration
             'indexes' => array(
             new Index('PRIMARY', array('id', 'user_id'), null),
             new Index('id_UNIQUE', array('id'), null),
+            new Index('uid_UNIQUE', array('uid'), null),
             new Index('fk_Profile_Provider_idx', array('provider_id'), null),
             new Index('fk_Profile_User_idx', array('user_id'), null)
             ),
