@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use \FunctionalTester;
 use App\Db\Seeds\Models\UserSeeder;
 use App\Models\User;
 
@@ -25,7 +26,7 @@ class BaseControllerCest
 
     public function indexReponseSuccesfullWithPage(FunctionalTester $I)
     {
-        App\Db\Seeds\Models\UserSeeder::Seed(true);
+        UserSeeder::Seed(true);
         $I->sendGET('/api/v1/users', ['page' => '2']);
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
