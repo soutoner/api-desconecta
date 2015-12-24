@@ -3,6 +3,14 @@ API for desconecta project.
 
 [![Build Status](https://travis-ci.com/soutoner/api-desconecta.svg?token=gC1xv7zL8muN3fTRZWiQ&branch=master)](https://travis-ci.com/soutoner/api-desconecta)
 
+### Before all
+
+```
+composer install
+mysql -uroot -e 'CREATE DATABASE IF NOT EXISTS desconecta_dev;'
+mysql -uroot desconecta_dev < app/Db/oauth.sql
+```
+
 ### Launch development server
 
 `composer install`

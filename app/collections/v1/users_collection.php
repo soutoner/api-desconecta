@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$users = new MicroCollection();
-$users->setHandler($controller_path . 'UsersController', true);
-$users->setPrefix('/api/'. $version .'/users');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'UsersController', true);
+$collection->setPrefix('/api/'. $version .'/users');
 
 /**
  * Define routes
  */
-$users->get('/', 'index');
-$users->post('/', 'create');
-$users->put('/{id:[0-9]+}', 'update');
-$users->delete('/{id:[0-9]+}', 'delete');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
+$collection->put('/{id:[0-9]+}', 'update');
+$collection->delete('/{id:[0-9]+}', 'delete');
 
-return $users;
+return $collection;

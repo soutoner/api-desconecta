@@ -56,8 +56,25 @@ $di->setShared('modelsMetadata', function () {
 $di->setShared('session', function () {
     $session = new SessionAdapter();
     $session->start();
-
     return $session;
+});
+
+/**
+ * Set OAuth2 server.
+ */
+$di->setShared('oauth', function () use ($config) {
+    $dsn = strtolower($config->database->adapter).':dbname='.$config->database->dbname.';host='.$config->database->host;
+    OAuth2\Autoloader::register();
+    $storage = new OAuth2\Storage\Pdo([
+        'dsn'       => $dsn,
+        'username'  => $config->database->username,
+        'password'  => $config->database->password,
+    ]);
+    $server = new OAuth2\Server($storage);
+    $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
+    $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
+
+    return $server;
 });
 
 /**

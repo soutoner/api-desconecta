@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$products = new MicroCollection();
-$products->setHandler($controller_path . 'ProductsController', true);
-$products->setPrefix('/api/'. $version .'/products');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'ProductsController', true);
+$collection->setPrefix('/api/'. $version .'/products');
 
 /**
  * Define routes
  */
-$products->get('/', 'index');
-$products->post('/', 'create');
-$products->put('/{id:[0-9]+}', 'update');
-$products->delete('/{id:[0-9]+}', 'delete');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
+$collection->put('/{id:[0-9]+}', 'update');
+$collection->delete('/{id:[0-9]+}', 'delete');
 
-return $products;
+return $collection;

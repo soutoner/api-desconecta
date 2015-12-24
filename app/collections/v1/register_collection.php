@@ -8,15 +8,15 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$register = new MicroCollection();
-$register->setHandler($controller_path . 'RegisterController', true);
-$register->setPrefix('/api/'. $version .'/register');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'RegisterController', true);
+$collection->setPrefix('/api/'. $version .'/register');
 
 /**
  * Define routes
  */
-$register->get('/facebook', 'getAuthFacebook');
-$register->get('/facebook/callback', 'facebookCallback');
+$collection->get('/facebook', 'getAuthFacebook');
+$collection->get('/facebook/callback', 'facebookCallback');
 
 
-return $register;
+return $collection;

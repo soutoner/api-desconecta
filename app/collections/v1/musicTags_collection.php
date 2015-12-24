@@ -8,14 +8,14 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$musictags = new MicroCollection();
-$musictags->setHandler($controller_path . 'MusicTagsController', true);
-$musictags->setPrefix('/api/'. $version .'/musictags');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'MusicTagsController', true);
+$collection->setPrefix('/api/'. $version .'/musictags');
 
 /**
  * Define routes
  */
-$musictags->get('/', 'index');
-$musictags->post('/', 'create');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
 
-return $musictags;
+return $collection;

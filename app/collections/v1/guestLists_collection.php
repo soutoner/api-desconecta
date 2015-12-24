@@ -8,16 +8,16 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$lists = new MicroCollection();
-$lists->setHandler($controller_path . 'GuestListsController', true);
-$lists->setPrefix('/api/'. $version .'/guestlists');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'GuestListsController', true);
+$collection->setPrefix('/api/'. $version .'/guestlists');
 
 /**
  * Define routes
  */
-$lists->get('/', 'index');
-$lists->post('/', 'create');
-$lists->put('/{id:[0-9]+}', 'update');
-$lists->delete('/{id:[0-9]+}', 'delete');
+$collection->get('/', 'index');
+$collection->post('/', 'create');
+$collection->put('/{id:[0-9]+}', 'update');
+$collection->delete('/{id:[0-9]+}', 'delete');
 
-return $lists;
+return $collection;

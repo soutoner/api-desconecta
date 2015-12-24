@@ -8,13 +8,13 @@ $controller_path = 'App\Controllers\\' . strtoupper($version) . '\\';
 /**
  * Setup collection
  */
-$periods = new MicroCollection();
-$periods->setHandler($controller_path . 'PeriodsController', true);
-$periods->setPrefix('/api/'. $version .'/periods');
+$collection = new MicroCollection();
+$collection->setHandler($controller_path . 'PeriodsController', true);
+$collection->setPrefix('/api/'. $version .'/periods');
 
 /**
  * Define routes
  */
-$periods->get('/', 'index');
+$collection->get('/', 'index');
 
-return $periods;
+return $collection;
