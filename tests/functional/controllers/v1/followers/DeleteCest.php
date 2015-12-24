@@ -1,6 +1,6 @@
 <?php
 
-namespace v1\followers;
+namespace controllers\v1\followers;
 
 use \EndpointTest;
 use \FunctionalTester;

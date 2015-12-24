@@ -42,7 +42,6 @@ class MusicTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'value',
-                    'message'   => 'The musictag value is required',
                 ]
             )
         );
@@ -50,7 +49,6 @@ class MusicTag extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'value',
-                    'message'   => 'The musictag value must be unique',
                 ]
             )
         );

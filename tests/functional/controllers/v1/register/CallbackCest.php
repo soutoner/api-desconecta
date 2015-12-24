@@ -1,6 +1,6 @@
 <?php
 
-namespace v1\register;
+namespace controllers\v1\register;
 
 use App\Models\Profile;
 use App\Models\User;

@@ -34,7 +34,6 @@ class Period extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'type',
-                    'message'   => 'The period type is required',
                 ]
             )
         );
@@ -42,7 +41,6 @@ class Period extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'type',
-                    'message'   => 'The period type must be unique',
                 ]
             )
         );

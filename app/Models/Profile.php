@@ -62,7 +62,6 @@ class Profile extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'uid',
-                    'message'   => 'The profile uid is required',
                 ]
             )
         );
@@ -70,7 +69,6 @@ class Profile extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'access_token',
-                    'message'   => 'The profile access_token is required',
                 ]
             )
         );
@@ -78,7 +76,6 @@ class Profile extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'user_id',
-                    'message'   => 'The profile user_id is required',
                 ]
             )
         );
@@ -86,7 +83,6 @@ class Profile extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'provider_id',
-                    'message'   => 'The profile provider_id is required',
                 ]
             )
         );
@@ -94,7 +90,6 @@ class Profile extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['user_id', 'provider_id'],
-                    'message'   => 'The profile (user_id-provider_id) must be unique',
                 ]
             )
         );

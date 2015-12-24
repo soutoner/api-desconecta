@@ -68,7 +68,6 @@ class Photo extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'uri',
-                    'message'   => 'The photo uri is required',
                 ]
             )
         );
@@ -76,7 +75,6 @@ class Photo extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'event_id',
-                    'message'   => 'The photo event_id is required',
                 ]
             )
         );

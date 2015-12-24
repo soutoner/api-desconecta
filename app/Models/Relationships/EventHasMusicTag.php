@@ -54,7 +54,6 @@ class EventHasMusicTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'event_id',
-                    'message'   => 'The event_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class EventHasMusicTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'musicTag_id',
-                    'message'   => 'The musicTag_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class EventHasMusicTag extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['event_id', 'musicTag_id'],
-                    'message'   => 'The event_id and musicTag_id combination must be unique',
                 ]
             )
         );

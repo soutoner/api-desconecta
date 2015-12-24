@@ -34,7 +34,6 @@ class Provider extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'name',
-                    'message'   => 'The provider name is required',
                 ]
             )
         );
@@ -42,7 +41,6 @@ class Provider extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'name',
-                    'message'   => 'The provider name must be unique',
                 ]
             )
         );

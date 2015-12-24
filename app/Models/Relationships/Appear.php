@@ -54,7 +54,6 @@ class Appear extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'user_id',
-                    'message'   => 'The user_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class Appear extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'photo_id',
-                    'message'   => 'The photo_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class Appear extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['user_id', 'photo_id'],
-                    'message'   => 'The user_id and photo_id combination must be unique',
                 ]
             )
         );

@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\Scheduling;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class SchedulingsController extends ControllerBase
+class SchedulingsController extends BaseController
 {
     /**
      * Returns all the schedulings in the database.

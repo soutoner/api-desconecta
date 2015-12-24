@@ -130,7 +130,6 @@ class Event extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'name',
-                    'message'   => 'The event name is required'
                 ]
             )
         );
@@ -138,7 +137,6 @@ class Event extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'desc',
-                    'message'   => 'The event description is required'
                 ]
             )
         );
@@ -146,7 +144,6 @@ class Event extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'photo_cover',
-                    'message'   => 'The event cover photo is required'
                 ]
             )
         );
@@ -154,7 +151,6 @@ class Event extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'start_date',
-                    'message'   => 'The event start date is required',
                 ]
             )
         );
@@ -162,7 +158,6 @@ class Event extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'start_date',
-                    'message'   => 'The event start date must be valid',
                 ]
             )
         );
@@ -170,7 +165,6 @@ class Event extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'end_date',
-                    'message'   => 'The event end date is required',
                 ]
             )
         );
@@ -178,7 +172,6 @@ class Event extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'end_date',
-                    'message'   => 'The event end date must be valid',
                 ]
             )
         );
@@ -186,7 +179,6 @@ class Event extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'guestList_id',
-                    'message'   => 'The guestList_id must be unique',
                 ]
             )
         );
@@ -194,12 +186,13 @@ class Event extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'scheduling_id',
-                    'message'   => 'The scheduling_id must be unique',
                 ]
             )
         );
 
         if ($this->end_date <= $this->start_date) {
+            $this->appendMessage(new Message('The end_date must be after start_date', 'end_date'));
+
             return false;
         }
 

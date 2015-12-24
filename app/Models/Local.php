@@ -66,7 +66,6 @@ class Local extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'name',
-                    'message'   => 'The local name is required',
                 ]
             )
         );
@@ -74,7 +73,6 @@ class Local extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'name',
-                    'message'   => 'The local name must be unique',
                 ]
             )
         );
@@ -82,7 +80,6 @@ class Local extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'desc',
-                    'message'   => 'The local description is required',
                 ]
             )
         );
@@ -90,7 +87,6 @@ class Local extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'photo_cover',
-                    'message'   => 'The local cover photo is required',
                 ]
             )
         );
@@ -98,7 +94,6 @@ class Local extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'geo',
-                    'message'   => 'The local geological position is required',
                 ]
             )
         );
@@ -106,7 +101,6 @@ class Local extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'address',
-                    'message'   => 'The local address is required',
                 ]
             )
         );
@@ -114,7 +108,6 @@ class Local extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'owner_id',
-                    'message'   => 'The local owner is required',
                 ]
             )
         );

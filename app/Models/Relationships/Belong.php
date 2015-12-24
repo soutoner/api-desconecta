@@ -54,7 +54,6 @@ class Belong extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'user_id',
-                    'message'   => 'The user_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class Belong extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'guestList_id',
-                    'message'   => 'The guestList_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class Belong extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['user_id', 'guestList_id'],
-                    'message'   => 'The user_id and guestList_id combination must be unique',
                 ]
             )
         );

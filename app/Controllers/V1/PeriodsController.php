@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\Period;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class PeriodsController extends ControllerBase
+class PeriodsController extends BaseController
 {
     /**
      * Returns all the period in the database.

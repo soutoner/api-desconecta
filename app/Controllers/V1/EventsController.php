@@ -2,13 +2,13 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\Event;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
-class EventsController extends ControllerBase
+class EventsController extends BaseController
 {
     /**
      * Returns all the events in the database.

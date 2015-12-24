@@ -4,6 +4,7 @@
 namespace App\Models\Relationships;
 
 use App\Models\BaseModel;
+use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
@@ -76,6 +77,8 @@ class Follower extends BaseModel
         );
 
         if ($this->user_id === $this->follower_id) {
+            $this->appendMessage(new Message('An user can\'t follow himself'));
+
             return false;
         }
 

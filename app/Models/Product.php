@@ -44,7 +44,6 @@ class Product extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'name',
-                    'message'   => 'The product name is required'
                 ]
             )
         );
@@ -52,7 +51,6 @@ class Product extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'icon',
-                    'message'   => 'The product icon is required',
                 ]
             )
         );
@@ -60,7 +58,6 @@ class Product extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'name',
-                    'message'   => 'The product name must be unique',
                 ]
             )
         );

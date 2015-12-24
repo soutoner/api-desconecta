@@ -54,7 +54,6 @@ class PackHasProduct extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'pack_id',
-                    'message'   => 'The pack_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class PackHasProduct extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'product_id',
-                    'message'   => 'The product_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class PackHasProduct extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['pack_id', 'product_id'],
-                    'message'   => 'The pack_id and product_id combination must be unique',
                 ]
             )
         );

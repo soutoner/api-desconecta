@@ -54,7 +54,6 @@ class PhotoHasHashTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'photo_id',
-                    'message'   => 'The photo_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class PhotoHasHashTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'hashTag_id',
-                    'message'   => 'The hashTag_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class PhotoHasHashTag extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['photo_id', 'hashTag_id'],
-                    'message'   => 'The photo_id and hashTag_id combination must be unique',
                 ]
             )
         );

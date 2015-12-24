@@ -2,14 +2,14 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Exceptions\Facebook\FbCallbackException;
 use App\Exceptions\Facebook\InvalidFbUser;
 use App\Models\Profile;
 use App\Models\User;
 use Phalcon\Http\Response;
 
-class RegisterController extends ControllerBase
+class RegisterController extends BaseController
 {
     /**
      * Returns the URL that drives the user to the authorize page.
@@ -68,7 +68,8 @@ class RegisterController extends ControllerBase
                 } else {
                     throw new InvalidFbUser($user);
                 }
-            } else { // User already registered
+            } else { // User already registered, update access_token
+                $profile->save(['access_token' => $access_token]);
                 $user = $profile->getUser();
 
                 return new Response(json_encode($user->toArray()));

@@ -132,7 +132,6 @@ class User extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'name',
-                    'message'   => 'The user name is required'
                 ]
             )
         );
@@ -140,7 +139,6 @@ class User extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'surname',
-                    'message'   => 'The user surname is required'
                 ]
             )
         );
@@ -148,7 +146,6 @@ class User extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'email',
-                    'message'   => 'The user email must be unique'
                 ]
             )
         );
@@ -156,7 +153,6 @@ class User extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'email',
-                    'message'   => 'The user email is required'
                 ]
             )
         );
@@ -164,7 +160,6 @@ class User extends BaseModel
             new Email(
                 [
                     'field'     => 'email',
-                    'message'   => 'The user email must be valid'
                 ]
             )
         );
@@ -172,7 +167,6 @@ class User extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'profile_picture',
-                    'message'   => 'The user profile picture is requires'
                 ]
             )
         );
@@ -180,7 +174,6 @@ class User extends BaseModel
             new Url(
                 [
                     'field'     => 'profile_picture',
-                    'message'   => 'The user profile picture must be valid'
                 ]
             )
         );
@@ -188,7 +181,6 @@ class User extends BaseModel
             new InclusionIn(
                 [
                     'field'     => 'gender',
-                    'message'   => 'The user gender must be male or female',
                     'domain'    => ['male', 'female', '']
                 ]
             )
@@ -197,7 +189,6 @@ class User extends BaseModel
             new DateValidator(
                 [
                     'field'     => 'date_birth',
-                    'message'   => 'The user date of birth must be valid'
                 ]
             )
         );
@@ -205,7 +196,6 @@ class User extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'rrpp_id',
-                    'message'   => 'The user rrpp_id must be unique'
                 ]
             )
         );

@@ -52,7 +52,6 @@ class HashTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'value',
-                    'message'   => 'The hashtag value is required',
                 ]
             )
         );
@@ -60,7 +59,6 @@ class HashTag extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'value',
-                    'message'   => 'The hashtag value must be unique',
                 ]
             )
         );

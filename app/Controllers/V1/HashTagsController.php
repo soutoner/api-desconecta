@@ -2,12 +2,12 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\HashTag;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
-class HashTagsController extends ControllerBase
+class HashTagsController extends BaseController
 {
     /**
      * Returns all the hashtags in the database.

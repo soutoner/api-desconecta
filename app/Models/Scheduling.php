@@ -47,7 +47,6 @@ class Scheduling extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'end_period',
-                    'message'   => 'The scheduling end_period is required',
                 ]
             )
         );
@@ -55,7 +54,6 @@ class Scheduling extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'end_period',
-                    'message'   => 'The scheduling end_period must be validd',
                 ]
             )
         );
@@ -63,7 +61,6 @@ class Scheduling extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'period_id',
-                    'message'   => 'The scheduling period_id is required',
                 ]
             )
         );

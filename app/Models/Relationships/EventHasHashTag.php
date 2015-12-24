@@ -54,7 +54,6 @@ class EventHasHashTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'event_id',
-                    'message'   => 'The event_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class EventHasHashTag extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'hashTag_id',
-                    'message'   => 'The hashTag_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class EventHasHashTag extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['event_id', 'hashTag_id'],
-                    'message'   => 'The event_id and hashTag_id combination must be unique',
                 ]
             )
         );

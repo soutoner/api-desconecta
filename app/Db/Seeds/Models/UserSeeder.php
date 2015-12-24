@@ -7,6 +7,8 @@ use App\Models\RRPP;
 
 class UserSeeder extends BaseSeeder
 {
+    protected static $n_fake_seeds = 30;
+
     /**
      * Define specific seeds that are inserted in database here.
      *

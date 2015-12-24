@@ -54,7 +54,6 @@ class EventHasPack extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'event_id',
-                    'message'   => 'The event_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class EventHasPack extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'pack_id',
-                    'message'   => 'The pack_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class EventHasPack extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['event_id', 'pack_id'],
-                    'message'   => 'The event_id and pack_id combination must be unique',
                 ]
             )
         );

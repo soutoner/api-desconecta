@@ -51,7 +51,6 @@ class GuestList extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'start_time',
-                    'message'   => 'The start date is required'
                 ]
             )
         );
@@ -59,7 +58,6 @@ class GuestList extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'start_time',
-                    'message'   => 'The guest list start time must be valid',
                 ]
             )
         );
@@ -67,7 +65,6 @@ class GuestList extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'end_time',
-                    'message'   => 'The end date is required'
                 ]
             )
         );
@@ -75,7 +72,6 @@ class GuestList extends BaseModel
             new TimestampValidator(
                 [
                     'field'     => 'end_time',
-                    'message'   => 'The guest list end time must be valid',
                 ]
             )
         );
@@ -83,7 +79,6 @@ class GuestList extends BaseModel
             new Numericality(
                 [
                     'field'     => 'max_friends',
-                    'message'   => 'The guest list max friends must be a number',
                 ]
             )
         );
@@ -91,16 +86,25 @@ class GuestList extends BaseModel
             new Numericality(
                 [
                     'field'     => 'max_capacity',
-                    'message'   => 'The guest list max capacity must be a number',
                 ]
             )
         );
 
-        if ($this->max_capacity < 0 || $this->max_friends < 0) {
+        if ($this->max_capacity < 0) {
+            $this->appendMessage(new Message('The field max_capacity must be positive', 'max_capacity'));
+
+            return false;
+        }
+
+        if ($this->max_friends < 0) {
+            $this->appendMessage(new Message('The field max_friendsy must be positive', 'max_friends'));
+
             return false;
         }
 
         if ($this->end_time <= $this->start_time) {
+            $this->appendMessage(new Message('The end_time must be after start_time', 'end_time'));
+
             return false;
         }
 

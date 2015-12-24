@@ -52,7 +52,6 @@ class Pack extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'price',
-                    'message'   => 'The pack price is required'
                 ]
             )
         );
@@ -60,12 +59,13 @@ class Pack extends BaseModel
             new Uniqueness(
                 [
                     'field'     => 'price',
-                    'message'   => 'The pack price must be unique'
                 ]
             )
         );
 
         if ($this->price < 0) {
+            $this->appendMessage(new Message('The field price must be positive', 'price'));
+
             return false;
         }
 

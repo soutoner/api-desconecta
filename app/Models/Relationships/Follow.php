@@ -54,7 +54,6 @@ class Follow extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'user_id',
-                    'message'   => 'The user_id is required',
                 ]
             )
         );
@@ -62,7 +61,6 @@ class Follow extends BaseModel
             new PresenceOf(
                 [
                     'field'     => 'local_id',
-                    'message'   => 'The local_id is required',
                 ]
             )
         );
@@ -70,7 +68,6 @@ class Follow extends BaseModel
             new Uniqueness(
                 [
                     'field'     => ['user_id', 'local_id'],
-                    'message'   => 'The user_id and local_id combination must be unique',
                 ]
             )
         );

@@ -6,21 +6,20 @@ use Phalcon\Mvc\Controller;
 use Phalcon\Http\Response;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
-class ControllerBase extends Controller
+class BaseController extends Controller
 {
     /**
      * Check if the resource is saved or not and returns a response depending on this.
-     * @param $request
      * @param $resource
      * @return Phalcon\Http\Response
      */
-    protected function response($request, $resource)
+    protected function response($resource)
     {
         // Create a response
         $response = new Response();
 
         // Request method
-        $method = $request->getMethod();
+        $method = $this->request->getMethod();
 
         if ($method === "POST" || $method === "PUT") {
             if ($resource->save() == true) {
@@ -44,7 +43,15 @@ class ControllerBase extends Controller
                 // Send errors to the client
                 $errors = array();
                 foreach ($resource->getMessages() as $message) {
-                    $errors[] = $message->getMessage();
+                    $key = $message->getField();
+                    if (empty($key)) {
+                        $errors[] = $message->getMessage();
+                    } else {
+                        if (!isset($errors[$key])) {
+                            $errors[$key] = array();
+                        }
+                        $errors[$key][] = $message->getMessage();
+                    }
                 }
 
                 $response->setJsonContent(

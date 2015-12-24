@@ -2,13 +2,13 @@
 
 namespace App\Controllers\V1;
 
-use App\Controllers\ControllerBase;
+use App\Controllers\BaseController;
 use App\Models\User;
 use App\Models\Relationships\Follower;
 use App\Exceptions\ResourceNotFoundException;
 use Phalcon\Http\Response;
 
-class FollowersController extends ControllerBase
+class FollowersController extends BaseController
 {
     /**
      * Returns followers of the given user.
@@ -67,7 +67,7 @@ class FollowersController extends ControllerBase
                 ]
             );
 
-            return $this->response($this->request, $relationship);
+            return $this->response($relationship);
 
         } catch (ResourceNotFoundException $e) {
             return $e->returnResponse();
@@ -103,7 +103,7 @@ class FollowersController extends ControllerBase
                 ]
             );
 
-            return $this->response($this->request, $relationship);
+            return $this->response($relationship);
 
         } catch (ResourceNotFoundException $e) {
             return $e->returnResponse();
