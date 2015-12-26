@@ -7,16 +7,39 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
+/**
+ * @SWG\Definition(required={"uid","access_token","provider_id"}, @SWG\Xml(name="Profile"))
+ */
 class Profile extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $uid;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $access_token;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $user_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $provider_id;
 
     public function initialize()

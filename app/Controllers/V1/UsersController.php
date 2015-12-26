@@ -66,7 +66,7 @@ class UsersController extends BaseController
      *      summary="Create user",
      *      description="This can only be done by the API itself.",
      *      operationId="createUser",
-     *      consumes={"multipart/form-data"},
+     *      consumes={"application/x-www-form-urlencoded"},
      *      @SWG\Parameter(
      *          in="body",
      *          name="body",
@@ -125,12 +125,13 @@ class UsersController extends BaseController
      *      summary="Update user",
      *      description="Field by field update can be done.",
      *      operationId="updateUser",
+     *      consumes={"application/x-www-form-urlencoded"},
      *      @SWG\Parameter(
      *          name="id",
      *          in="path",
      *          description="User ID to be updated",
      *          required=true,
-     *          type="string",
+     *          type="integer",
      *      ),
      *      @SWG\Parameter(
      *          in="body",
@@ -201,7 +202,7 @@ class UsersController extends BaseController
      *          in="path",
      *          description="User ID to be deleted",
      *          required=true,
-     *          type="string",
+     *          type="integer",
      *      ),
      *      @SWG\Response(
      *          response=200,

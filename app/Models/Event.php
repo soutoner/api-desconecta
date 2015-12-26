@@ -8,26 +8,69 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
+/**
+ * @SWG\Definition(required={"name","desc","photo_cover","start_date","end_date","local_id"}, @SWG\Xml(name="Event"))
+ */
 class Event extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $name;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $desc;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $photo_cover;
 
+    /**
+     * @SWG\Property(type="string",format="date-time")
+     * @var string
+     */
     public $start_date;
 
+    /**
+     * @SWG\Property(type="string",format="date-time")
+     * @var string
+     */
     public $end_date;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $flyer;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $local_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $guestList_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $scheduling_id;
 
     public function initialize()

@@ -8,16 +8,39 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\Numericality;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
+/**
+ * @SWG\Definition(required={"start_time","end_time"}, @SWG\Xml(name="GuestList"))
+ */
 class GuestList extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string",format="date-time")
+     * @var string
+     */
     public $start_time;
 
+    /**
+     * @SWG\Property(type="string",format="date-time")
+     * @var string
+     */
     public $end_time;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $max_friends;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $max_capacity;
 
     public function initialize()

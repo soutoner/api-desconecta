@@ -8,10 +8,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"photo_id","hashTag_id"}, @SWG\Xml(name="PhotoHasHashTag"))
+ */
 class PhotoHasHashTag extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $photo_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $hashTag_id;
 
     public function initialize()

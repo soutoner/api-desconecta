@@ -8,10 +8,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"pack_id","product_id"}, @SWG\Xml(name="PackHasProduct"))
+ */
 class PackHasProduct extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $pack_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $product_id;
 
     public function initialize()

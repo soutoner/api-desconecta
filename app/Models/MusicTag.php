@@ -7,10 +7,21 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
+/**
+ * @SWG\Definition(required={"value"}, @SWG\Xml(name="MusicTag"))
+ */
 class MusicTag extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $value;
 
     public function initialize()

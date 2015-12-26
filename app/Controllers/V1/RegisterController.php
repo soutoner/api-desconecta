@@ -9,12 +9,34 @@ use App\Models\Profile;
 use App\Models\User;
 use Phalcon\Http\Response;
 
+/**
+ * @SWG\Tag(
+ *   name="facebook",
+ *   description="Everything about facebook social login",
+ * )
+ */
 class RegisterController extends BaseController
 {
     /**
-     * Returns the URL that drives the user to the authorize page.
-     *
-     * @return Response
+     *  @SWG\Get(
+     *      path="/register/facebook",
+     *      summary="Return the auth url for Facebook",
+     *      tags={"facebook"},
+     *      description="Returns the auth url for Facebook OAuth2 process.",
+     *      operationId="getAuthUrlFacebook",
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @SWG\Schema(),
+     *          examples={
+     *              "application/json": "https://www.facebook.com/v2.5/dialog/oauth?client_id=...&redirect_uri=...&response_type=..."
+     *          },
+     *      ),
+     *      @SWG\Response(
+     *          response="401",
+     *          description="Not authorized",
+     *      ),
+     *  )
      */
     public function getAuthFacebook()
     {

@@ -7,20 +7,51 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
+/**
+ * @SWG\Definition(required={"name","desc","photo_cover","geo","address","owner_id"}, @SWG\Xml(name="Local"))
+ */
 class Local extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $name;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $desc;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $photo_cover;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $geo;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $address;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $owner_id;
 
     public function initialize()

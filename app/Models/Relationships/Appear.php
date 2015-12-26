@@ -8,10 +8,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"user_id","photo_id"}, @SWG\Xml(name="Appear"))
+ */
 class Appear extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $user_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $photo_id;
 
     public function initialize()

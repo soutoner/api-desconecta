@@ -7,10 +7,21 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
+/**
+ * @SWG\Definition(required={"type"}, @SWG\Xml(name="Period"))
+ */
 class Period extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $type;
 
     public function initialize()

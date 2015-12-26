@@ -9,10 +9,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"user_id","follower_id"}, @SWG\Xml(name="Follower"))
+ */
 class Follower extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $user_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $follower_id;
 
     public function initialize()

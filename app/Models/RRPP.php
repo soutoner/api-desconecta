@@ -6,10 +6,21 @@ use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
+/**
+ * @SWG\Definition(@SWG\Xml(name="RRPP"))
+ */
 class RRPP extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="boolean")
+     * @var boolean
+     */
     public $verified;
 
     public function initialize()

@@ -8,10 +8,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"event_id","hashTag_id"}, @SWG\Xml(name="EventHasHashTag"))
+ */
 class EventHasHashTag extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $event_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $hashTag_id;
 
     public function initialize()

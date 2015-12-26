@@ -7,12 +7,26 @@ use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
+/**
+ * @SWG\Definition(required={"end_period","period_id"}, @SWG\Xml(name="Scheduling"))
+ */
 class Scheduling extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string",format="date-time")
+     */
     public $end_period;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $period_id;
 
     public function initialize()

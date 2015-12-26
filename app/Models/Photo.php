@@ -6,15 +6,34 @@ use App\Models\BaseModel;
 use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 
+/**
+ * @SWG\Definition(required={"uri","event_id"}, @SWG\Xml(name="Photo"))
+ */
 class Photo extends BaseModel
 {
     // TODO: who owns a photo?
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $uri;
 
+    /**
+     * @SWG\Property(type="string")
+     * @var string
+     */
     public $desc;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $event_id;
 
     public function initialize()

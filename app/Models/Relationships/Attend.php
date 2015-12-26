@@ -8,12 +8,27 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"user_id","event_id"}, @SWG\Xml(name="Attend"))
+ */
 class Attend extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $user_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $event_id;
 
+    /**
+     * @SWG\Property(type="boolean")
+     * @var boolean
+     */
     public $geo_attended;
 
     public function initialize()

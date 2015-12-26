@@ -8,10 +8,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"user_id","guestList_id"}, @SWG\Xml(name="Belong"))
+ */
 class Belong extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $user_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $guestList_id;
 
     public function initialize()

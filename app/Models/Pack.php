@@ -7,10 +7,21 @@ use Phalcon\Mvc\Model\Message;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
+/**
+ * @SWG\Definition(required={"price"}, @SWG\Xml(name="Pack"))
+ */
 class Pack extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $id;
 
+    /**
+     * @SWG\Property(type="number",format="double")
+     * @var double
+     */
     public $price;
 
     public function initialize()

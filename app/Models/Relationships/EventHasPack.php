@@ -8,10 +8,21 @@ use Phalcon\Mvc\Model\Validator\Uniqueness;
 use Phalcon\Mvc\Model\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
+/**
+ * @SWG\Definition(required={"event_id","pack_id"}, @SWG\Xml(name="EventHasPack"))
+ */
 class EventHasPack extends BaseModel
 {
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $event_id;
 
+    /**
+     * @SWG\Property(type="integer")
+     * @var int
+     */
     public $pack_id;
 
     public function initialize()
