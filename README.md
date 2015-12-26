@@ -54,3 +54,28 @@ Run CBF for dummy fixes:
 Run CS to scan problems without the entire Grum- suite checks:
 
 `vendor/bin/phpcs app/ tests/`
+
+### Documentation
+
+Generate docs:
+
+`vendor/bin/swagger app/ -o docs/api-doc.json`
+
+View documentation (not that easy):
+
+Prerequisites:
+
+* NodeJS `https://nodejs.org/en/`
+* Npm (comes with NodeJS) 
+* Gulp `sudo npm install -g gulp`
+
+```
+git clone https://github.com/swagger-api/swagger-ui ~/swagger-ui
+cd ~/swagger-ui
+npm install
+gulp
+```
+
+Now open `./dist/index.html` to launch the viewer.
+
+Put `http://localhost:8000/api/v1/docs` in the upper URL and left `api_key` blank.

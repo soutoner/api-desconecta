@@ -7,10 +7,52 @@ use App\Models\User;
 use Phalcon\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 
+/**
+ * @SWG\Tag(
+ *   name="user",
+ *   description="Everything about users",
+ * )
+ */
 class UsersController extends BaseController
 {
     /**
-     * Returns all the users in the database.
+     *  @SWG\Get(
+     *      path="/users",
+     *      summary="Return all users paginated",
+     *      tags={"user"},
+     *      description="Returns paginated users in the database .",
+     *      operationId="indexUsers",
+     *      @SWG\Parameter(
+     *          name="page",
+     *          in="query",
+     *          description="Pagination page required. First page if not present.",
+     *          required=false,
+     *          type="string",
+     *          @SWG\Items(type="string"),
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @SWG\Schema(ref="#/definitions/User"),
+     *          examples={
+     *              "application/json": {
+     *                  "items"={@SWG\Schema(ref="#/definitions/User")},
+     *                  "first"="1",
+     *                  "before"="1",
+     *                  "current"="2",
+     *                  "last"="5",
+     *                  "next"="2",
+     *                  "total_pages"="5",
+     *                  "total_items"="48",
+     *                  "limit"="10"
+     *              }
+     *          },
+     *      ),
+     *      @SWG\Response(
+     *          response="401",
+     *          description="Not authorized",
+     *      ),
+     *  )
      */
     public function index()
     {
@@ -18,9 +60,43 @@ class UsersController extends BaseController
     }
 
     /**
-     * Creates an user in the database.
-     *
-     * @return Response
+     *  @SWG\Post(
+     *      path="/users",
+     *      tags={"user"},
+     *      summary="Create user",
+     *      description="This can only be done by the API itself.",
+     *      operationId="createUser",
+     *      consumes={"multipart/form-data"},
+     *      @SWG\Parameter(
+     *          in="body",
+     *          name="body",
+     *          description="User object to be created",
+     *          required=true,
+     *          @SWG\Schema(ref="#/definitions/User")
+     *      ),
+     *      @SWG\Response(
+     *          response=201,
+     *          description="Successfully created",
+     *          @SWG\Schema(ref="#/definitions/User"),
+     *          examples={
+     *              "application/json": {
+     *                  "status"="OK",
+     *                  "data"=@SWG\Schema(ref="#/definitions/User"),
+     *              }
+     *          },
+     *      ),
+     *      @SWG\Response(
+     *          response=409,
+     *          description="Conflict (validation failed). Contains validation messages as an array where the
+                   fields are the keys and validation messages the values.",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *      @SWG\Response(
+     *          response="401",
+     *          description="Not authorized",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *  )
      */
     public function create()
     {
@@ -43,11 +119,49 @@ class UsersController extends BaseController
     }
 
     /**
-     * Updates an user. Always use `x-www-form-urlencoded` content type for PUT.
-     *
-     * @param  $id - Id of the user to be deleted
-     * @return Response
-     * @throws ResourceNotFoundException
+     *  @SWG\Put(
+     *      path="/users/{id}",
+     *      tags={"user"},
+     *      summary="Update user",
+     *      description="Field by field update can be done.",
+     *      operationId="updateUser",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="User ID to be updated",
+     *          required=true,
+     *          type="string",
+     *      ),
+     *      @SWG\Parameter(
+     *          in="body",
+     *          name="body",
+     *          description="User fields to be updated. The rest will remain the same",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/User")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Successfully updated",
+     *          @SWG\Schema(ref="#/definitions/User"),
+     *          examples={
+     *              "application/json": {
+     *                  "status"="OK",
+     *                  "data"=@SWG\Schema(ref="#/definitions/User"),
+     *              }
+     *          },
+     *      ),
+     *      @SWG\Response(
+     *          response=409,
+     *          description="Conflict (validation failed). Contains validation messages as an array where the
+                    fields are the keys and validation messages the values.",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *      @SWG\Response(
+     *          response="401",
+     *          description="Not authorized",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *  )
      */
     public function update($id)
     {
@@ -76,11 +190,35 @@ class UsersController extends BaseController
     }
 
     /**
-     * Deletes an user from the database.
-     *
-     * @param  $id - Id of the user to be deleted
-     * @return Response
-     * @throws ResourceNotFoundException
+     *  @SWG\Delete(
+     *      path="/users/{id}",
+     *      tags={"user"},
+     *      summary="Deletes an user",
+     *      description="Deletes an user given the id.",
+     *      operationId="updateUser",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="User ID to be deleted",
+     *          required=true,
+     *          type="string",
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Successfully deleted",
+     *          @SWG\Schema(ref="#/definitions/SuccessResponse"),
+     *          examples={
+     *              "application/json": {
+     *                  "status"="OK"
+     *              }
+     *          },
+     *      ),
+     *      @SWG\Response(
+     *          response="401",
+     *          description="Not authorized",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *  )
      */
     public function delete($id)
     {

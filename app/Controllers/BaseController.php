@@ -11,7 +11,7 @@ class BaseController extends Controller
     /**
      * Check if the resource is saved or not and returns a response depending on this.
      * @param $resource
-     * @return Phalcon\Http\Response
+     * @return Response
      */
     protected function response($resource)
     {
@@ -37,6 +37,7 @@ class BaseController extends Controller
                     )
                 );
             } else {
+                $response = new Response();
                 // Change the HTTP status
                 $response->setStatusCode(409, "Conflict");
 

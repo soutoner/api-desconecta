@@ -18,6 +18,7 @@ $collections = [
     require APP_PATH . '/app/collections/v1/schedulings_collection.php',
     require APP_PATH . '/app/collections/v1/register_collection.php',
     require APP_PATH . '/app/collections/v1/oauth/oauth_collection.php',
+    require APP_PATH . '/app/collections/v1/docs_collection.php',
 ];
 
 return $collections;
