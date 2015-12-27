@@ -10,7 +10,8 @@
         "fabpot/php-cs-fixer": " ~1.10",
         "squizlabs/php_codesniffer": " ~2.3",
         "bshaffer/oauth2-server-php": "~1.8",
-        "zircote/swagger-php": "^2.0"
+        "zircote/swagger-php": "^2.0",
+        "vlucas/phpdotenv": "^2.1"
     },
     "require-dev": {
         "codeception/codeception": "*",

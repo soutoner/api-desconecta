@@ -17,5 +17,4 @@ $collection->setPrefix('/api/'. $version .'/oauth');
  */
 $collection->post('/token', 'getToken');
 
-
 return $collection;

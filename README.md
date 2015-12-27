@@ -41,6 +41,12 @@ With code-coverage
 
 `php -d zend_extension=xdebug.so vendor/bin/codecept run --coverage --coverage-html`
 
+Log to debug console
+
+`\Codeception\Util\Debug::debug($this->em);die();`
+
+And run with `--debug` option
+
 ### Grumphp
 
 Run checks (triggered also with commits):

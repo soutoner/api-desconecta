@@ -28,5 +28,6 @@ class EndpointTest
     {
         $this->version = basename(dirname($dir));
         $this->endpoint = '/api/' . $this->version . '/' . basename(dirname($file));
+        // Get valid access_token
     }
 }

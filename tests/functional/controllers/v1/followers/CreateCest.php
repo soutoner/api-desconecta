@@ -24,7 +24,6 @@ class CreateCest extends EndpointTest
 
     public function createRelationshipSuccessful(FunctionalTester $I)
     {
-
         $I->dontSeeRecord('App\Models\Relationships\Follower', $this->relationship);
         $I->sendPOST(
             $this->endpoint . '/' . $this->relationship['user_id'],

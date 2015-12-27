@@ -3,6 +3,8 @@
 
 namespace App\Middleware;
 
+use App\Exceptions\OAuth\UnauthorizedRequest;
+use OAuth2\Request;
 use Phalcon\Mvc\Micro;
 use Phalcon\Mvc\Micro\MiddlewareInterface;
 
@@ -19,11 +21,10 @@ class OAuthMiddleware implements MiddlewareInterface
 
         if (!in_array($url, $this->excepted_routes)) {
             // Handle a request to a resource and authenticate the access token
-            if ($oauth->verifyResourceRequest(\OAuth2\Request::createFromGlobals())) {
+            if (!$oauth->verifyResourceRequest(Request::createFromGlobals())) {
                 $oauth->getResponse()->send();
 
-                // TODO: evict die
-                die;
+                throw new UnauthorizedRequest();
             }
         }
 

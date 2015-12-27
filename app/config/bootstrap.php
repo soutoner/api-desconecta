@@ -10,6 +10,8 @@ require __DIR__ . "/services.php";
 
 $app = new \Phalcon\Mvc\Micro($di);
 
+$app->getRouter()->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
+
 /**
  * Mount routes collections
  */

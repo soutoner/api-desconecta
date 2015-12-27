@@ -10,10 +10,8 @@ use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Filter;
-use App\Lib\Filters\UrlFilter;
-use App\Lib\Filters\DateFilter;
-use App\Lib\Filters\TimestampFilter;
 use App\Lib\Facebook\Facebook;
+use App\Lib\OAuth\ApiStorage;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -65,12 +63,14 @@ $di->setShared('session', function () {
 $di->setShared('oauth', function () use ($config) {
     $dsn = strtolower($config->database->adapter).':dbname='.$config->database->dbname.';host='.$config->database->host;
     OAuth2\Autoloader::register();
-    $storage = new OAuth2\Storage\Pdo([
+    $storage = new ApiStorage([
         'dsn'       => $dsn,
         'username'  => $config->database->username,
         'password'  => $config->database->password,
     ]);
-    $server = new OAuth2\Server($storage);
+    $server = new OAuth2\Server($storage, [
+        'allow_implicit' => true,
+    ]);
     $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
     $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
 
