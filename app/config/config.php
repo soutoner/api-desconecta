@@ -1,18 +1,20 @@
 <?php
 
+include __DIR__ . '/../../vendor/autoload.php';
+
+$dot_env = new Dotenv\Dotenv(__DIR__.'/../../');
+$dot_env->load();
+
 defined('APP_PATH') || define('APP_PATH', realpath('.'));
 
-$dotenv = new Dotenv\Dotenv(__DIR__.'/../../');
-$dotenv->load();
-
-return new \Phalcon\Config(
+$main_config = new \Phalcon\Config(
     array(
         'database' => array(
             'adapter'   => 'Mysql',
             'host'      => getenv('DATABASE_HOST'),
             'username'  => getenv('DATABASE_USER'),
             'password'  => getenv('DATABASE_PASS'),
-            'dbname'    => getenv('DATABASE_NAME'),
+            'dbname'    => getenv('DATABASE_NAME').'_dev',
             'charset'   => 'utf8',
         ),
         'application' => array(
@@ -31,5 +33,16 @@ return new \Phalcon\Config(
             'secret'    => getenv('FB_CLIENT_SECRET'),
             'callback'  => 'register/facebook/callback',
         ),
+        'debug' => true,
     )
 );
+
+// By default development environment
+$env = getenv('APP_ENV');
+if ($env) {
+    $env_config = include APP_PATH.'/app/config/environments/'.$env.'.php';
+
+    return $main_config->merge($env_config);
+} else {
+    return $main_config;
+}

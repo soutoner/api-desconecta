@@ -1,12 +1,12 @@
 <?php
 
-error_reporting(E_ALL);
+if ($app->config->debug) {
+    error_reporting(E_ALL);
+}
 
 define('APP_PATH', realpath('.'));
 
 try {
-
-    require_once __DIR__ . '/vendor/autoload.php';
 
     /**
      * Read the configuration
@@ -43,6 +43,8 @@ try {
     $app->handle();
 
 } catch (\Exception $e) {
-    echo $e->getMessage() . '<br>';
-    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+    if ($app->config->debug) {
+        echo $e->getMessage() . '<br>';
+        echo '<pre>' . $e->getTraceAsString() . '</pre>';
+    }
 }

@@ -1,12 +1,12 @@
 <?php
 
-$config = include __DIR__ . "/test-config.php";
+$config = include __DIR__.'/config.php';
 
-require __DIR__ . "/loader.php";
+require __DIR__.'/loader.php';
 
 $di = new \Phalcon\DI\FactoryDefault();
 
-require __DIR__ . "/services.php";
+require __DIR__.'/services.php';
 
 $app = new \Phalcon\Mvc\Micro($di);
 

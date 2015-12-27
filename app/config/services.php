@@ -19,6 +19,13 @@ use App\Lib\OAuth\ApiStorage;
 $di = new FactoryDefault();
 
 /**
+ * Set shared config.
+ */
+$di->setShared('config', function () use ($config) {
+    return $config;
+});
+
+/**
  * The URL component is used to generate all kind of urls in the application.
  */
 $di->setShared('url', function () use ($config) {
