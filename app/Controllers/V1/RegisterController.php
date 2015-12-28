@@ -7,7 +7,7 @@ use App\Exceptions\Facebook\FbCallbackException;
 use App\Exceptions\Facebook\InvalidFbUser;
 use App\Models\Profile;
 use App\Models\User;
-use Phalcon\Http\Response;
+use App\Http\Response;
 
 /**
  * @SWG\Tag(

@@ -4,7 +4,7 @@ namespace App\Controllers\V1;
 
 use App\Controllers\BaseController;
 use App\Models\Event;
-use Phalcon\Http\Response;
+use App\Http\Response;
 use App\Exceptions\ResourceNotFoundException;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 

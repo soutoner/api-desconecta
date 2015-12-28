@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
+use App\Http\Response;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 class BaseController extends Controller

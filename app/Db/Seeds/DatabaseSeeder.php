@@ -26,6 +26,7 @@ use App\Db\Seeds\Models\UserSeeder;
 use App\Db\Seeds\Models\ProfileSeeder;
 use App\Db\Seeds\Models\Relationships\FollowerSeeder;
 use App\Db\Seeds\Models\MusicTagSeeder;
+use App\Db\Seeds\OAuth\TestClientSeeder;
 
 class DatabaseSeeder
 {
@@ -65,5 +66,10 @@ class DatabaseSeeder
         EventHasPackSeeder::Seed($want_fake);
         EventHasHashTagSeeder::Seed($want_fake);
         EventHasMusicTagSeeder::Seed($want_fake);
+
+        $env = getenv('APP_ENV');
+        if ($env === 'test') {
+            TestClientSeeder::Seed();
+        }
     }
 }

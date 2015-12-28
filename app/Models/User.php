@@ -19,55 +19,46 @@ class User extends BaseModel
 {
     /**
      * @SWG\Property(type="integer")
-     * @var int
      */
     public $id;
 
     /**
      * @SWG\Property(type="string")
-     * @var string
      */
     public $name;
 
     /**
      * @SWG\Property(type="string")
-     * @var string
      */
     public $surname;
 
     /**
      * @SWG\Property(type="string")
-     * @var string
      */
     public $email;
 
     /**
      * @SWG\Property(type="string")
-     * @var string
      */
     public $profile_picture;
 
     /**
      * @SWG\Property(type="date")
-     * @var string
      */
     public $date_birth;
 
     /**
      * @SWG\Property(type="string",enum={"male","female"})
-     * @var string
      */
     public $gender;
 
     /**
      * @SWG\Property(type="string")
-     * @var string
      */
     public $location;
 
     /**
      * @SWG\Property(type="integer")
-     * @var string
      */
     public $rrpp_id;
 

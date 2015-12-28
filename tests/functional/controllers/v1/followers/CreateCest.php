@@ -7,6 +7,7 @@ use \FunctionalTester;
 use App\Models\User;
 use App\Db\Seeds\Models\UserSeeder;
 use App\Db\Seeds\Models\Relationships\FollowerSeeder;
+use support\UseMiddleware;
 
 class CreateCest extends EndpointTest
 {

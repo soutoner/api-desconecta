@@ -4,7 +4,7 @@ namespace App\Controllers\V1;
 
 use App\Controllers\BaseController;
 use App\Models\MusicTag;
-use Phalcon\Http\Response;
+use App\Http\Response;
 
 class MusicTagsController extends BaseController
 {

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions\Facebook;
 
-use Phalcon\Http\Response;
+use App\Http\Response;
 
 class InvalidFbUser extends \Exception
 {

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use Phalcon\Http\Response;
+use App\Http\Response;
 
 class ResourceNotFoundException extends \Exception
 {

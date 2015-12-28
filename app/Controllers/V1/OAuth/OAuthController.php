@@ -5,6 +5,7 @@ namespace App\Controllers\V1\OAuth;
 
 use App\Controllers\BaseController;
 use OAuth2\Request;
+use App\Http\Response;
 
 /**
  * @SWG\Tag(
@@ -82,6 +83,6 @@ class OAuthController extends BaseController
         // TODO: return same access token if not expired
         $request = Request::createFromGlobals();
         // Handle a request for an OAuth2.0 Access Token and send the response to the client
-        return $this->oauth->handleTokenRequest($request)->send();
+        return Response::responseFromOAuth($this->oauth->handleTokenRequest($request));
     }
 }

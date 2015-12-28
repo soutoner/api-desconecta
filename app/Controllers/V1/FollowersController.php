@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\User;
 use App\Models\Relationships\Follower;
 use App\Exceptions\ResourceNotFoundException;
-use Phalcon\Http\Response;
+use App\Http\Response;
 
 /**
  * @SWG\Tag(

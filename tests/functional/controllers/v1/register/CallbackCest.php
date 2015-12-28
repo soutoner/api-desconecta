@@ -9,14 +9,6 @@ use \FunctionalTester;
 
 class CallbackCest extends EndpointTest
 {
-    public function _before(FunctionalTester $I)
-    {
-    }
-
-    public function _after(FunctionalTester $I)
-    {
-    }
-
     public function __construct()
     {
         parent::__construct(__DIR__, __FILE__);

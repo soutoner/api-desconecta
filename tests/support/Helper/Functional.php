@@ -20,4 +20,25 @@ class Functional extends \Codeception\Module
         // Populate DB
         DatabaseSeeder::Seed(false);
     }
+
+    public function seeExceptionThrown($exception, $function)
+    {
+        $failed = true;
+        try {
+            $function();
+            $failed = false;
+        } catch (\Exception $e) {
+            $this->assertEquals($exception, get_class($e));
+        }
+        $this->assertTrue($failed);
+    }
+
+    public function dontSeeExceptionThrown($exception, $function)
+    {
+        try {
+            $function();
+        } catch (\Exception $e) {
+            $this->assertNotEquals($exception, get_class($e));
+        }
+    }
 }
