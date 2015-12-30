@@ -42,16 +42,19 @@ class RegisterController extends BaseController
     {
         $state = $this->security->getToken();
         $permissions = [];
+        $callback = $this->request->getQuery('callback');
 
-        return new Response($this->facebook->getAuthUrl($state, $permissions));
+        return new Response($this->facebook->getAuthUrl($state, $permissions, $callback));
     }
 
+    // TODO: check callback is in our domain
     public function facebookCallback()
     {
         try {
             $state = $this->security->getToken();
             $code = $this->request->getQuery('code');
             $error = $this->request->getQuery('error');
+            $callback = $this->request->getQuery('callback');
 
             if (!empty($error)) {
                 if ($error === 'access_denied') {
@@ -65,7 +68,7 @@ class RegisterController extends BaseController
                 throw new FbCallbackException('Ups, something went wrong during authorization');
             }
 
-            $facebook_response = $this->facebook->getAccessToken($code, $state);
+            $facebook_response = $this->facebook->getAccessToken($code, $state, $callback);
             $access_token = $facebook_response->access_token;
             $uid = $this->facebook->getUid($access_token);
             $profile = Profile::findFirst(['uid = ?0', 'bind' => [$uid]]);

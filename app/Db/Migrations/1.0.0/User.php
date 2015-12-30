@@ -63,7 +63,7 @@ class UserMigration_100 extends Migration
                             'type' => Column::TYPE_VARCHAR,
                             'default' => "Default_picture_url",
                             'notNull' => true,
-                            'size' => 45,
+                            'size' => 255,
                             'after' => 'email'
                         )
             ),

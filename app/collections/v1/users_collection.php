@@ -17,6 +17,7 @@ $collection->setPrefix('/api/'. $version .'/users');
  */
 $collection->get('/', 'index');
 $collection->post('/', 'create');
+$collection->get('/{id:[0-9]+}', 'show');
 $collection->put('/{id:[0-9]+}', 'update');
 $collection->delete('/{id:[0-9]+}', 'delete');
 

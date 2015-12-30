@@ -60,6 +60,47 @@ class UsersController extends BaseController
     }
 
     /**
+     *  @SWG\Get(
+     *      path="/users/{id}",
+     *      summary="Return the requested user",
+     *      tags={"user"},
+     *      description="Return the requested user.",
+     *      operationId="showUser",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="query",
+     *          description="User ID to be shown.",
+     *          required=true,
+     *          type="integer",
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @SWG\Schema(ref="#/definitions/User"),
+     *      ),
+     *      @SWG\Response(
+     *          response="401",
+     *          description="Not authorized",
+     *      ),
+     *      @SWG\Response(
+     *          response="404",
+     *          description="Resource Not Found",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *  )
+     */
+    // TODO: test show action
+    public function show($id)
+    {
+        $id = $this->filter->sanitize($id, 'int');
+        try {
+            return new Response(json_encode(User::findFirstOrFail($id)));
+        } catch (ResourceNotFoundException $e) {
+            return $e->returnResponse();
+        }
+    }
+
+    /**
      *  @SWG\Post(
      *      path="/users",
      *      tags={"user"},
@@ -162,6 +203,11 @@ class UsersController extends BaseController
      *          description="Not authorized",
      *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
      *      ),
+     *      @SWG\Response(
+     *          response="404",
+     *          description="Resource Not Found",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
      *  )
      */
     public function update($id)
@@ -217,6 +263,11 @@ class UsersController extends BaseController
      *      @SWG\Response(
      *          response="401",
      *          description="Not authorized",
+     *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
+     *      ),
+     *      @SWG\Response(
+     *          response="404",
+     *          description="Resource Not Found",
      *          @SWG\Schema(ref="#/definitions/ErrorResponse"),
      *      ),
      *  )

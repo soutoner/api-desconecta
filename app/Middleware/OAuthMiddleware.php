@@ -12,7 +12,7 @@ use Phalcon\Mvc\Micro\MiddlewareInterface;
 class OAuthMiddleware implements MiddlewareInterface
 {
     // TODO: Remove docs from here
-    public static $excepted_routes = ['/api/v1/oauth/token', '/api/v1/register/facebook', '/api/v1/docs'];
+    public static $excepted_routes = ['/api/v1/oauth/token', '/api/v1/register/facebook', '/api/v1/docs', '/api/v1/register/facebook/callback'];
 
     public function call(Micro $application)
     {

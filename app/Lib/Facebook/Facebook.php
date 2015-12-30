@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 
 class Facebook
 {
+    // TODO: check state is not modified
     /**
      * Client Facebook API key.
      *
@@ -53,18 +54,20 @@ class Facebook
     /**
      * Returns the login uri for the user in order to authorize the app.
      *
-     * @param  null       $state       : CSRF token
+     * @param  null $state : CSRF token
      * @param  array|null $permissions : List of scopes to be granted by faceook.
+     * @param null $callback
      * @return string
      */
-    public function getAuthUrl($state = null, $permissions = [])
+    public function getAuthUrl($state = null, $permissions = [], $callback = null)
     {
         $state = (empty($state)) ? '' : '&state='.$state;
         $permissions = array_merge($this->default_permissions, $permissions);
         $scope = '&scope='.implode(',', $permissions);
+        $callback = (empty($callback)) ? $this->callback_uri : $callback;
 
         return 'https://www.facebook.com/'.$this->API_version.'/dialog/oauth?client_id='.$this->client_id.
-            '&redirect_uri='.$this->callback_uri.'&response_type=code'.$scope.$state;
+            '&redirect_uri='.$callback.'&response_type=code'.$scope.$state;
     }
 
     /**
@@ -72,17 +75,19 @@ class Facebook
      *
      * @param  $code
      * @param  null $state : CSRF token
+     * @param null $callback
      * @return \Psr\Http\Message\StreamInterface : {“access_token”: <access-token>, “token_type”:<type>, “expires_in”:<seconds-til-expiration>}
      */
-    public function getAccessToken($code, $state = null)
+    public function getAccessToken($code, $state = null, $callback = null)
     {
         $state = (empty($state)) ? : '&state='.$state;
+        $callback = (empty($callback)) ? $this->callback_uri : $callback;
 
         $client = new Client();
         $response = $client->request(
             'GET',
             'https://graph.facebook.com/'.$this->API_version.
-            '/oauth/access_token?client_id='.$this->client_id.'&redirect_uri='.$this->callback_uri.
+            '/oauth/access_token?client_id='.$this->client_id.'&redirect_uri='.$callback.
             '&client_secret='.$this->client_secret.'&code='.$code.$state
         );
 

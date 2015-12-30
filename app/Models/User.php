@@ -250,13 +250,13 @@ class User extends BaseModel
 
         return $this->assign(
             [
-            'name'              => $me->first_name,
-            'surname'           => $me->last_name,
-            'email'             => $me->email,
-            'profile_picture'   => $me->picture->data->url,
-            'date_birth'        => date('Y-m-d', strtotime($me->birthday)),
-            'gender'            => $me->gender,
-            'from'              => $me->location->name,
+                'name'              => $me->first_name,
+                'surname'           => $me->last_name,
+                'email'             => $me->email,
+                'profile_picture'   => $me->picture->data->url,
+                'date_birth'        => date('Y-m-d', strtotime($me->birthday)),
+                'gender'            => $me->gender,
+                'from'              => $me->location->name,
             ]
         );
     }
