@@ -253,7 +253,7 @@ class User extends BaseModel
                 'name'              => $me->first_name,
                 'surname'           => $me->last_name,
                 'email'             => $me->email,
-                'profile_picture'   => $me->picture->data->url,
+                'profile_picture'   => 'http://graph.facebook.com/'.$me->id.'/picture?type=large',
                 'date_birth'        => date('Y-m-d', strtotime($me->birthday)),
                 'gender'            => $me->gender,
                 'from'              => $me->location->name,
