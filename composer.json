@@ -7,17 +7,17 @@
     ],
     "require" : {
         "guzzlehttp/guzzle": "~6.0",
-        "fabpot/php-cs-fixer": " ~1.10",
-        "squizlabs/php_codesniffer": " ~2.3",
         "bshaffer/oauth2-server-php": "~1.8",
-        "zircote/swagger-php": "^2.0",
-        "vlucas/phpdotenv": "^2.1"
     },
     "require-dev": {
         "codeception/codeception": "*",
+        "fabpot/php-cs-fixer": " ~1.10",
         "fzaninotto/faker": "^1.5",
+        "squizlabs/php_codesniffer": " ~2.3",
         "phalcon/devtools": "dev-travisci",
         "techpivot/phalcon-ci-installer": "~1.0",
-        "phpro/grumphp": "^0.7.0"
+        "phpro/grumphp": "^0.7.0",
+        "zircote/swagger-php": "^2.0",
+        "vlucas/phpdotenv": "^2.1"
     }
 }
